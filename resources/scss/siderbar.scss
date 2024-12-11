@@ -47,6 +47,16 @@ body {
     background-color: var(--body-color);
     color: var(--text-color);
     transition: background-color 0.4s;
+
+    &::-webkit-scrollbar {
+        width: 1rem;
+        background-color: hsl(228, 8%, 85%);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: 1rem;
+        background-color: hsl(228, 8%, 75%);
+    }
 }
 
 a {
@@ -76,6 +86,14 @@ body.dark-theme {
 body.dark-theme {
     background-color: hsl(228, 24%, 16%);
     color: hsl(228, 12%, 61%);
+
+    &::-webkit-scrollbar {
+        background-color: hsl(228, 16%, 30%);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: hsl(228, 16%, 40%);
+    }
 }
 
 /*========== 
@@ -91,12 +109,16 @@ body.dark-theme {
     background-color: hsl(228, 16%, 40%);
 }
 
+.dark-theme
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
     margin-inline: 1.5rem;
 }
 
 .main {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     padding-top: 0.5rem;
 }
 

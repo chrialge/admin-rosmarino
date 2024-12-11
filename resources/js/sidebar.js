@@ -41,6 +41,8 @@ sidebarLink.forEach(l => l.addEventListener('click', linkColor))
 const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'ri-sun-fill'
+const tableRowEl = document.querySelectorAll("#main > div > div > table > tbody > tr > td");
+
 
 // Previously selected topic (if user selected)
 const selectedTheme = localStorage.getItem('selected-theme')
@@ -53,6 +55,8 @@ const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-moo
 // We validate if the user previously chose a topic
 if (selectedTheme) {
     // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+
+
     document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
     themeButton.classList[selectedIcon === 'ri-moon-clear-fill' ? 'add' : 'remove'](iconTheme)
 }
@@ -60,6 +64,10 @@ if (selectedTheme) {
 // Activate / deactivate the theme manually with the button
 themeButton.addEventListener('click', () => {
     // Add or remove the dark / icon theme
+
+    tableRowEl.forEach((element) => {
+        element.classList.toggle('dark-th');
+    })
     document.body.classList.toggle(darkTheme)
     themeButton.classList.toggle(iconTheme)
     // We save the theme and the current icon that the user chose

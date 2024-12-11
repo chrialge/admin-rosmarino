@@ -7,3 +7,24 @@
     padding: 0;
     font-family: Raleway, sans-serif;
 }
+
+.dark-th {
+    background-color: hsla(228, 80%, 4%, 0.3) !important;
+}
+
+.container_allergy {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    .container_table_allergy {
+        display: flex;
+        gap: 40px;
+        & > * {
+            width: calc(50% - 20px);
+        }
+        .create_allergies {
+            & > h2 {
+                padding-bottom: 30px;
+            }
+        }
+    }
+}

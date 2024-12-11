@@ -130,7 +130,6 @@
 
     <!--=============== MAIN ===============-->
     <main class="main" id="main">
-        <h1>sidebar Menu</h1>
         @yield('content')
     </main>
 
