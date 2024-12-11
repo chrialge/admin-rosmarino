@@ -23,7 +23,7 @@
         rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js', 'resources/js/siderbar.js', 'resources/scss/siderbar.scss'])
+    @vite(['resources/js/app.js', 'resources/js/sidebar.js', 'resources/scss/siderbar.scss'])
 
     <style>
         body {
@@ -71,7 +71,7 @@
                     <h3 class="sidebar__title">MANAGE</h3>
 
                     <div class="sidebar__list">
-                        <a href="#" class="sidebar__link">
+                        <a href="#" class="sidebar__link active-link">
                             <i class="ri-dislike-line"></i>
                             <span>Allergie</span>
                         </a>
@@ -129,7 +129,8 @@
     </nav>
 
     <!--=============== MAIN ===============-->
-    <main class="main container" id="main">
+    <main class="main" id="main">
+        <h1>sidebar Menu</h1>
         @yield('content')
     </main>
 
