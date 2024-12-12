@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Allergy;
 use Illuminate\Http\Request;
+use App\Http\Requests\AllergyStoreRequest;
+use Illuminate\Support\Str;
 
 class AllergyController extends Controller
 {
@@ -29,9 +31,13 @@ class AllergyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AllergyStoreRequest $request)
     {
-        //
+        $val_data = $request->validated();
+        $val_data['slug'] = Str::slug($val_data['name'], '-');
+        $allergy = Allergy::create($val_data);
+
+        return to_route('admin.allergy.index')->with('message', "Hai creato l'allergia: $allergy->name");
     }
 
     /**

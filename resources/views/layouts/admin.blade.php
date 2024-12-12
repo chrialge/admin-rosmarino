@@ -25,6 +25,8 @@
     <!-- Usando Vite -->
     @vite(['resources/js/app.js', 'resources/js/sidebar.js', 'resources/scss/siderbar.scss'])
 
+    @yield('script')
+
     <style>
         body {
             font-family: "Nunito", sans-serif;
@@ -116,11 +118,17 @@
                         <span>Theme</span>
                     </i>
                 </button>
-
-                <button class="sidebar__link">
+                {{-- se clicco scollega l'utente --}}
+                <a class="sidebar__link" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                     document.getElementById('logout-form').submit();">
                     <i class="ri-logout-box-r-fill"></i>
                     <span>Log Out</span>
-                </button>
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
             <!-- /.sidebar__actions -->
         </div>

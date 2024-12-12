@@ -55,18 +55,38 @@ const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'ri-moo
 // We validate if the user previously chose a topic
 if (selectedTheme) {
     // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
+    tableRowEl.forEach((element) => {
 
+
+        if (selectedTheme === 'dark') {
+            element.classList.add('dark-th');
+        } else {
+            element.classList.remove('dark-th');
+
+        }
+
+    })
 
     document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
     themeButton.classList[selectedIcon === 'ri-moon-clear-fill' ? 'add' : 'remove'](iconTheme)
 }
 
+console.log(localStorage.getItem('selected-theme'));
+
 // Activate / deactivate the theme manually with the button
 themeButton.addEventListener('click', () => {
     // Add or remove the dark / icon theme
-
+    console.log(getCurrentTheme())
     tableRowEl.forEach((element) => {
-        element.classList.toggle('dark-th');
+
+
+        if (getCurrentTheme() === 'light') {
+            element.classList.add('dark-th');
+        } else {
+            element.classList.remove('dark-th');
+
+        }
+
     })
     document.body.classList.toggle(darkTheme)
     themeButton.classList.toggle(iconTheme)

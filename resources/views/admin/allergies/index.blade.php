@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('script')
+    <script src="{{ asset('js/allergy_validation.js') }}"></script>
+@endsection
+
 @section('content')
     <div class="container_allergy">
 
@@ -21,6 +25,10 @@
                 </a>
             </li>
         </ul>
+
+
+        @include('partials.session')
+
         <div class="container_table_allergy">
 
             <div class="create_allergies">
@@ -31,29 +39,29 @@
                 @include('partials.validate') --}}
 
                 {{-- form per i campi per creare un nuovo viaggio --}}
-                <form action="{{ route('admin.allergy.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.allergy.store') }}" method="post">
                     @csrf
 
-                    {{-- campo name di travel --}}
+                    {{-- campo name di allergia --}}
                     <div class="mb-3 form-floating">
 
                         <input onkeyup="hide_name_error()" onblur="check_name()" type="text"
                             class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                             aria-describedby="nameHelper" value="{{ old('name') }}" placeholder="" required />
-                        <label for="name" class="form-label">Name *</label>
-                        <small id="nameHelper" class="">
-                            Inserisci il nome della allergia
-                        </small>
-
-                        {{-- span di errore lato front 
-                        <span id="name_error" class="text-danger error_invisible" role="alert">
+                        <label for="name" class="form-label" style="color: hsl(228, 85%, 63%)">Name *</label>
+                        {{-- span di errore lato front --}}
+                        <span id="name_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                             Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
-                        </span> --}}
+                        </span>
 
                         {{-- errore lato back --}}
                         @error('name')
-                            <div class="text-danger">{{ $message }}</div>
+                            <div id="name_error_back" class="text-danger">{{ $message }}</div>
                         @enderror
+
+                        <small id="nameHelper" class="">
+                            Inserisci il nome della allergia
+                        </small>
 
                     </div>
 
@@ -61,13 +69,13 @@
 
                     <div class="container_button d-flex  pt-2">
                         {{-- bottone di creazione --}}
-                        <button id="travel_btn" type="submit" class="btn btn-primary">
-                            <span>CREA UN VIAGGIO</span>
+                        <button id="allergy_btn" class="btn">
+                            <span>CREA UN ALLERGIA</span>
                         </button>
-                        {{-- bottone di attesa
-                        <button id="btn_loading" type="submit" class="btn btn-primary error_invisible" disabled>
+                        {{-- bottone di attesa --}}
+                        <button id="btn_loading" type="submit" class="btn" style="display: none;" disabled>
                             <span>Attendi ...</span>
-                        </button> --}}
+                        </button>
                     </div>
 
 
