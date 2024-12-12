@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AllergyController;
 use App\Http\Controllers\ProfileController;
+use Database\Seeders\AllergySeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,6 @@ Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
-        Route::get('/', [AllergyController::class, 'index']);
         Route::resource('/allergy', AllergyController::class);
     });
 

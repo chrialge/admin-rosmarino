@@ -8,6 +8,7 @@
     /*========== Colors ==========*/
     /*Color mode HSL(hue, saturation, lightness)*/
     --first-color: hsl(228, 85%, 63%);
+    --modify-color: hsl(39, 100%, 50%);
     --title-color: hsl(228, 18%, 16%);
     --text-color: hsl(228, 8%, 56%);
     --body-color: hsl(228, 100%, 99%);
@@ -50,7 +51,10 @@
             width: calc(50% - 20px);
         }
         .create_allergies {
-            & > h2 {
+            opacity: 1;
+            // transition: height 2s, opacity 1s;
+
+            & .form_create > h2 {
                 padding-bottom: 30px;
                 color: var(--first-color);
             }
@@ -85,6 +89,43 @@
                 }
             }
         }
+
+        .form_modify {
+            height: 0;
+            opacity: 0;
+            transition: all 0.5s ease-in-out;
+
+            & > h2 {
+                color: var(--modify-color);
+                padding-bottom: 30px;
+            }
+
+            .form-floating {
+                #name_modify {
+                    color: var(--modify-color);
+                    border: 3px solid var(--modify-color);
+
+                    &:focus {
+                        box-shadow: 0 0 0 0.25rem hsla(39, 100%, 50%, 0.5);
+                    }
+                }
+
+                & > .form-label {
+                    color: var(--modify-color);
+                }
+            }
+
+            .container_button {
+                .btn {
+                    background-color: var(--modify-color);
+
+                    &:hover {
+                        background-color: hsla(39, 100%, 50%, 0.5);
+                    }
+                }
+            }
+        }
+
         .table {
             border: 1px solid var(--first-color);
         }
@@ -130,5 +171,135 @@
         font-size: 20px;
         color: #008000;
         font-weight: var(--font-semi-bold);
+    }
+}
+
+.btn_modify {
+    background-color: var(--modify-color);
+    opacity: 1;
+    transition: opacity 0.3s, width 0.5s;
+
+    &:hover {
+        background-color: hsla(39, 100%, 50%, 0.5);
+    }
+}
+
+.btn_create_action {
+    width: 0;
+    opacity: 0;
+    background-color: var(--first-color);
+    color: white;
+    transition: opacity 0.3s, width 0.5s;
+
+    &:hover {
+        background-color: hsla(228, 85%, 63%, 0.5);
+    }
+}
+
+.overlay_delete {
+    // transform: translateY(200%);
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: hsla(228, 85%, 63%, 0.953);
+
+    box-shadow: 0 2px 24px var(--shadow-color);
+
+    height: 100%;
+
+    & > .container_delete {
+        position: relative;
+        padding: 40px;
+        width: 98%;
+        max-width: 440px;
+        background-color: var(--body-color);
+        border-radius: 30px;
+
+        & > .header_delete {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--first-color);
+            font-weight: var(--font-semi-bold);
+            font-size: 40px;
+
+            & > .btn_close {
+                position: absolute;
+                top: 29px;
+                right: 15px;
+                font-size: 30px;
+                color: var(--first-color);
+            }
+        }
+
+        & > .body_delete {
+            margin-bottom: 30px;
+            font-size: var(--font-regular);
+        }
+
+        & > .footer_delete {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .btn_delete {
+                color: white;
+                display: inline-block;
+                background-color: hsl(356, 100%, 41%);
+
+                &:hover {
+                    background-color: hsla(356, 100%, 41%, 0.5);
+                }
+            }
+        }
+    }
+}
+
+.modal {
+    & > .modal-dialog {
+        & > .modal-content {
+            max-width: 440px;
+            background-color: var(--body-color);
+            box-shadow: 0 2px 24px var(--shadow-color);
+
+            & > .header_delete {
+                border: 0;
+                justify-content: space-between;
+
+                & > h5 {
+                    color: var(--first-color);
+                    font-weight: var(--font-semi-bold);
+                    font-size: 30px;
+                }
+                .btn_close {
+                    text-align: end;
+                    font-size: 30px;
+                    color: var(--first-color);
+                }
+            }
+
+            & > .body_delete {
+                color: var(--text-color);
+                font-size: var(--font-regular);
+                border: 0;
+                text-align: center;
+            }
+
+            & > .footer_delete {
+                border: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .btn_delete {
+                    background-color: hsl(356, 100%, 41%);
+                    color: white;
+                    border: 0;
+                }
+            }
+        }
     }
 }
