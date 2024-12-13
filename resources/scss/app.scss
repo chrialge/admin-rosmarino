@@ -174,6 +174,32 @@
     }
 }
 
+.session_delete {
+    margin-bottom: 40px;
+    padding: 20px;
+    border: 2px solid hsl(356, 100%, 41%);
+    background-color: hsla(356, 100%, 41%, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    opacity: 1;
+    transition: all 0.4s ease-in-out;
+
+    & > i {
+        font-size: 20px;
+        color: hsl(356, 100%, 41%);
+        font-weight: var(--font-semi-bold);
+        cursor: pointer;
+    }
+
+    & > .left_session_delete {
+        font-size: 20px;
+        color: hsl(356, 100%, 41%);
+        font-weight: var(--font-semi-bold);
+    }
+}
+
 .btn_modify {
     background-color: var(--modify-color);
     opacity: 1;
@@ -289,16 +315,149 @@
                 text-align: center;
             }
 
+            & > .delete_account {
+                & > h5 {
+                    color: hsl(356, 100%, 41%);
+                }
+            }
+
             & > .footer_delete {
                 border: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
+                #password {
+                    border: 3px solid var(--first-color);
+                    color: var(--first-color);
+
+                    &::placeholder {
+                        color: var(--first-color);
+                    }
+                    &:focus {
+                        box-shadow: 0 0 0 0.25rem hsla(228, 85%, 63%, 0.596);
+                    }
+                }
                 .btn_delete {
                     background-color: hsl(356, 100%, 41%);
                     color: white;
                     border: 0;
+
+                    &:hover {
+                        background-color: hsla(356, 100%, 41%, 0.5);
+                    }
                 }
+            }
+        }
+    }
+}
+
+.container_profile {
+    padding-left: 1.5rem;
+    & > h2 {
+        color: var(--first-color);
+
+        // font-weight: var(--font-semi-bold);
+    }
+    & > .card_profile_information,
+    & > .card_update_password,
+    & > .card_delete_account {
+        padding: 30px;
+        background-color: var(--body-color);
+        box-shadow: 0 2px 24px var(--shadow-color);
+        border-radius: 1rem;
+        margin-bottom: 50px;
+    }
+
+    & > .card_profile_information,
+    & > .card_update_password {
+        & > section {
+            & > header {
+                & > h2 {
+                    color: var(--first-color);
+                    margin-bottom: 20px;
+                }
+                & > p {
+                    color: var(--text-color);
+                    margin-bottom: 30px;
+                }
+            }
+
+            & > .form_profile_information,
+            & > .form_update_password {
+                & > .form-floating {
+                    & > input {
+                        border: 3px solid var(--first-color);
+                        color: var(--first-color);
+                        font-weight: var(--font-semi-bold);
+
+                        &:focus {
+                            box-shadow: 0 0 0 0.25rem hsla(228, 85%, 63%, 0.596);
+                        }
+                    }
+
+                    & > label {
+                        color: var(--first-color);
+                    }
+                }
+
+                & > .d-flex {
+                    & > .btn_save {
+                        background-color: var(--first-color);
+                        color: white;
+
+                        &:hover {
+                            background-color: hsla(228, 85%, 63%, 0.596);
+                        }
+                    }
+                    & > .overlay_success {
+                        transform: translateX(200%);
+                        transition: all 1s ease-in-out;
+
+                        position: fixed;
+                        z-index: 9999;
+                        top: 0;
+                        left: 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.624);
+
+                        & > .container_success {
+                            width: 95%;
+                            max-width: 340px;
+                            padding: 30px;
+                            background-color: var(--body-color);
+                            border-radius: 1rem;
+                            box-shadow: 0 2px 24px var(--shadow-color);
+
+                            & > img {
+                                max-width: 150px;
+                                margin: auto;
+                                padding-bottom: 20px;
+                            }
+
+                            & > p {
+                                color: var(--text-color);
+                                text-align: center;
+                                font-weight: var(--font-semi-bold);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container_allergy {
+        .container_table_allergy {
+            flex-wrap: wrap;
+            & > * {
+                width: 100%;
             }
         }
     }

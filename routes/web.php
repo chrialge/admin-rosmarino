@@ -24,6 +24,7 @@ Route::middleware(['auth', 'verified'])
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {
+
         Route::resource('/allergy', AllergyController::class);
     });
 

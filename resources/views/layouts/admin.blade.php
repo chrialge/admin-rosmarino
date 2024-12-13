@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'back-rosmarino') }}</title>
 
     {{-- remixicon 4.2.0 --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css"
@@ -72,8 +72,10 @@
                 <div>
                     <h3 class="sidebar__title">MANAGE</h3>
 
+
+
                     <div class="sidebar__list">
-                        <a href="#" class="sidebar__link active-link">
+                        <a href="{{ route('admin.allergy.index') }}" class="sidebar__link ">
                             <i class="ri-dislike-line"></i>
                             <span>Allergie</span>
                         </a>
@@ -99,7 +101,7 @@
                     <h3 class="sidebar__title">IMPOSTAZIONI</h3>
 
                     <div class="sidebar__list">
-                        <a href="#" class="sidebar__link">
+                        <a href="{{ url('profile') }}" class="sidebar__link">
                             <i class="ri-user-settings-fill"></i>
                             <span>Account</span>
                         </a>

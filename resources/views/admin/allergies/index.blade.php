@@ -100,7 +100,7 @@
                     @include('partials.validate') --}}
 
                     {{-- form per i campi per creare un nuovo viaggio --}}
-                    <form id="modify_update_form" action="" method="post">
+                    <form id="modify_update_form" action="{{ route('admin.allergy.update', 2) }}" method="post">
                         @csrf
                         @method('PUT')
                         {{-- campo name di allergia --}}

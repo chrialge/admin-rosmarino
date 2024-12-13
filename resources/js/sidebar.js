@@ -1,5 +1,7 @@
 /*=============== SHOW SIDEBAR ===============*/
 
+
+
 const showSidebar = (toggleId, sidebarId, headerId, mainId) => {
     const toggle = document.getElementById(toggleId),
         sidebar = document.getElementById(sidebarId),
@@ -25,11 +27,25 @@ showSidebar('header-toggle', 'sidebar', 'header', 'main')
 
 /*=============== LINK ACTIVE ===============*/
 
+
+
 const sidebarLink = document.querySelectorAll('.sidebar__list a')
 
 function linkColor() {
     sidebarLink.forEach(l => l.classList.remove('active-link'))
+
     this.classList.add('active-link')
+    localStorage.setItem('route-page', this.childNodes[3].textContent)
+}
+
+if (localStorage.getItem('route-page') == null) {
+
+} else {
+    sidebarLink.forEach((element) => {
+        if (element.childNodes[3].textContent == localStorage.getItem('route-page')) {
+            element.classList.add('active-link')
+        }
+    })
 }
 
 sidebarLink.forEach(l => l.addEventListener('click', linkColor))

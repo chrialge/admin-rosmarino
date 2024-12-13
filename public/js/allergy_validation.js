@@ -153,7 +153,9 @@ function showModify(allergy, index, id) {
     if (localStorage.getItem('allergy-index') === null || localStorage.getItem('allergy-index') == index) {
 
         localStorage.setItem('id-allergy', id);
-        const gg = document.getElementById('modify_update_form').setAttribute('action', `http://127.0.0.1:8000/admin/allergy/${id}`);
+        const gg = document.getElementById('modify_update_form').getAttribute('action');
+        const url = gg.slice(0, -1) + id;
+        document.getElementById('modify_update_form').setAttribute('action', url);
 
 
         if (localStorage.getItem('allergy-index') === null) {
