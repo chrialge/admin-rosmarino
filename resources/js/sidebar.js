@@ -39,7 +39,7 @@ function linkColor() {
 }
 
 if (localStorage.getItem('route-page') == null) {
-
+    sidebarLink[0].classList.add('active-link')
 } else {
     sidebarLink.forEach((element) => {
         if (element.childNodes[3].textContent == localStorage.getItem('route-page')) {
@@ -57,7 +57,7 @@ sidebarLink.forEach(l => l.addEventListener('click', linkColor))
 const themeButton = document.getElementById('theme-button')
 const darkTheme = 'dark-theme'
 const iconTheme = 'ri-sun-fill'
-const tableRowEl = document.querySelectorAll("#main > div > div > table > tbody > tr > td");
+const tableRowEl = document.querySelectorAll("#main > div > div > div > table > tbody > tr > td");
 
 
 // Previously selected topic (if user selected)

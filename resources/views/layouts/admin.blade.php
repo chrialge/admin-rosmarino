@@ -123,7 +123,8 @@
                 {{-- se clicco scollega l'utente --}}
                 <a class="sidebar__link" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
+                                     document.getElementById('logout-form').submit();
+                                     localStorage.removeItem('route-page');">
                     <i class="ri-logout-box-r-fill"></i>
                     <span>Log Out</span>
                 </a>

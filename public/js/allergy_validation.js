@@ -197,6 +197,8 @@ function showModify(allergy, index, id) {
             // style per il bottone di creazione di allergia
             btnCreateAction.style.opacity = '1';
             btnCreateAction.style.width = '41px';
+            btnCreateAction.style.padding = '0.375rem 0.75rem';
+
 
             // style per il bottone di modifica di allergia
             btnModifyAction.style.opacity = '0';
@@ -221,6 +223,8 @@ function showModify(allergy, index, id) {
             // style per il bottone di creazione di allergia
             btnCreateAction.style.opacity = '0';
             btnCreateAction.style.width = '0';
+            btnCreateAction.style.padding = '0';
+
 
             // style per il bottone di modifica di allergia
             btnModifyAction.style.opacity = '1';
