@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Allergy;
 use Illuminate\Http\Request;
 use App\Models\Dish;
 
@@ -30,7 +31,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        //
+        $allergies = Allergy::all();
+        return view('admin.dishes.create', compact('allergies'));
     }
 
     /**

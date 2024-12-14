@@ -8,6 +8,7 @@
 @section('content')
     <div class="container-dish">
 
+
         {{-- percorso di file / breadcrumb --}}
         <ul class="d-flex gap-2 list-unstyled">
             <li>
@@ -34,7 +35,7 @@
                 Piatti {{ $count }}
             </h2>
 
-            <a href="#" class="btn btn_create">
+            <a href="{{ route('admin.dishes.create') }}" class="btn btn_create">
                 <span> Crea Piatto</span>
                 <i class="ri-add-large-fill"></i>
             </a>
@@ -57,8 +58,10 @@
             <div class="separator">
             </div>
 
+
             {{-- container delle card  --}}
             <div class="container_card">
+
                 @forelse ($entrePlate as $plate)
                     <div class="card_plate">
 
@@ -70,7 +73,8 @@
                                 {{ $plate->name }}
                             </h5>
                             <span>
-                                {{ $plate->price }}
+                                {{ $plate->price . ' ' }}&euro;
+
                             </span>
                         </div>
                         <div class="card_footer">
@@ -79,9 +83,74 @@
                                 <i class="ri-delete-bin-5-fill"></i>
                             </div>
 
-                            <div class="btn btn_show">
+
+
+                            <!-- Modal trigger button -->
+                            <button type="button" class="btn btn_show" data-bs-toggle="modal"
+                                data-bs-target="#modalId-{{ $plate->id }}">
                                 <i class="ri-eye-2-fill"></i>
+
+                            </button>
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="left_header">
+                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                            </div>
+
+
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-circle-fill"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="name_plate">
+                                                <b>Nome: </b>
+                                                <span>{{ $plate->name }}</span>
+                                            </div>
+                                            <div class="typology_plate">
+                                                <b>Tipo: </b>
+                                                <span>{{ $plate->typology }}</span>
+                                            </div>
+                                            <div class="price_plate">
+                                                <b>Prezzo: </b>
+                                                <span>{{ $plate->price }} &euro;</span>
+                                            </div>
+                                            <div class="allergies_plate">
+                                                <b>Allergie: </b>
+                                                <span class="badge"> Glutine</span>
+                                            </div>
+                                            <div class="description">
+                                                <b>Descrizione: </b>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+                                                    minus,
+                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+
+                            <!-- Optional: Place to the bottom of scripts -->
+                            <script>
+                                const myModal = new bootstrap.Modal(
+                                    document.getElementById("modalId"),
+                                    options,
+                                );
+                            </script>
+
 
                             <div class=" btn btn_edit">
                                 <i class="ri-edit-fill"></i>
@@ -137,8 +206,62 @@
                                 <i class="ri-delete-bin-5-fill"></i>
                             </div>
 
-                            <div class="btn btn_show">
+
+                            <button type="button" class="btn btn_show" data-bs-toggle="modal"
+                                data-bs-target="#modalId-{{ $plate->id }}">
                                 <i class="ri-eye-2-fill"></i>
+
+                            </button>
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="left_header">
+                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                            </div>
+
+
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-circle-fill"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="name_plate">
+                                                <b>Nome: </b>
+                                                <span>{{ $plate->name }}</span>
+                                            </div>
+                                            <div class="typology_plate">
+                                                <b>Tipo: </b>
+                                                <span>{{ $plate->typology }}</span>
+                                            </div>
+                                            <div class="price_plate">
+                                                <b>Prezzo: </b>
+                                                <span>{{ $plate->price }} &euro;</span>
+                                            </div>
+                                            <div class="allergies_plate">
+                                                <b>Allergie: </b>
+                                                <span class="badge"> Glutine</span>
+                                            </div>
+                                            <div class="description">
+                                                <b>Descrizione: </b>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+                                                    minus,
+                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <div class=" btn btn_edit">
@@ -191,8 +314,62 @@
                                 <i class="ri-delete-bin-5-fill"></i>
                             </div>
 
-                            <div class="btn btn_show">
+
+                            <button type="button" class="btn btn_show" data-bs-toggle="modal"
+                                data-bs-target="#modalId-{{ $plate->id }}">
                                 <i class="ri-eye-2-fill"></i>
+
+                            </button>
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="left_header">
+                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                            </div>
+
+
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-circle-fill"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="name_plate">
+                                                <b>Nome: </b>
+                                                <span>{{ $plate->name }}</span>
+                                            </div>
+                                            <div class="typology_plate">
+                                                <b>Tipo: </b>
+                                                <span>{{ $plate->typology }}</span>
+                                            </div>
+                                            <div class="price_plate">
+                                                <b>Prezzo: </b>
+                                                <span>{{ $plate->price }} &euro;</span>
+                                            </div>
+                                            <div class="allergies_plate">
+                                                <b>Allergie: </b>
+                                                <span class="badge"> Glutine</span>
+                                            </div>
+                                            <div class="description">
+                                                <b>Descrizione: </b>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+                                                    minus,
+                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <div class=" btn btn_edit">
@@ -246,8 +423,61 @@
                                 <i class="ri-delete-bin-5-fill"></i>
                             </div>
 
-                            <div class="btn btn_show">
+                            <button type="button" class="btn btn_show" data-bs-toggle="modal"
+                                data-bs-target="#modalId-{{ $plate->id }}">
                                 <i class="ri-eye-2-fill"></i>
+
+                            </button>
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="left_header">
+                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                            </div>
+
+
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-circle-fill"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="name_plate">
+                                                <b>Nome: </b>
+                                                <span>{{ $plate->name }}</span>
+                                            </div>
+                                            <div class="typology_plate">
+                                                <b>Tipo: </b>
+                                                <span>{{ $plate->typology }}</span>
+                                            </div>
+                                            <div class="price_plate">
+                                                <b>Prezzo: </b>
+                                                <span>{{ $plate->price }} &euro;</span>
+                                            </div>
+                                            <div class="allergies_plate">
+                                                <b>Allergie: </b>
+                                                <span class="badge"> Glutine</span>
+                                            </div>
+                                            <div class="description">
+                                                <b>Descrizione: </b>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+                                                    minus,
+                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <div class=" btn btn_edit">
@@ -300,10 +530,65 @@
                             <div class="btn btn_delete">
                                 <i class="ri-delete-bin-5-fill"></i>
                             </div>
-
-                            <div class="btn btn_show">
+                            <button type="button" class="btn btn_show" data-bs-toggle="modal"
+                                data-bs-target="#modalId-{{ $plate->id }}">
                                 <i class="ri-eye-2-fill"></i>
+
+                            </button>
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="left_header">
+                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                            </div>
+
+
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-circle-fill"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="name_plate">
+                                                <b>Nome: </b>
+                                                <span>{{ $plate->name }}</span>
+                                            </div>
+                                            <div class="typology_plate">
+                                                <b>Tipo: </b>
+                                                <span>{{ $plate->typology }}</span>
+                                            </div>
+                                            <div class="price_plate">
+                                                <b>Prezzo: </b>
+                                                <span>{{ $plate->price }} &euro;</span>
+                                            </div>
+                                            <div class="allergies_plate">
+                                                <b>Allergie: </b>
+                                                <span class="badge"> Glutine</span>
+                                            </div>
+                                            <div class="description">
+                                                <b>Descrizione: </b>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
+                                                    minus,
+                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+
+
+
 
                             <div class=" btn btn_edit">
                                 <i class="ri-edit-fill"></i>
