@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Hashing\HashServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -16,6 +19,8 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        // $user = $request->user();
+        // dd();
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
@@ -31,6 +36,8 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
+
+        dd($request->all());
 
         $request->user()->save();
 

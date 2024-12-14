@@ -15,11 +15,10 @@
 
         <div class="mb-4 form-floating">
 
-            <input class="mt-1 form-control @error('current_password')
-                is-invalid
-            @enderror"
-                type="password" name="current_password" id="current_password" autocomplete="current-password">
-            <label for="current_password">{{ __('Vecchia Password') }}</label>
+            <input id="current_password" type="password" name="current_password"
+                class="mt-1 form-control @error('current_password') is-invalid @enderror"
+                onkeyup="check_current_password( '{{ $user->password }}')" autocomplete="current-password">
+            <label for="current_password" value="{{ Hash::make(old('password')) }}">{{ __('Vecchia Password') }}</label>
             @error('current_password')
                 <span class="invalid-feedback mt-2" role="alert">
                     <strong>{{ $errors->updatePassword->get('current_password') }}</strong>
@@ -28,8 +27,9 @@
         </div>
 
         <div class="mb-4 form-floating">
-            <input class="mt-1 form-control" type="password" name="password" id="password" autocomplete="new-password">
-            <label for="password">{{ __('Nuova Password') }}</label>
+            <input class="mt-1 form-control" type="password" name="password" id="password_new"
+                autocomplete="new-password">
+            <label for="password_new">{{ __('Nuova Password') }}</label>
 
             @error('password')
                 <span class="invalid-feedback mt-2" role="alert">

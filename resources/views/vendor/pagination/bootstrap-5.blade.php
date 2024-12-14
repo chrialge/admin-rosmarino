@@ -1,42 +1,38 @@
 @if ($paginator->hasPages())
-    <nav class="d-flex justify-items-center justify-content-between">
-        <div class="d-flex justify-content-between flex-fill d-sm-none">
-            <ul class="pagination">
+    <nav class="d-flex justify-items-center justify-content-between mb-4">
+        <div class="d-flex justify-content-between flex-fill d-sm-none align-items-center">
+
+            <p style="font-weight: 600; color: hsl(228, 85%, 63%); margin: 0;">
+                {{ 'Pagina ' . $paginator->currentPage() }}
+            </p>
+
+            <div class="pagination_new">
                 {{-- Previous Page Link --}}
+
+
                 @if ($paginator->onFirstPage())
-                    <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link">@lang('pagination.previous')</span>
-                    </li>
                 @else
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->previousPageUrl() }}"
-                            rel="prev">@lang('pagination.previous')</a>
-                    </li>
+                    <a class="btn_page" href="{{ $paginator->previousPageUrl() }}" rel="prev"
+                        aria-label="@lang('pagination.previous')">
+                        <i class="ri-arrow-left-circle-fill"></i>
+                    </a>
                 @endif
 
                 {{-- Next Page Link --}}
                 @if ($paginator->hasMorePages())
-                    <li class="page-item">
-                        <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a>
-                    </li>
+                    <a class="btn_page" href="{{ $paginator->nextPageUrl() }}" rel="next"
+                        aria-label="@lang('pagination.next')">
+                        <i class="ri-arrow-right-circle-fill"></i>
+                    </a>
                 @else
-                    <li class="page-item disabled" aria-disabled="true">
-                        <span class="page-link">@lang('pagination.next')</span>
-                    </li>
                 @endif
-            </ul>
+            </div>
         </div>
 
         <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
             <div>
-                <p class="small text-muted">
-                    {!! __('Showing') !!}
-                    <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
-                    {!! __('to') !!}
-                    <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
-                    {!! __('of') !!}
-                    <span class="fw-semibold">{{ $paginator->total() }}</span>
-                    {!! __('results') !!}
+                <p style="font-weight: 600; color: hsl(228, 85%, 63%); margin: 0;">
+                    {{ 'Pagina ' . $paginator->currentPage() }}
                 </p>
             </div>
 
@@ -44,14 +40,11 @@
                 <div class="pagination_new">
                     {{-- Previous Page Link --}}
                     @if ($paginator->onFirstPage())
-                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                            <span class="page-link" aria-hidden="true">&lsaquo;</span>
-                        </li>
                     @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev"
-                                aria-label="@lang('pagination.previous')">&lsaquo;</a>
-                        </li>
+                        <a class="btn_page" href="{{ $paginator->previousPageUrl() }}" rel="prev"
+                            aria-label="@lang('pagination.previous')">
+                            <i class="ri-arrow-left-circle-fill"></i>
+                        </a>
                     @endif
 
                     {{-- Pagination Elements --}}
@@ -78,14 +71,11 @@
 
                     {{-- Next Page Link --}}
                     @if ($paginator->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next"
-                                aria-label="@lang('pagination.next')">&rsaquo;</a>
-                        </li>
+                        <a class="btn_page" href="{{ $paginator->nextPageUrl() }}" rel="next"
+                            aria-label="@lang('pagination.next')">
+                            <i class="ri-arrow-right-circle-fill"></i>
+                        </a>
                     @else
-                        <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                            <span class="page-link" aria-hidden="true">&rsaquo;</span>
-                        </li>
                     @endif
                 </div>
             </div>

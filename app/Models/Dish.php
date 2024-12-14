@@ -6,20 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Allergy extends Model
+
+class Dish extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'slug'];
+
+    protected $fillable = ['name', 'slug', 'image', 'price', 'typology', 'description'];
 
 
     /**
-     * The roles that belong to the Allergy
+     * The roles that belong to the Dish
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function dishes(): BelongsToMany
+    public function allergies(): BelongsToMany
     {
-        return $this->belongsToMany(Dish::class);
+        return $this->belongsToMany(Allergy::class);
     }
 }

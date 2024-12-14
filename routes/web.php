@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AllergyController;
+use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\ProfileController;
 use Database\Seeders\AllergySeeder;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::middleware(['auth', 'verified'])
     ->group(function () {
 
         Route::resource('/allergy', AllergyController::class);
+        Route::resource('/dishes', DishController::class);
     });
 
 Route::middleware('auth')->group(function () {

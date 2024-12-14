@@ -1,4 +1,11 @@
 @extends('layouts.admin')
+
+
+@section('script')
+    <script src="{{ asset('js/update_password_validation.js') }}"></script>
+@endsection
+
+
 @section('content')
     <div class="container_profile">
 

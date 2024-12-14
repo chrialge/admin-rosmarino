@@ -80,7 +80,7 @@
                             <span>Allergie</span>
                         </a>
 
-                        <a href="#" class="sidebar__link">
+                        <a href="{{ route('admin.dishes.index') }}" class="sidebar__link">
                             <i class="ri-restaurant-line"></i>
                             <span>Menu</span>
                         </a>

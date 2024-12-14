@@ -466,8 +466,6 @@
     font-family: var(--body-font);
     display: flex;
     justify-content: center;
-    height: 20px;
-    margin: auto;
     align-items: center;
 
     & > .pagination__dot {
@@ -534,6 +532,16 @@
             transition: 0.3s;
         }
     }
+
+    .btn_page {
+        text-decoration: none;
+        color: var(--first-color);
+        font-size: 35px;
+
+        &:hover {
+            color: hsla(228, 85%, 63%, 0.5);
+        }
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -554,5 +562,153 @@
 
     .container_allergy {
         padding: 0.5rem;
+    }
+}
+
+.container-dish {
+    padding: 1.5rem;
+
+    & > .header_page {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 0;
+
+        & > h2 {
+            color: var(--first-color);
+        }
+
+        & > .btn_create {
+            background-color: var(--first-color);
+            color: var(--body-color);
+            font-weight: var(--font-semi-bold);
+
+            &:hover {
+                background-color: hsla(228, 85%, 63%, 0.596);
+            }
+        }
+    }
+
+    & > .first_plate_container,
+    & > .second_plate_container,
+    & > .entre_plate_container,
+    & > .dessert_plate_container,
+    & > .drink_container {
+        margin-bottom: 20px;
+        .header_container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 10px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            cursor: pointer;
+
+            & > h3 {
+                color: var(--first-color);
+                margin: 0;
+            }
+
+            & > i {
+                color: var(--first-color);
+                font-size: 40px;
+                transition: transform 0.5s linear;
+            }
+
+            &:hover {
+                background-color: hsla(228, 85%, 63%, 0.5);
+            }
+        }
+
+        & > .separator {
+            width: 100%;
+            height: 5px;
+            background-color: var(--first-color);
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+
+        & > .container_card {
+            padding: 0;
+            background-color: var(--body-font);
+            transition: opacity 0.4s linear;
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 10px;
+            column-gap: 10px;
+
+            transform: translateX(200%);
+            height: 0;
+            opacity: 0;
+
+            & > .card_plate {
+                max-width: 250px;
+                background-color: var(--body-color);
+                box-shadow: 0 2px 24px hsla(228, 80%, 4%, 0.5);
+
+                border-radius: 15px;
+                .card_header {
+                    & > img {
+                        width: 100%;
+                        border-top-left-radius: 15px;
+                        border-top-right-radius: 15px;
+                    }
+                }
+
+                .card_body {
+                    display: flex;
+
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    padding: 20px 15px;
+
+                    & > h5 {
+                        color: var(--first-color);
+                        margin-bottom: 0;
+                    }
+
+                    & > span {
+                        color: var(--body-font);
+                        text-align: end;
+                    }
+                }
+
+                .card_footer {
+                    margin: 20px 10px;
+                    display: grid;
+                    grid-template-columns: repeat(3, max-content);
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .btn_delete {
+                        background-color: hsl(356, 100%, 41%);
+                        color: var(--body-color);
+
+                        &:hover {
+                            background-color: hsla(356, 100%, 41%, 0.5);
+                        }
+                    }
+
+                    .btn_edit {
+                        background-color: hsl(39, 100%, 50%);
+                        color: var(--body-color);
+
+                        &:hover {
+                            background-color: hsla(39, 100%, 50%, 0.5);
+                        }
+                    }
+
+                    .btn_show {
+                        background-color: hsl(43, 29%, 51%);
+                        color: var(--body-color);
+
+                        &:hover {
+                            background-color: hsla(43, 29%, 51%, 0.5);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -76,4 +76,11 @@
             </div>
         </div>
     </div>
+    <script>
+        if (localStorage.getItem('route-page')) {
+
+            localStorage.removeItem('route-page');
+
+        }
+    </script>
 @endsection
