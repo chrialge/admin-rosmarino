@@ -251,38 +251,6 @@
                                 </td>
                             </tr>
 
-
-                            {{-- <div class="overlay_delete">
-                                <div class="container_delete">
-    
-                                    <div class="header_delete">
-                                        <h2>
-                                            Cancella l'allergia
-                                        </h2>
-    
-                                        <div class="btn btn_close">
-                                            <i class="ri-close-large-fill"></i>
-                                        </div>
-                                    </div>
-                                    <!-- /.header_delete -->
-                                    <div class="body_delete">
-                                        <p>
-    
-                                        </p>
-                                    </div>
-                                    <!-- /.body_delete -->
-                                    <div class="footer_delete">
-                                        <form action="{{ route('admin.allergy.destroy', $allergy) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn_delete">
-    
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <!-- /.fotter_delete -->
-                                </div>
-                            </div> --}}
                         @empty
                             <tr>
                                 <td colspan="3">Scusa non ci sono Allergie 😭😭</td>

@@ -41,6 +41,8 @@
             </a>
         </div>
 
+        @include('partials.session')
+
 
 
         {{-- container degl'antipasti --}}
@@ -66,7 +68,11 @@
                     <div class="card_plate">
 
                         <div class="card_header">
-                            <img src="{{ asset('img/pasta.jpg') }}" alt="">
+                            @if ($plate->image)
+                                <img src="{{ asset('storage/' . $plate->image) }}" alt="image of {{ $plate->name }}">
+                            @else
+                                <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                            @endif
                         </div>
                         <div class="card_body">
                             <h5>
@@ -79,9 +85,65 @@
                         </div>
                         <div class="card_footer">
 
-                            <div class="btn btn_delete">
-                                <i class="ri-delete-bin-5-fill"></i>
+                            <button type="button" class="btn btn_delete" data-bs-toggle="modal"
+                                data-bs-target="#modalId-delet-{{ $plate->id }}">
+                                <i class="ri-delete-bin-2-fill"></i>
+
+                            </button>
+
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-delet-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-delet-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+
+                                        {{-- header of modal --}}
+                                        <div class="modal-header header_delete">
+                                            <h5 class="modal-title" id="modalTitleId-delet-{{ $plate->id }}">
+                                                Cancella Piatto
+                                            </h5>
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-large-fill"></i>
+
+                                            </button>
+                                        </div>
+
+                                        {{-- body of modal  --}}
+                                        <div class="modal-body body_delete">
+                                            <p>
+                                                Sei sicuro di cancellare {{ $plate->name }}, questo portera alla
+                                                cancellazione
+                                                anche
+                                                dei suo dati presenti.
+                                            </p>
+
+                                        </div>
+
+                                        {{-- footer of modal --}}
+                                        <div class="modal-footer footer_delete">
+                                            <form action="{{ route('admin.dishes.destroy', $plate) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                {{-- se clicci cancella il viaggio --}}
+                                                <button type="submit" class="btn btn_delete">
+                                                    <i class="ri-eraser-fill"></i>
+                                                    <span>
+                                                        Cancella i Dati
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+
+
 
 
 
@@ -101,7 +163,12 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div class="left_header">
-                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                                @if ($plate->image)
+                                                    <img src="{{ asset('storage/' . $plate->image) }}"
+                                                        alt="image of {{ $plate->name }}">
+                                                @else
+                                                    <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                                                @endif
                                             </div>
 
 
@@ -125,15 +192,26 @@
                                             </div>
                                             <div class="allergies_plate">
                                                 <b>Allergie: </b>
-                                                <span class="badge"> Glutine</span>
+                                                @if ($plate->allergies()->count() > 0)
+                                                    @foreach ($plate->allergies() as $allergy)
+                                                        <span class="badge">{{ $allergy }}</span>
+                                                    @endforeach
+                                                @else
+                                                    <span class="badge">N/A</span>
+                                                @endif
                                             </div>
                                             <div class="description">
                                                 <b>Descrizione: </b>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-                                                    minus,
-                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
-                                                </p>
+                                                @if ($plate->description)
+                                                    <p>
+                                                        {{ $plate->description }}
+                                                    </p>
+                                                @else
+                                                    <p>
+                                                        N/A
+                                                    </p>
+                                                @endif
+
                                             </div>
 
 
@@ -143,18 +221,11 @@
                                 </div>
                             </div>
 
-                            <!-- Optional: Place to the bottom of scripts -->
-                            <script>
-                                const myModal = new bootstrap.Modal(
-                                    document.getElementById("modalId"),
-                                    options,
-                                );
-                            </script>
 
 
-                            <div class=" btn btn_edit">
+                            <a class=" btn btn_edit" href="{{ route('admin.dishes.edit', $plate) }}">
                                 <i class="ri-edit-fill"></i>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 @empty
@@ -190,7 +261,11 @@
                     <div class="card_plate">
 
                         <div class="card_header">
-                            <img src="{{ asset('img/pasta.jpg') }}" alt="">
+                            @if ($plate->image)
+                                <img src="{{ asset('storage/' . $plate->image) }}" alt="image of {{ $plate->name }}">
+                            @else
+                                <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                            @endif
                         </div>
                         <div class="card_body">
                             <h5>
@@ -202,8 +277,62 @@
                         </div>
                         <div class="card_footer">
 
-                            <div class="btn btn_delete">
-                                <i class="ri-delete-bin-5-fill"></i>
+                            <button type="button" class="btn btn_delete" data-bs-toggle="modal"
+                                data-bs-target="#modalId-delet-{{ $plate->id }}">
+                                <i class="ri-delete-bin-2-fill"></i>
+
+                            </button>
+
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-delet-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-delet-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+
+                                        {{-- header of modal --}}
+                                        <div class="modal-header header_delete">
+                                            <h5 class="modal-title" id="modalTitleId-delet-{{ $plate->id }}">
+                                                Cancella Piatto
+                                            </h5>
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-large-fill"></i>
+
+                                            </button>
+                                        </div>
+
+                                        {{-- body of modal  --}}
+                                        <div class="modal-body body_delete">
+                                            <p>
+                                                Sei sicuro di cancellare {{ $plate->name }}, questo portera alla
+                                                cancellazione
+                                                anche
+                                                dei suo dati presenti.
+                                            </p>
+
+                                        </div>
+
+                                        {{-- footer of modal --}}
+                                        <div class="modal-footer footer_delete">
+                                            <form action="{{ route('admin.dishes.destroy', $plate) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                {{-- se clicci cancella il viaggio --}}
+                                                <button type="submit" class="btn btn_delete">
+                                                    <i class="ri-eraser-fill"></i>
+                                                    <span>
+                                                        Cancella i Dati
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -222,7 +351,12 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div class="left_header">
-                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                                @if ($plate->image)
+                                                    <img src="{{ asset('storage/' . $plate->image) }}"
+                                                        alt="image of {{ $plate->name }}">
+                                                @else
+                                                    <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                                                @endif
                                             </div>
 
 
@@ -246,15 +380,26 @@
                                             </div>
                                             <div class="allergies_plate">
                                                 <b>Allergie: </b>
-                                                <span class="badge"> Glutine</span>
+                                                @if ($plate->allergies()->count() > 0)
+                                                    @foreach ($plate->allergies() as $allergy)
+                                                        <span class="badge">{{ $allergy }}</span>
+                                                    @endforeach
+                                                @else
+                                                    <span class="badge">N/A</span>
+                                                @endif
                                             </div>
                                             <div class="description">
                                                 <b>Descrizione: </b>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-                                                    minus,
-                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
-                                                </p>
+                                                @if ($plate->description)
+                                                    <p>
+                                                        {{ $plate->description }}
+                                                    </p>
+                                                @else
+                                                    <p>
+                                                        N/A
+                                                    </p>
+                                                @endif
+
                                             </div>
 
 
@@ -264,9 +409,10 @@
                                 </div>
                             </div>
 
-                            <div class=" btn btn_edit">
+                            <a class=" btn btn_edit" href="{{ route('admin.dishes.edit', $plate) }}">
                                 <i class="ri-edit-fill"></i>
-                            </div>
+                            </a>
+
                         </div>
                     </div>
                 @empty
@@ -298,7 +444,11 @@
                     <div class="card_plate">
 
                         <div class="card_header">
-                            <img src="{{ asset('img/pasta.jpg') }}" alt="">
+                            @if ($plate->image)
+                                <img src="{{ asset('storage/' . $plate->image) }}" alt="image of {{ $plate->name }}">
+                            @else
+                                <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                            @endif
                         </div>
                         <div class="card_body">
                             <h5>
@@ -310,8 +460,62 @@
                         </div>
                         <div class="card_footer">
 
-                            <div class="btn btn_delete">
-                                <i class="ri-delete-bin-5-fill"></i>
+                            <button type="button" class="btn btn_delete" data-bs-toggle="modal"
+                                data-bs-target="#modalId-delet-{{ $plate->id }}">
+                                <i class="ri-delete-bin-2-fill"></i>
+
+                            </button>
+
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-delet-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-delet-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+
+                                        {{-- header of modal --}}
+                                        <div class="modal-header header_delete">
+                                            <h5 class="modal-title" id="modalTitleId-delet-{{ $plate->id }}">
+                                                Cancella Piatto
+                                            </h5>
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-large-fill"></i>
+
+                                            </button>
+                                        </div>
+
+                                        {{-- body of modal  --}}
+                                        <div class="modal-body body_delete">
+                                            <p>
+                                                Sei sicuro di cancellare {{ $plate->name }}, questo portera alla
+                                                cancellazione
+                                                anche
+                                                dei suo dati presenti.
+                                            </p>
+
+                                        </div>
+
+                                        {{-- footer of modal --}}
+                                        <div class="modal-footer footer_delete">
+                                            <form action="{{ route('admin.dishes.destroy', $plate) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                {{-- se clicci cancella il viaggio --}}
+                                                <button type="submit" class="btn btn_delete">
+                                                    <i class="ri-eraser-fill"></i>
+                                                    <span>
+                                                        Cancella i Dati
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -330,7 +534,12 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div class="left_header">
-                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                                @if ($plate->image)
+                                                    <img src="{{ asset('storage/' . $plate->image) }}"
+                                                        alt="image of {{ $plate->name }}">
+                                                @else
+                                                    <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                                                @endif
                                             </div>
 
 
@@ -354,15 +563,26 @@
                                             </div>
                                             <div class="allergies_plate">
                                                 <b>Allergie: </b>
-                                                <span class="badge"> Glutine</span>
+                                                @if ($plate->allergies()->count() > 0)
+                                                    @foreach ($plate->allergies() as $allergy)
+                                                        <span class="badge">{{ $allergy }}</span>
+                                                    @endforeach
+                                                @else
+                                                    <span class="badge">N/A</span>
+                                                @endif
                                             </div>
                                             <div class="description">
                                                 <b>Descrizione: </b>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-                                                    minus,
-                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
-                                                </p>
+                                                @if ($plate->description)
+                                                    <p>
+                                                        {{ $plate->description }}
+                                                    </p>
+                                                @else
+                                                    <p>
+                                                        N/A
+                                                    </p>
+                                                @endif
+
                                             </div>
 
 
@@ -372,9 +592,9 @@
                                 </div>
                             </div>
 
-                            <div class=" btn btn_edit">
+                            <a class=" btn btn_edit" href="{{ route('admin.dishes.edit', $plate) }}">
                                 <i class="ri-edit-fill"></i>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 @empty
@@ -407,7 +627,11 @@
                     <div class="card_plate">
 
                         <div class="card_header">
-                            <img src="{{ asset('img/pasta.jpg') }}" alt="">
+                            @if ($plate->image)
+                                <img src="{{ asset('storage/' . $plate->image) }}" alt="image of {{ $plate->name }}">
+                            @else
+                                <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                            @endif
                         </div>
                         <div class="card_body">
                             <h5>
@@ -419,8 +643,62 @@
                         </div>
                         <div class="card_footer">
 
-                            <div class="btn btn_delete">
-                                <i class="ri-delete-bin-5-fill"></i>
+                            <button type="button" class="btn btn_delete" data-bs-toggle="modal"
+                                data-bs-target="#modalId-delet-{{ $plate->id }}">
+                                <i class="ri-delete-bin-2-fill"></i>
+
+                            </button>
+
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-delet-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-delet-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+
+                                        {{-- header of modal --}}
+                                        <div class="modal-header header_delete">
+                                            <h5 class="modal-title" id="modalTitleId-delet-{{ $plate->id }}">
+                                                Cancella Piatto
+                                            </h5>
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-large-fill"></i>
+
+                                            </button>
+                                        </div>
+
+                                        {{-- body of modal  --}}
+                                        <div class="modal-body body_delete">
+                                            <p>
+                                                Sei sicuro di cancellare {{ $plate->name }}, questo portera alla
+                                                cancellazione
+                                                anche
+                                                dei suo dati presenti.
+                                            </p>
+
+                                        </div>
+
+                                        {{-- footer of modal --}}
+                                        <div class="modal-footer footer_delete">
+                                            <form action="{{ route('admin.dishes.destroy', $plate) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                {{-- se clicci cancella il viaggio --}}
+                                                <button type="submit" class="btn btn_delete">
+                                                    <i class="ri-eraser-fill"></i>
+                                                    <span>
+                                                        Cancella i Dati
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
 
                             <button type="button" class="btn btn_show" data-bs-toggle="modal"
@@ -438,7 +716,12 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div class="left_header">
-                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                                @if ($plate->image)
+                                                    <img src="{{ asset('storage/' . $plate->image) }}"
+                                                        alt="image of {{ $plate->name }}">
+                                                @else
+                                                    <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                                                @endif
                                             </div>
 
 
@@ -462,15 +745,26 @@
                                             </div>
                                             <div class="allergies_plate">
                                                 <b>Allergie: </b>
-                                                <span class="badge"> Glutine</span>
+                                                @if ($plate->allergies()->count() > 0)
+                                                    @foreach ($plate->allergies() as $allergy)
+                                                        <span class="badge">{{ $allergy }}</span>
+                                                    @endforeach
+                                                @else
+                                                    <span class="badge">N/A</span>
+                                                @endif
                                             </div>
                                             <div class="description">
                                                 <b>Descrizione: </b>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-                                                    minus,
-                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
-                                                </p>
+                                                @if ($plate->description)
+                                                    <p>
+                                                        {{ $plate->description }}
+                                                    </p>
+                                                @else
+                                                    <p>
+                                                        N/A
+                                                    </p>
+                                                @endif
+
                                             </div>
 
 
@@ -480,9 +774,9 @@
                                 </div>
                             </div>
 
-                            <div class=" btn btn_edit">
+                            <a class=" btn btn_edit" href="{{ route('admin.dishes.edit', $plate) }}">
                                 <i class="ri-edit-fill"></i>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 @empty
@@ -515,7 +809,11 @@
                     <div class="card_plate">
 
                         <div class="card_header">
-                            <img src="{{ asset('img/pasta.jpg') }}" alt="">
+                            @if ($plate->image)
+                                <img src="{{ asset('storage/' . $plate->image) }}" alt="image of {{ $plate->name }}">
+                            @else
+                                <img src="{{ asset('img/pasta.jpg') }}" alt="default image of plate">
+                            @endif
                         </div>
                         <div class="card_body">
                             <h5>
@@ -527,9 +825,64 @@
                         </div>
                         <div class="card_footer">
 
-                            <div class="btn btn_delete">
-                                <i class="ri-delete-bin-5-fill"></i>
+                            <button type="button" class="btn btn_delete" data-bs-toggle="modal"
+                                data-bs-target="#modalId-delet-{{ $plate->id }}">
+                                <i class="ri-delete-bin-2-fill"></i>
+
+                            </button>
+
+
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div class="modal fade" id="modalId-delet-{{ $plate->id }}" tabindex="-1"
+                                data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                aria-labelledby="modalTitleId-delet-{{ $plate->id }}" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+
+                                        {{-- header of modal --}}
+                                        <div class="modal-header header_delete">
+                                            <h5 class="modal-title" id="modalTitleId-delet-{{ $plate->id }}">
+                                                Cancella Piatto
+                                            </h5>
+                                            <button type="button" class="btn_close" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <i class="ri-close-large-fill"></i>
+
+                                            </button>
+                                        </div>
+
+                                        {{-- body of modal  --}}
+                                        <div class="modal-body body_delete">
+                                            <p>
+                                                Sei sicuro di cancellare {{ $plate->name }}, questo portera alla
+                                                cancellazione
+                                                anche
+                                                dei suo dati presenti.
+                                            </p>
+
+                                        </div>
+
+                                        {{-- footer of modal --}}
+                                        <div class="modal-footer footer_delete">
+                                            <form action="{{ route('admin.dishes.destroy', $plate) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                {{-- se clicci cancella il viaggio --}}
+                                                <button type="submit" class="btn btn_delete">
+                                                    <i class="ri-eraser-fill"></i>
+                                                    <span>
+                                                        Cancella i Dati
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+
                             <button type="button" class="btn btn_show" data-bs-toggle="modal"
                                 data-bs-target="#modalId-{{ $plate->id }}">
                                 <i class="ri-eye-2-fill"></i>
@@ -545,7 +898,13 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <div class="left_header">
-                                                <img src="{{ asset('img/pasta.jpg') }}" alt="image of plate">
+                                                @if ($plate->image)
+                                                    <img src="{{ asset('storage/' . $plate->image) }}"
+                                                        alt="image of {{ $plate->name }}">
+                                                @else
+                                                    <img src="{{ asset('img/pasta.jpg') }}"
+                                                        alt="default image of plate">
+                                                @endif
                                             </div>
 
 
@@ -569,15 +928,26 @@
                                             </div>
                                             <div class="allergies_plate">
                                                 <b>Allergie: </b>
-                                                <span class="badge"> Glutine</span>
+                                                @if ($plate->allergies()->count() > 0)
+                                                    @foreach ($plate->allergies() as $allergy)
+                                                        <span class="badge">{{ $allergy }}</span>
+                                                    @endforeach
+                                                @else
+                                                    <span class="badge">N/A</span>
+                                                @endif
                                             </div>
                                             <div class="description">
                                                 <b>Descrizione: </b>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-                                                    minus,
-                                                    aut doloremque consequatur cupiditate hic, repudiandae ratione placeat
-                                                </p>
+                                                @if ($plate->description)
+                                                    <p>
+                                                        {{ $plate->description }}
+                                                    </p>
+                                                @else
+                                                    <p>
+                                                        N/A
+                                                    </p>
+                                                @endif
+
                                             </div>
 
 
@@ -590,9 +960,9 @@
 
 
 
-                            <div class=" btn btn_edit">
+                            <a class=" btn btn_edit" href="{{ route('admin.dishes.edit', $plate) }}">
                                 <i class="ri-edit-fill"></i>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 @empty

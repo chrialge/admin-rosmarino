@@ -563,6 +563,21 @@
     .container_allergy {
         padding: 0.5rem;
     }
+
+    .container-dish {
+        .container_form_create_plate {
+            & > form {
+                & > .input-group {
+                    & .custom-file > .image {
+                        &::file-selector-button {
+                            display: flex;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .container-dish {
@@ -769,7 +784,7 @@
                 & > select,
                 & > textarea,
                 & > select > span {
-                    border: 3px solid var(--first-color) !important;
+                    border: 3px solid var(--first-color);
                     color: var(--first-color);
 
                     &:focus {
@@ -781,6 +796,150 @@
                     color: var(--first-color);
                 }
             }
+
+            & > .input-group {
+                & .custom-file > .image {
+                    padding: 5px;
+
+                    color: var(--first-color);
+                    position: relative;
+
+                    border-color: var(--first-color);
+
+                    &::file-selector-button {
+                        background-color: var(--first-color);
+                        color: #0964b0;
+                        border: 0;
+                        border-radius: 20px;
+                        padding: 7px 10px 10px 32px;
+                        font-weight: var(--font-semi-bold);
+                        cursor: pointer;
+                        margin-right: 10px;
+                        &:hover {
+                            background-color: hsla(228, 85%, 63%, 0.5);
+                        }
+                    }
+
+                    &::before {
+                        position: absolute;
+                        pointer-events: none;
+                        top: 14px;
+                        left: 14px;
+                        height: 20px;
+                        width: 20px;
+                        content: "";
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+                    }
+
+                    &:focus-within::file-selector-button,
+                    &:focus::file-selector-button {
+                        outline: 2px solid var(--first-color);
+                        outline-offset: 2px;
+                    }
+                }
+            }
+
+            & > .btn_create {
+                background-color: var(--first-color);
+                border-radius: 20px;
+                display: flex;
+                gap: 10px;
+                color: var(--body-color);
+
+                &:hover {
+                    background-color: hsla(228, 85%, 63%, 0.5);
+                }
+            }
         }
     }
+}
+
+#main
+    > div
+    > div.container_form_create_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above.select2-container--focus
+    > span.selection
+    > span
+    > ul
+    > li {
+    background-color: var(--first-color);
+    border-radius: 20px;
+    color: var(--body-font);
+
+    gap: 5px;
+    &:last-child {
+        background-color: transparent;
+    }
+}
+
+#select2-multiple-select-field-results {
+    border: 2px solid var(--first-color);
+    color: var(--first-color);
+}
+
+#main
+    > div
+    > div.container_form_create_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span {
+    border: 2px solid var(--first-color);
+
+    &:hover {
+        box-shadow: 0 0 0 0.25rem hsla(228, 85%, 63%, 0.5);
+    }
+}
+
+#main
+    > div
+    > div.container_form_create_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span
+    > ul
+    > li:nth-child(2) {
+    > li {
+        background-color: var(--first-color);
+    }
+}
+
+#main
+    > div
+    > div.container_form_create_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span
+    > ul
+    > li {
+    background-color: var(--first-color);
+    border-radius: 20px;
+    color: var(--body-font);
+
+    gap: 5px;
+
+    & > span:first-child {
+        cursor: pointer;
+    }
+    &:last-child {
+        background-color: transparent;
+    }
+}
+
+#main
+    > div
+    > div.container_form_create_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5
+    > span.selection
+    > span {
+    border: 2px solid var(--first-color);
 }

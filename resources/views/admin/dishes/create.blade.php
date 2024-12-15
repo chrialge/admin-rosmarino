@@ -61,16 +61,19 @@
             </a>
         </div>
 
+
+
         <div class="container_form_create_plate">
 
-            <form action="{{ route('admin.allergy.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dishes.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 {{-- campo name di piatto --}}
                 <div class="mb-3 form-floating">
 
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                        id="name" aria-describedby="nameHelper" value="{{ old('name') }}" placeholder="" required />
+                    <input type="text" onkeyup="hide_error_name()" onblur="check_name()"
+                        class="form-control @error('name') is-invalid @enderror" name="name" id="name"
+                        aria-describedby="nameHelper" value="{{ old('name') }}" placeholder="" required />
                     <label for="name" class="form-label">Name *</label>
                     {{-- span di errore lato front --}}
                     <span id="name_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
@@ -91,12 +94,13 @@
                 {{-- campo name di prezzo --}}
                 <div class="mb-3 form-floating">
 
-                    <input type="number" class="form-control @error('price') is-invalid @enderror" name="price"
+                    <input type="number" min="0.01" max="9999.99" step="0.01" onkeyup="hide_error_price()"
+                        onblur="check_price()" class="form-control @error('price') is-invalid @enderror" name="price"
                         id="price" aria-describedby="priceHelper" value="{{ old('price') }}" placeholder="" required />
                     <label for="price" class="form-label">Prezzo *</label>
                     {{-- span di errore lato front --}}
                     <span id="price_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
-                        Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
+                        Il prezzo massimo di 9999.99 e minimo 0.01
                     </span>
 
                     {{-- errore lato back --}}
@@ -113,30 +117,29 @@
                 {{-- campo di upload dell'imagine --}}
                 <div class="input-group mb-3">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="image">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <input type="file" class="image" id="image" name="image">
                     </div>
                 </div>
 
                 {{-- campo name di typology --}}
                 <div class="mb-3 form-floating">
 
-                    <select class="form-select @error('typology') is-invalid @enderror" aria-label="type of plate"
-                        name="typology" aria-describedby="typologyHelper">
-                        <option selected disabled>Seleziona il tipo *</option>
-                        <option value="antipasto">Antipasto</option>
-                        <option value="primo">Primo</option>
-                        <option value="secondo">Secondo</option>
-                        <option value="dessert">Dessert</option>
-                        <option value="bevande">Bevande</option>
+                    <select class="form-select @error('typology') is-invalid @enderror" onblur="check_typology()"
+                        onkeyup="hide_error_typology()" aria-label="type of plate" name="typology"
+                        aria-describedby="typologyHelper" id="typology">
+                        <option disabled>Seleziona il tipo *</option>
+                        <option value="antipasto" {{ old('typology') === 'antipasto' ? 'selected' : '' }}>Antipasto</option>
+                        <option value="primo" {{ old('typology') === 'primo' ? 'selected' : '' }}>Primo</option>
+                        <option value="secondo" {{ old('typology') === 'secondo' ? 'selected' : '' }}>Secondo</option>
+                        <option value="dessert" {{ old('typology') === 'dessert' ? 'selected' : '' }}>Dessert</option>
+                        <option value="bevande" {{ old('typology') === 'bevande' ? 'selected' : '' }}>Bevande</option>
                     </select>
-                    <span id="name_error_modify" class="text-danger" role="alert"
-                        style="display: none; font-weight: 600;">
+                    <span id="typology_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                         Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
                     </span>
 
                     {{-- errore lato back --}}
-                    @error('name')
+                    @error('typology')
                         <div id="name_error_back_modify" class="text-danger">{{ $message }}</div>
                     @enderror
 
@@ -176,11 +179,14 @@
                     <label for="floatingTextarea2">Descrizione</label>
                 </div>
 
-                <button class="btn" type="submit">
+                <button class="btn btn_create" type="submit" id="btn_create_plate">
                     <span>Crea Piatto</span>
                     <i class="ri-bowl-fill"></i>
                 </button>
+                <button class="btn btn_create" type="submit" id="btn_loading" style="display: none">
+                    <span>Attendi...</span>
 
+                </button>
 
 
 
