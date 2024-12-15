@@ -73,17 +73,21 @@ class DishController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Dish $dish)
     {
-        //
+        $allergies = Allergy::all();
+
+        $allergiesDish = $dish->allergies()->get()->toArray();
+
+        return view('admin.dishes.edit', compact('dish', 'allergies', 'allergiesDish'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Dish $dish)
     {
-        //
+        dd($request->all());
     }
 
     /**

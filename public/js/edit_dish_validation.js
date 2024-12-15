@@ -23,7 +23,6 @@ function check_price() {
     const error = document.getElementById('price_error');
     const regex = /[^0-9,.]/;
 
-    console.log(parseFloat(input.value))
     if (input.value.match(regex) || parseFloat(input.value) > 9999.99 || parseFloat(input.value) < 0.01) {
 
 
@@ -38,7 +37,6 @@ function check_price() {
 function check_typology() {
     const input = document.getElementById("typology");
     const error = document.getElementById('typology_error');
-    console.log(input.value)
 
     if (input.value.length < 1) {
         input.style.border = '2px solid red';
@@ -58,7 +56,6 @@ function hide_error_name() {
 
 
     if (input.value.length > 3 || input.value.length < 100) {
-        console.log('bella')
         if (input.value.match(regex)) {
 
         } else {
@@ -104,35 +101,34 @@ function hide_error_typology() {
 
 }
 
-setTimeout(() => {
-    document.getElementById('btn_create_plate').addEventListener('click', (e) => {
 
-        const btnCreate = document.getElementById('btn_create_plate')
-        const btnLoading = document.getElementById('btn_loading')
 
-        btnCreate.style.display = 'none';
-        btnLoading.style.display = '';
+function check_validation(e) {
 
-        if (!check_name()) {
-            e.preventDefault()
-            btnCreate.style.display = '';
-            btnLoading.style.display = 'none';
-        }
 
-        if (!check_price()) {
-            e.preventDefault()
-            btnCreate.style.display = '';
-            btnLoading.style.display = 'none';
-        }
-
-        if (!check_typology()) {
-            e.preventDefault()
-            btnCreate.style.display = '';
-            btnLoading.style.display = 'none';
-        }
-
-    })
-}, 200)
+    const btnCreate = document.getElementById('btn_edit_plate');
+    const btnLoading = document.getElementById('btn_loading')
+    btnCreate.style.display = 'none';
+    btnLoading.style.display = '';
 
 
 
+
+    if (!check_name()) {
+        e.preventDefault()
+        btnCreate.style.display = '';
+        btnLoading.style.display = 'none';
+    }
+
+    if (!check_price()) {
+        e.preventDefault()
+        btnCreate.style.display = '';
+        btnLoading.style.display = 'none';
+    }
+
+    if (!check_typology()) {
+        e.preventDefault()
+        btnCreate.style.display = '';
+        btnLoading.style.display = 'none';
+    }
+}

@@ -1,0 +1,270 @@
+:root {
+    --first-color: hsl(228, 85%, 63%);
+    --title-color: hsl(228, 18%, 16%);
+    --text-color: hsl(228, 8%, 56%);
+    --body-color: hsl(228, 100%, 99%);
+    --shadow-color: hsla(228, 80%, 4%, 0.1);
+}
+
+body.dark-theme {
+    --first-color: hsl(228, 70%, 63%);
+    --title-color: hsl(228, 18%, 96%);
+    --text-color: hsl(228, 12%, 61%);
+    --body-color: hsl(228, 24%, 16%);
+    --shadow-color: hsla(228, 80%, 4%, 0.3);
+}
+
+.container-dish {
+    & > .header_page_edit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 25px 0px;
+        & > h2 {
+            color: hsl(39, 100%, 50%);
+        }
+
+        & > .btn_return {
+            background-color: hsl(39, 100%, 50%);
+            color: var(--body-color);
+
+            &:hover {
+                background-color: hsla(39, 100%, 50%, 0.5);
+            }
+        }
+    }
+    .container_form_edit_plate {
+        & > form {
+            & > .form-floating {
+                & > input,
+                & > select,
+                & > textarea,
+                & > select > span {
+                    border: 3px solid hsl(39, 100%, 50%);
+                    color: hsl(39, 100%, 50%);
+
+                    &:focus {
+                        box-shadow: 0 0 0 0.25rem hsla(39, 100%, 50%, 0.5);
+                    }
+                }
+
+                & > label {
+                    color: hsl(39, 100%, 50%);
+                }
+            }
+
+            & > .input-group {
+                & .custom-file > .image {
+                    padding: 5px;
+
+                    color: hsl(39, 100%, 50%);
+                    position: relative;
+
+                    border-color: hsl(39, 100%, 50%);
+
+                    &::file-selector-button {
+                        background-color: hsl(39, 100%, 50%);
+                        color: #0964b0;
+                        border: 0;
+                        border-radius: 20px;
+                        padding: 7px 10px 10px 32px;
+                        font-weight: var(--font-semi-bold);
+                        cursor: pointer;
+                        margin-right: 10px;
+                        &:hover {
+                            background-color: hsla(39, 100%, 50%, 0.5);
+                        }
+                    }
+
+                    &::before {
+                        position: absolute;
+                        pointer-events: none;
+                        top: 14px;
+                        left: 14px;
+                        height: 20px;
+                        width: 20px;
+                        content: "";
+                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+                    }
+
+                    &:focus-within::file-selector-button,
+                    &:focus::file-selector-button {
+                        outline: 2px solid hsl(39, 100%, 50%);
+                        outline-offset: 2px;
+                    }
+                }
+            }
+
+            & > .btn_edit {
+                background-color: hsl(39, 100%, 50%);
+                border-radius: 20px;
+                display: flex;
+                gap: 10px;
+                color: var(--body-color);
+
+                &:hover {
+                    background-color: hsla(39, 100%, 50%, 0.5);
+                }
+
+                &:active {
+                    box-shadow: 0 2px 24px hsla(39, 100%, 50%, 0.5);
+                }
+            }
+        }
+    }
+}
+
+#select2-multiple-select-field-results {
+    border: 2px solid hsl(39, 100%, 50%);
+    color: hsl(39, 100%, 50%);
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span {
+    border: 2px solid hsl(39, 100%, 50%);
+
+    &:hover {
+        box-shadow: 0 0 0 0.25rem hsla(39, 100%, 50%, 0.5);
+    }
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span
+    > ul
+    > li:nth-child(2) {
+    > li {
+        background-color: hsl(39, 100%, 50%);
+    }
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span
+    > ul
+    > li {
+    background-color: hsl(39, 100%, 50%);
+    border-radius: 20px;
+    color: hsl(228, 100%, 99%);
+
+    gap: 5px;
+
+    & > span:first-child {
+        cursor: pointer;
+    }
+    &:last-child {
+        background-color: transparent;
+    }
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5
+    > span.selection
+    > span {
+    border: 2px solid hsl(39, 100%, 50%);
+}
+
+// #btn_edit_plate {
+//     background-color: hsl(39, 100%, 50%);
+//     color: var(--body-color);
+
+//     &:hover {
+//         background-color: hsla(39, 100%, 50%, 0.5);
+//     }
+// }
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(6)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above.select2-container--focus
+    > span.selection
+    > span
+    > ul
+    > li {
+    background-color: hsl(39, 100%, 50%);
+    border-radius: 20px;
+    color: hsl(228, 100%, 99%);
+
+    gap: 5px;
+    &:last-child {
+        background-color: transparent;
+    }
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(7)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span {
+    border: 2px solid hsl(39, 100%, 50%);
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(7)
+    > span.select2.select2-container.select2-container--bootstrap-5
+    > span.selection
+    > span {
+    border: 2px solid hsl(39, 100%, 50%);
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(7)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--open.select2-container--above
+    > span.selection
+    > span
+    > ul
+    > li.select2-selection__choice {
+    background-color: hsl(39, 100%, 50%);
+    border-radius: 20px;
+    color: var(--body-color);
+}
+
+#main
+    > div
+    > div.container_form_edit_plate
+    > form
+    > div:nth-child(7)
+    > span.select2.select2-container.select2-container--bootstrap-5.select2-container--above
+    > span.selection
+    > span
+    > ul
+    > li {
+    background-color: hsl(39, 100%, 50%);
+    border-radius: 20px;
+    color: var(--body-color);
+
+    &:last-child {
+        background-color: transparent;
+    }
+}
