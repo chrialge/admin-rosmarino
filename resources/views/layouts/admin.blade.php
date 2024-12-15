@@ -85,12 +85,12 @@
                             <span>Menu</span>
                         </a>
 
-                        <a href="#" class="sidebar__link">
+                        <a href="{{ route('admin.reservations.index') }}" class="sidebar__link">
                             <i class="ri-calendar-check-line"></i>
                             <span>Prenotazioni</span>
                         </a>
 
-                        <a href="#" class="sidebar__link">
+                        <a href="{{ route('admin.customers.index') }}" class="sidebar__link">
                             <i class="ri-group-fill"></i>
                             <span>Clienti</span>
                         </a>

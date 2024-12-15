@@ -37,6 +37,10 @@ class AllergyController extends Controller
     {
         $val_data = $request->validated();
         $val_data['slug'] = Str::slug($val_data['name'], '-');
+        $count = Allergy::where('slug', $val_data['slug'])->count();
+        if ($count > 0) {
+            $val_data['slug'] = $val_data['slug'] . "-$count";
+        }
         $allergy = Allergy::create($val_data);
 
         return to_route('admin.allergy.index')->with('message', "Hai creato l'allergia: $allergy->name");
@@ -72,6 +76,11 @@ class AllergyController extends Controller
         $name = $allergy->name;
 
         $val_data['slug'] = Str::slug($val_data['name'], '-');
+
+        $count = Allergy::where('slug', $val_data['slug'])->count();
+        if ($count > 0) {
+            $val_data['slug'] = $val_data['slug'] . "-$count";
+        }
 
         $allergy->update($val_data);
 

@@ -141,11 +141,6 @@ function closeSession() {
     document.getElementById('session').style.height = '0px';
     document.getElementById('session').style.marginBottom = '0px';
 
-    setTimeout(() => {
-
-
-    }, 300);
-
 }
 
 function showModify(allergy, index, id) {

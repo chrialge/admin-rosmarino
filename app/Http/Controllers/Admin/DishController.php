@@ -9,6 +9,7 @@ use App\Models\Dish;
 use App\Http\Requests\DishStoreRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\DishUpdateRequest;
 
 
 class DishController extends Controller
@@ -48,6 +49,10 @@ class DishController extends Controller
         // dd($val_data);
 
         $val_data['slug'] = Str::slug($val_data['name'], '-');
+        $count = Dish::where('slug', $val_data['slug'])->count();
+        if ($count > 0) {
+            $val_data['slug'] = $val_data['slug'] . "-$count";
+        }
         $val_data['price'] = number_format($val_data['price'], 2, '.', ',');
         if ($request->has('image')) {
             $val_data['image'] = Storage::disk('public')->put('uploads/images', $val_data['image']);
@@ -85,9 +90,41 @@ class DishController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dish $dish)
+    public function update(DishUpdateRequest $request, Dish $dish)
     {
-        dd($request->all());
+
+        $val_data = $request->validated();
+
+        $val_data['slug'] = Str::slug($val_data['name'], '-');
+        $count = Dish::where('slug', $val_data['slug'])->count();
+        if ($count > 0) {
+            $val_data['slug'] = $val_data['slug'] . "-$count";
+        }
+
+        $val_data['price'] = number_format($val_data['price'], 2, '.', ',');
+
+
+        if ($request->has('image')) {
+
+            if ($dish->image) {
+                Storage::disk('public')->delete($dish->image);
+            }
+            $val_data['image'] = Storage::disk('public')->put('uploads/images', $val_data['image']);
+        }
+
+        $name = $val_data['name'];
+
+        $dish->update($val_data);
+
+
+        if ($request->has('allergies')) {
+
+            $dish->allergies()->sync($val_data['allergies']);
+        } else {
+            $dish->allergies()->detach();
+        }
+
+        return to_route('admin.dishes.index')->with('message', "Hai modificato in: $name");
     }
 
     /**

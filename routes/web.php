@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\AllergyController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\ProfileController;
-use Database\Seeders\AllergySeeder;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +30,9 @@ Route::middleware(['auth', 'verified'])
 
         Route::resource('/allergy', AllergyController::class);
         Route::resource('/dishes', DishController::class);
+        Route::resource('/customers', CustomerController::class);
+        Route::resource('/reservations', ReservationController::class);
+        // Route::resource('/reservations', ReservationController::class);
     });
 
 Route::middleware('auth')->group(function () {

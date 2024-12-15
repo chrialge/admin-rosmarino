@@ -46,7 +46,7 @@
                 </span>
             </li>
             <li>
-                <a href="#" class="text-decoration-none" style="font-weight: 600; color: hsl(228, 85%, 63%);">
+                <a href="#" class="text-decoration-none" style="font-weight: 600; color: hsl(39, 100%, 50%);">
                     Modifica
                 </a>
             </li>

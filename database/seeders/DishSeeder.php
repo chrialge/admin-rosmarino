@@ -17,17 +17,17 @@ class DishSeeder extends Seeder
         $menu = [
             [
                 'name' => 'Gnocchi',
-                'typology' => 'primi',
+                'typology' => 'primo',
                 'price' =>  '12.34'
             ],
             [
                 'name' => 'Pizza',
-                'typology' => 'secondi',
+                'typology' => 'secondo',
                 'price' =>  '12.34'
             ],
             [
                 'name' => 'Antipasto Freddo',
-                'typology' => 'antipasti',
+                'typology' => 'antipasto',
                 'price' =>  '12.34'
             ],
             [
@@ -37,12 +37,12 @@ class DishSeeder extends Seeder
             ],
             [
                 'name' => 'tagliatelle',
-                'typology' => 'primi',
+                'typology' => 'primo',
                 'price' =>  '12.34'
             ],
             [
                 'name' => 'grigliata',
-                'typology' => 'secondi',
+                'typology' => 'secondo',
                 'price' =>  '12.34'
             ],
             [
