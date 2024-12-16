@@ -4,9 +4,11 @@ use App\Http\Controllers\Admin\ReservationController;
 use App\Http\Controllers\Admin\AllergyController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DishController;
+use App\Http\Controllers\Admin\SendEmailController;
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Mailer\Messenger\SendEmailMessage;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,7 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/dishes', DishController::class);
         Route::resource('/customers', CustomerController::class);
         Route::resource('/reservations', ReservationController::class);
+        Route::post('/send-email', [SendEmailController::class, 'sendEmail'])->name('send-email');
         // Route::resource('/reservations', ReservationController::class);
     });
 

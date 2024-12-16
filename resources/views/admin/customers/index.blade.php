@@ -26,12 +26,103 @@
             </li>
         </ul>
 
+        <div class="header_page_customer">
+            <h2>
+                Clienti {{ $customers->count() }}
+            </h2>
 
-        <h2>
-            Prenotazioni {{ $customers->count() }}
-        </h2>
+
+
+            <!-- Modal trigger button -->
+            <button type="button" class="btn_send_email btn" onclick="showCheckBox()" data-bs-toggle="modal"
+                data-bs-target="#modalId-send-email">
+                <span>
+                    Invia email
+                </span>
+                <i class="ri-mail-send-fill"></i>
+            </button>
+
+            <!-- Modal Body -->
+            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+            <div class="modal fade" id="modalId-send-email" tabindex="-1" data-bs-backdrop="static"
+                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId-send-email" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered " role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modalTitleId-send-email">
+                                Email
+                            </h3>
+                            <button type="button" class="" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ri-mail-close-fill"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="{{ route('admin.send-email') }}" method="post">
+                                @csrf
+
+
+                                <input type="text" id="clients" name="clients" class="d-none">
+
+                                {{-- campo name di piatto --}}
+                                <div class="mb-3 form-floating">
+
+
+                                    <input type="text" class="form-control @error('object') is-invalid @enderror"
+                                        name="object" id="object" aria-describedby="nameHelper"
+                                        value="{{ old('object') }}" placeholder="" required />
+                                    <label for="object" class="form-label">Oggetto *</label>
+                                    {{-- span di errore lato front --}}
+                                    <span id="name_error" class="text-danger" role="alert"
+                                        style="display: none; font-weight: 600;">
+                                        L'oggetto della email e obbligatoria
+                                    </span>
+
+                                    {{-- errore lato back --}}
+                                    @error('object')
+                                        <div id="name_error_back" class="text-danger">{{ $message }}</div>
+                                    @enderror
+
+                                    <small id="nameHelper" class="">
+                                        Inserisci l'oggetto delle email
+                                    </small>
+
+                                </div>
+
+                                <div class="mb-3 form-floating">
+                                    <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                        style="height: 100px">{{ old('description') }}</textarea>
+                                    <label for="floatingTextarea2">Messaggio</label>
+                                </div>
+
+                                <button type="submit" class="btn_send_email">
+                                    <span>Invia email</span>
+                                    <i class="ri-mail-send-fill"></i>
+
+                                </button>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
 
         @include('partials.session')
+
+
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" value="all" id="select-all" onclick="allChecked()">
+            <label class="form-check-label" for="select-all">
+                Seleziona tutti
+            </label>
+        </div>
+
 
         <div class="container_table_reservation">
 
@@ -39,11 +130,14 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
+
+                        </th>
                         <th scope="col" style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
                             <span>Nome</span>
                             <span class="last_name_hidden"> e Cognome</span>
                         </th>
-                        <th scope="col" class="text-center"
+                        <th scope="col" class="text-center last_name_hidden"
                             style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
                             Compleanno
                         </th>
@@ -61,14 +155,19 @@
 
                     @forelse ($customers as $customer)
                         <tr>
+                            <td>
+                                <input class="form-check-input" name="email" type="checkbox" value="{{ $customer->id }}"
+                                    id="flexCheckDefault-{{ $customer->id }}">
+                            </td>
                             <td style="color: hsl(228, 8%, 56%);">
                                 {{ "$customer->name  " }}
                                 <span class="last_name_hidden">{{ $customer->last_name }}</span>
                             </td>
-                            <td class="text-center" style="color: hsl(228, 8%, 56%);">
+                            <td class="text-center last_name_hidden" style="color: hsl(228, 8%, 56%);">
                                 {{ date_format(date_create($customer->birth_day), 'd M') }}
                             </td>
-                            <td style="color: hsl(228, 8%, 56%);" class="email_hidden text-center"> {{ "$customer->email" }}
+                            <td style="color: hsl(228, 8%, 56%);" class="email_hidden text-center">
+                                {{ "$customer->email" }}
                             </td>
                             <td>
 
@@ -157,7 +256,8 @@
                                 <div class="modal fade" id="modalId-{{ $customer->id }}" tabindex="-1"
                                     data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                     aria-labelledby="modalTitleId-{{ $customer->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
+                                        role="document">
                                         <div class="modal-content">
 
                                             {{-- header of modal --}}

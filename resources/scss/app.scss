@@ -1071,3 +1071,75 @@
         display: none;
     }
 }
+
+.header_page_customer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+
+    & > h2 {
+        color: var(--first-color);
+    }
+
+    .btn_send_email {
+        display: flex;
+        align-items: center;
+        background-color: var(--first-color);
+        color: var(--body-color);
+        cursor: pointer;
+        gap: 3px;
+        font-weight: var(--font-semi-bold);
+
+        &:hover {
+            background-color: hsla(228, 85%, 63%, 0.5);
+        }
+    }
+}
+
+#modalId-send-email {
+    & > .modal-dialog {
+        & > .modal-content {
+            & > .modal-header {
+                border: 0;
+                & > h3 {
+                    color: var(--first-color);
+                }
+
+                & > button {
+                    position: absolute;
+                    color: var(--first-color);
+                    top: 20px;
+                    right: 20px;
+                    font-size: 20px;
+                    &:hover {
+                        scale: 1.3;
+                        transition: scale 0.2s ease-in-out, color 0.3s linear;
+                        color: hsl(43, 29%, 51%);
+                    }
+                }
+            }
+
+            & > .modal-body > form {
+                & > .form-floating {
+                    & > input,
+                    & > textarea {
+                        border: 2px solid var(--first-color);
+                        color: var(--first-color);
+
+                        &:focus {
+                            box-shadow: 0 0 0 0.25rem hsla(228, 85%, 63%, 0.5);
+                        }
+                    }
+                }
+
+                & > .btn_send_email {
+                    margin-top: 30px;
+                    padding: 0.3rem 0.5rem;
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+}

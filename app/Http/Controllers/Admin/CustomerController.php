@@ -17,7 +17,7 @@ class CustomerController extends Controller
     public function index()
     {
 
-        $customers = Customer::orderByDesc('id')->paginate('5');
+        $customers = Customer::orderByDesc('id')->paginate('2');
 
         return view('admin.customers.index', compact('customers'));
     }
