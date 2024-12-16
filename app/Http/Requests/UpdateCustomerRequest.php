@@ -11,7 +11,7 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,22 @@ class UpdateCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|max:100',
+            'last_name' => 'required|max:100',
+            'email' => 'required|email|max:255',
+            'telephone' => 'nullable|numeric',
+            'birth_day' => 'required|date'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Il nome e obbligatorio',
+            'last_name.required' => 'Il cognome e obbligatorio',
+            'email.required' => "L'email e obbligatorio",
+            'telephone.numeric' => "Il numero di telefono deve esssere di sole cifre",
+            'birth_day.required' => 'La data di nascita e obbligatorio',
         ];
     }
 }

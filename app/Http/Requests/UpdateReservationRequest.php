@@ -11,7 +11,7 @@ class UpdateReservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,26 @@ class UpdateReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'customer_name' => 'required|max:100',
+            'customer_last_name' => 'required|max:100',
+            'customer_email' => 'required|email',
+            'customer_telephone' => 'required|numeric',
+            'person' => 'required|numeric',
+            'date' => 'required|date',
+            'time' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'customer_name.required' => 'Il nome e obbligatorio',
+            'customer_last_name.required' => 'Il cognome e obbligatorio',
+            'customer_email.required' => "L'email e obbligatorio",
+            'customer_telephone.required' => "Il numero di telefono e obbligatorio",
+            'person.required' => 'Il numero di persone e obbligatorio',
+            'date.required' => 'La data e obbligatoria',
+            'time.required' => "l'ora e obbligatorio",
         ];
     }
 }

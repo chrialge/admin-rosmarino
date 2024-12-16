@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use App\Http\Requests\UpdateReservationRequest;
 
 class ReservationController extends Controller
 {
@@ -53,9 +54,15 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
-        //
+        $val_data = $request->validated();
+
+        $val_data['hour_reservation'] = date_format(date_create($val_data['time']), 'h:i:s');
+        $val_data['date'] = date_format(date_create($val_data['date']), 'Y-m-d');
+        $reservation->update($val_data);
+
+        return to_route('admin.reservations.index')->with('message', "Hai modificato di: $reservation->customer_name $reservation->customer_last_name");
     }
 
     /**

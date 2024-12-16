@@ -8,19 +8,7 @@ console.log(dateValue);
 
 
 let calendar = flatpickr("#date", {
-    dateFormat: "d/m/Y",
-    minDate: "today",
+    dateFormat: "Y-m-d",
+
 
 })
-
-
-let time = flatpickr("#time", {
-
-    enableTime: true,
-    noCalendar: true,
-    dateFormat: "H:i",
-})
-
-
-
-
