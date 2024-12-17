@@ -8,6 +8,8 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Customer;
+use Illuminate\Mail\Mailables\Address;
 
 class SendClientEmail extends Mailable
 {
@@ -16,7 +18,7 @@ class SendClientEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Customer $customer, public string $object, public string $message)
     {
         //
     }
@@ -27,7 +29,11 @@ class SendClientEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Client Email',
+            from: new Address('noreply@demomailtrap.com', 'Ristorante Rosmarino'),
+            replyTo: [
+                new Address($this->customer->email, $this->customer->name . " " . $this->customer->last_name)
+            ],
+            subject: $this->object,
         );
     }
 
@@ -37,7 +43,8 @@ class SendClientEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.send-client-email',
+            with: ['message' => $this->message],
         );
     }
 
