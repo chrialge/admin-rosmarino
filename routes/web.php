@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AllergyController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\Admin\SendEmailController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
@@ -35,9 +36,9 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/customers', CustomerController::class);
         Route::resource('/reservations', ReservationController::class);
         Route::post('/send-email', [SendEmailController::class, 'sendEmail'])->name('send-email');
-        Route::get('/mail', function () {
-            return view('mail.mail-client-email');
-        });
+        // Route::get('/mail', function () {
+        //     return view('mail.mail-client-email');
+        // });
         // Route::resource('/reservations', ReservationController::class);
     });
 
@@ -45,6 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/new-password', [NewPasswordController::class, 'store']);
 });
 
 require __DIR__ . '/auth.php';

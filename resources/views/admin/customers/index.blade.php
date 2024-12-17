@@ -33,9 +33,11 @@
 
 
 
+
+
             <!-- Modal trigger button -->
-            <button type="button" class="btn_send_email btn" onclick="showCheckBox()" data-bs-toggle="modal"
-                data-bs-target="#modalId-send-email">
+            <button id="send_email" type="button" class="btn_send_email btn" onclick="showCheckBox(event)"
+                data-bs-toggle="modal" data-bs-target="#modalId-send-email" style="display: none">
                 <span>
                     Invia email
                 </span>
@@ -57,6 +59,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
+
+                            @include('partials.validate')
 
                             <form action="{{ route('admin.send-email') }}" method="post">
                                 @csrf
@@ -95,9 +99,15 @@
                                     <label for="floatingTextarea2">Messaggio</label>
                                 </div>
 
-                                <button type="submit" class="btn_send_email">
+                                <button type="submit" class="btn_send_email" onclick="showLoading()"
+                                    id="btn_send_customer">
                                     <span>Invia email</span>
                                     <i class="ri-mail-send-fill"></i>
+
+                                </button>
+                                <button id="btn_loading_customer" class="btn_send_email" style="display: none" disabled>
+                                    <span>Attendi</span>
+
 
                                 </button>
 
@@ -157,7 +167,8 @@
                         <tr>
                             <td>
                                 <input class="form-check-input" name="email" type="checkbox" value="{{ $customer->id }}"
-                                    id="flexCheckDefault-{{ $customer->id }}">
+                                    id="flexCheckDefault-{{ $customer->id }}"
+                                    onclick="showBtn({{ $customers->count() }})">
                             </td>
                             <td style="color: hsl(228, 8%, 56%);">
                                 {{ "$customer->name  " }}

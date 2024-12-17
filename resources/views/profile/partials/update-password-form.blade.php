@@ -9,11 +9,17 @@
         </p>
     </header>
 
-    <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6 form_update_password">
+    @include('partials.validate')
+
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6 form_update_password">
         @csrf
-        @method('put')
+        @method('PATCH')
 
         <div class="mb-4 form-floating">
+
+            <input type="text" name="name" id="name" value="{{ $user->name }}" style="display: none;">
+            <input type="text" name="email" id="email" value="{{ $user->email }}" style="display: none;">
+
 
             <input id="current_password" type="password" name="current_password"
                 class="mt-1 form-control @error('current_password') is-invalid @enderror"
@@ -41,8 +47,12 @@
         <div class="mb-4 form-floating">
 
             <input class="mt-2 form-control" type="password" name="password_confirmation" id="password_confirmation"
-                autocomplete="new-password">
+                autocomplete="new-password" onkeyup="hide_error_password()" onblur="check_password()">
             <label for="password_confirmation">{{ __('Conferma Passowrd') }}</label>
+
+            <span id="password_error" style="display: none; color: red;">
+                La password non combaciano
+            </span>
 
             @error('password_confirmation')
                 <span class="invalid-feedback mt-2" role="alert">
@@ -52,25 +62,12 @@
         </div>
 
         <div class="d-flex align-items-center gap-4">
-            <button type="submit" class="btn btn_save">{{ __('Salva') }}</button>
+            <button id="btn_save" type="submit" class="btn btn_save"
+                onclick="check_ever(event)">{{ __('Salva') }}</button>
+            <button id="btn_loading" class="btn btn_save" style="display:none;" disabled>{{ __('Attendi..') }}</button>
             @if (session('status') === 'profile-updated')
                 <script>
-                    // console.log(document.getElementById('profile-status'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    // console.log(document.getElementById('profile-status'0
                     setTimeout(() => {
                         const el = document.getElementById('profile-status')
 

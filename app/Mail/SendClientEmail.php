@@ -18,7 +18,7 @@ class SendClientEmail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public Customer $customer, public string $object, public string $message)
+    public function __construct(public Customer $customer, public string $object, protected  $message)
     {
         //
     }
@@ -44,7 +44,7 @@ class SendClientEmail extends Mailable
     {
         return new Content(
             view: 'mail.send-client-email',
-            with: ['message' => $this->message],
+            with: ['contactMessage' => $this->message],
         );
     }
 

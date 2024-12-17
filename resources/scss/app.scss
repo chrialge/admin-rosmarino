@@ -1132,6 +1132,10 @@
                             box-shadow: 0 0 0 0.25rem hsla(228, 85%, 63%, 0.5);
                         }
                     }
+
+                    & > label {
+                        color: var(--first-color);
+                    }
                 }
 
                 & > .btn_send_email {
