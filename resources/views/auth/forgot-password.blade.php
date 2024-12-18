@@ -1,48 +1,64 @@
 @extends('layouts.login')
 
 @section('content')
-    <div class="pt-4 pb-5">
-        <h2 class="text-white">Recupero password</h2>
-    </div>
+    <div class="container_login pb-3">
 
-    <div class="container pb-3">
+        <div class="header_login">
+            <h2>Recupero password</h2>
+
+            <i id="theme-button" class="ri-sun-fill"></i>
+        </div>
+
         @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
             </div>
         @endif
-        <div class="screen">
 
-            <i class="fa fa-arrow-left" aria-hidden="true" onclick="window.history.go(-1);"></i>
-            <div class="screen__content">
-                <form class="login" method="POST" action="{{ route('password.email') }}">
-                    @csrf
-                    <div class="login__field">
-                        <i class="login__icon fas fa-user"></i>
-                        <input type="email" class="login__input @error('email') is-invalid @enderror" placeholder="Email"
-                            id="email" name="email" value="{{ old('email') }}" required autocomplete="email"
-                            autofocus>
+        <form class="login" method="POST" action="{{ route('password.email') }}">
+            @csrf
+            <div class="login_field">
+                <i class="login_icon fas fa-user"></i>
+                <input type="email" class="login__input @error('email') is-invalid @enderror" placeholder="Email"
+                    id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-
-                    <button class="button login__submit" type="submit">
-                        <span class="button__text">mando una email per il reset</span>
-                        <i class="button__icon fas fa-chevron-right"></i>
-                    </button>
-                </form>
-
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
-            <div class="screen__background">
-                <span class="screen__background__shape screen__background__shape4"></span>
-                <span class="screen__background__shape screen__background__shape3"></span>
-                <span class="screen__background__shape screen__background__shape2"></span>
-                <span class="screen__background__shape screen__background__shape1"></span>
+
+            <div class="social-login">
+                <a href="{{ route('register') }}">
+                    Registrati
+                </a>
+
+                <a href="{{ route('login') }}">Accedi</a>
             </div>
-        </div>
+
+
+
+            <div class="d-flex justify-content-center mb-5">
+                <button class="btn login_submit" id="btn_send" type="submit" onclick="showLoading()">
+                    <span class="button__text">mando una email per il reset</span>
+                    <i class="button__icon fas fa-chevron-right"></i>
+                </button>
+
+                <button id="btn_loading" class="btn login_submit" style="display: none" disabled>
+                    <span class="button__text">Attendi ..</span>
+                    <i class="button__icon fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </form>
+        <script>
+            function showLoading() {
+                const btnLoading = document.getElementById('btn_loading').style.display = '';
+                const btn = document.getElementById('btn_send').style.display = 'none'
+            }
+        </script>
+
+
+
     </div>
 @endsection

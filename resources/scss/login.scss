@@ -1,227 +1,152 @@
-body {
-    overflow-y: none;
+:root {
+    --header-height: 3.5rem;
+
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(228, 85%, 63%);
+    --modify-color: hsl(39, 100%, 50%);
+    --title-color: hsl(228, 18%, 16%);
+    --text-color: hsl(228, 8%, 56%);
+    --body-color: hsl(228, 100%, 99%);
+    --shadow-color: hsla(228, 80%, 4%, 0.1);
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Nunito Sans", system-ui;
+    --normal-font-size: 0.938rem;
+    --smaller-font-size: 0.75rem;
+    --tiny-font-size: 0.75rem;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+body.dark-theme {
+    --first-color: hsl(228, 70%, 63%);
+    --title-color: hsl(228, 18%, 96%);
+    --text-color: hsl(228, 12%, 61%);
+    --body-color: hsl(228, 24%, 16%);
+    --shadow-color: hsla(228, 80%, 4%, 0.3);
 }
 
 #container_credential {
-    background: linear-gradient(90deg, #90e0ef, #0466c8);
-    min-height: 100vh;
+    background-color: var(--body-color);
     display: flex;
+    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    overflow: hidden;
+    height: 100vh;
 
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .screen {
-        background: linear-gradient(90deg, #90e0ef, #0466c8);
-        position: relative;
-        height: 600px;
-        width: 360px;
-        box-shadow: 0px 0px 24px #0466c8;
-    }
-
-    .screen_register {
-        width: 380px;
-    }
-
-    .screen__content {
-        z-index: 1;
-        position: relative;
-        height: 100%;
-    }
-
-    .screen__background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 0;
-        -webkit-clip-path: inset(0 0 0 0);
-        clip-path: inset(0 0 0 0);
-    }
-
-    .screen__background__shape {
-        transform: rotate(45deg);
-        position: absolute;
-    }
-
-    .screen__background__shape1 {
-        height: 520px;
-        width: 520px;
-        background: #fff;
-        top: -50px;
-        right: 120px;
-        border-radius: 0 72px 0 0;
-    }
-
-    .screen__background__shape2 {
-        height: 220px;
-        width: 220px;
-        background: #0466c8;
-        top: -172px;
-        right: 0;
-        border-radius: 32px;
-    }
-
-    .screen__background__shape3 {
-        height: 540px;
-        width: 190px;
-        background: linear-gradient(270deg, #0466c8, #90e0ef);
-        top: -24px;
-        right: 0;
-        border-radius: 32px;
-    }
-
-    .screen__background__shape4 {
-        height: 400px;
-        width: 200px;
-        background: #0466c8;
-        top: 420px;
-        right: 50px;
-        border-radius: 60px;
-    }
-
-    .login {
-        width: 320px;
+    & > .container_login {
+        width: 95%;
+        max-width: 500px;
+        margin: auto;
+        background-color: var(--body-color);
         padding: 30px;
-        padding-top: 156px;
-    }
-
-    #register {
-        padding-top: 60px;
-
-        .login__field {
-            padding: 13px 0px;
-        }
-    }
-
-    .login__field {
-        padding: 20px 0px;
+        border-radius: 20px;
+        border: 0;
+        box-shadow: 4px 4px 10px var(--shadow-color);
         position: relative;
-    }
 
-    .login__icon {
-        position: absolute;
-        top: 30px;
-        color: #0466c8;
-    }
-    .icon_pass {
-        right: 25%;
-        cursor: pointer;
-    }
-
-    .register_pass {
-        right: 20%;
-        cursor: pointer;
-    }
-    .login__input {
-        border: none;
-        border-bottom: 2px solid #d1d1d4;
-        background: none;
-        padding: 10px;
-        padding-left: 24px;
-        font-weight: 700;
-        width: 75%;
-        transition: 0.2s;
-    }
-
-    .register_input {
-        width: 80%;
-    }
-
-    .login__input:active,
-    .login__input:focus,
-    .login__input:hover {
-        outline: none;
-        border-bottom-color: #0466c8;
-    }
-
-    .login__submit {
-        background: #fff;
-        font-size: 14px;
-        margin-top: 30px;
-        padding: 16px 20px;
-        border-radius: 26px;
-        border: 1px solid #d4d3e8;
-        text-transform: uppercase;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        width: 100%;
-        color: #0466c8;
-        box-shadow: 0px 2px 2px #0466c8;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    .login__submit:active,
-    .login__submit:focus,
-    .login__submit:hover {
-        border-color: #0466c8;
-        outline: none;
-    }
-
-    .button__icon {
-        font-size: 24px;
-        margin-left: auto;
-        color: #0466c8;
-    }
-
-    .social-login {
-        font-size: 15px;
-        gap: 10px;
-        display: flex;
-        flex-direction: column;
-        padding-top: 75px;
-        position: absolute;
-        height: 140px;
-        width: 230px;
-        text-align: center;
-        bottom: 0px;
-        right: 0px;
-        color: #fff;
-        align-items: center;
-
-        & > span {
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-
-            &:focus,
-            &:hover {
-                border-color: white;
+        .header_login {
+            & > h2 {
+                color: var(--first-color);
+                text-align: center;
+                margin-bottom: 30px;
+                font-weight: var(--font-semi-bold);
             }
 
+            & > i {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: var(--first-color);
+                font-size: 22px;
+                cursor: pointer;
+            }
+        }
+
+        & > .login {
+            width: 100%;
+            max-width: 320px;
+            margin: auto;
+            & > .login_field {
+                border-bottom: 2px solid var(--first-color);
+
+                position: relative;
+
+                margin: 0 auto 30px;
+                & > .login_icon:first-child {
+                    color: var(--first-color);
+                    position: absolute;
+                    top: 15px;
+                    left: 12px;
+                }
+                & > .login_icon:last-child,
+                & > .showPassword {
+                    color: var(--first-color);
+                    position: absolute;
+                    top: 15px;
+                    right: 12px;
+                    cursor: pointer;
+                }
+
+                & > input {
+                    padding: 10px 30px;
+                    width: 100%;
+                    border: 0;
+                    outline: 0;
+                    background-color: var(--body-color);
+                    color: var(--first-color);
+
+                    &::placeholder {
+                        color: var(--first-color);
+                    }
+                }
+            }
+        }
+
+        .form_check {
+            margin-bottom: 20px;
+            color: var(--first-color);
+            & > .form-check-input {
+                cursor: pointer;
+                &:checked {
+                    background-color: var(--first-color);
+                    box-shadow: 0 0 0 0.25rem hsla(228, 85%, 63%, 0.5);
+                }
+            }
+        }
+
+        .social-login {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
             & > a {
-                text-decoration: none;
-                color: white;
+                color: var(--first-color);
+
+                &:hover {
+                    color: var(--text-color);
+                }
             }
         }
-    }
 
-    .form-check-input {
-        cursor: pointer;
-    }
-    .form-check-input:checked {
-        background-color: #0466c8;
-        border-color: #0466c8;
-    }
+        .login_submit {
+            background-color: var(--first-color);
+            color: var(--body-color);
+            & > span {
+                padding-right: 5px;
+            }
 
-    .form-check-input:focus {
-        box-shadow: 0 0 0 0.25rem #00296b;
-    }
-
-    .fa-arrow-left {
-        cursor: pointer;
-        color: #0466c8;
-        position: relative;
-        font-size: 25px;
-        z-index: 9999;
-        top: 10px;
-        left: 11px;
+            &:hover {
+                background-color: hsla(228, 85%, 63%, 0.5);
+            }
+        }
     }
 }
