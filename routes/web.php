@@ -7,10 +7,13 @@ use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\Admin\SendEmailController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\SendNotification;
+use App\Notifications\TelegramNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Mailer\Messenger\SendEmailMessage;
-
+use NotificationChannels\Telegram\TelegramUpdates;
+use App\Notifications\InvoicePaid;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

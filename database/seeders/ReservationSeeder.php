@@ -80,6 +80,7 @@ class ReservationSeeder extends Seeder
             $newReservation->date = $reservation['date'];
             $newReservation->hour_reservation = $reservation['hour_reservation'];
             $newReservation->person = $reservation['person'];
+            $newReservation->state = 'attesa';
             $newReservation->save();
         }
     }

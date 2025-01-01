@@ -1,0 +1,69 @@
+:root {
+    --text-color: hsl(228, 12%, 61%);
+    --body-color: hsl(228, 24%, 16%);
+    --shadow-color: hsla(228, 80%, 4%, 0.3);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 5px;
+    background-color: hsl(228, 24%, 16%) !important;
+    color: hsl(228, 12%, 61%) !important;
+    box-shadow: 0 2px 24px var(--shadow-color);
+
+    .container_reject_reservation {
+        max-width: 600px;
+        border: 1px solid hsl(356, 100%, 41%);
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 2px 24px var(--shadow-color);
+
+        .top_image {
+            max-width: 300px;
+            margin: auto;
+
+            & > img {
+                width: 100%;
+            }
+        }
+
+        & > h2 {
+            color: hsl(356, 100%, 41%);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        & > p {
+            text-align: center;
+        }
+    }
+    .container_confirm_reservation {
+        max-width: 600px;
+        border: 1px solid #118b50;
+        border-radius: 24px;
+        padding: 20px;
+        box-shadow: 0 2px 24px var(--shadow-color);
+
+        .top_image {
+            max-width: 300px;
+            margin: auto;
+
+            & > img {
+                width: 100%;
+            }
+        }
+
+        & > h2 {
+            color: #118b50;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        & > p {
+            text-align: center;
+        }
+    }
+}

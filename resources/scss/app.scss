@@ -955,8 +955,9 @@
         margin: 30px 0 30px;
         color: var(--first-color);
     }
-    & > .container_table_reservation {
-        & > .table {
+    & > div > .container_table_reservation {
+        & > .table,
+        & > div > .table {
             border: 1px solid var(--first-color);
 
             & > thead {
@@ -1145,5 +1146,62 @@
                 }
             }
         }
+    }
+}
+
+.btn_chunky {
+    --btn-color: rgb(124 45 18);
+    --btn-bg: rgb(252 211 77);
+    position: relative;
+    display: inline;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background-color: var(--btn-bg);
+    color: var(--btn-color);
+    padding: 7px 11px;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: system-ui;
+    border: 2px solid var(--btn-color);
+    transition: 100ms ease;
+    box-shadow: 5px 5px 0 0 var(--btn-color);
+}
+
+.btn_chunky:hover {
+    box-shadow: 2px 2px 0 0 var(--btn-color);
+}
+
+.btn_chunky:active {
+    transition: 50ms ease;
+    box-shadow: 0 0 0 0 var(--btn-color);
+}
+
+.btn_chunky:focus-visible {
+    outline: 0;
+    --btn-color: #002cc8;
+}
+
+.btn_chunky:focus-visible::after {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 12px);
+    transform: translateX(-50%);
+    content: "\21E7";
+    animation: float 0.5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateX(-50%) translatey(0px);
+    }
+    50% {
+        transform: translateX(-50%) translatey(-6px);
+    }
+    100% {
+        transform: translateX(-50%) translatey(0px);
     }
 }

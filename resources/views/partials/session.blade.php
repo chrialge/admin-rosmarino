@@ -18,4 +18,24 @@
 
         <i class="ri-close-large-fill" onclick="closeSession()"></i>
     </div>
+@elseif (@session('info'))
+    <div id="session" class="session_info" role="alert">
+        <div class="left_session_delete">
+            <i class="ri-delete-bin-2-fill"></i>
+            {{ session('info') }}
+
+        </div>
+
+        <i class="ri-close-large-fill" onclick="closeSession()"></i>
+    </div>
+@elseif (@session('delete'))
+    <div id="session" class="session_delete" role="alert">
+        <div class="left_session_delete">
+            <i class="ri-delete-bin-2-fill"></i>
+            {{ session('delete') }}
+
+        </div>
+
+        <i class="ri-close-large-fill" onclick="closeSession()"></i>
+    </div>
 @endif

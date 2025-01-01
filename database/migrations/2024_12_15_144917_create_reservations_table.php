@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('date');
             $table->time('hour_reservation');
             $table->tinyInteger('person');
+            $table->string('state', '10');
+            $table->bigInteger('message_id')->nullable();
             $table->timestamps();
         });
     }

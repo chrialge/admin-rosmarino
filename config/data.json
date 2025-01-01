@@ -1,0 +1,19 @@
+{
+    "update_id": 830507889,
+    "message": {
+        "message_id": 3,
+        "from": {
+            "id": 389605885,
+            "is_bot": false,
+            "first_name": "Christian",
+            "language_code": "it"
+        },
+        "chat": {
+            "id": 389605885,
+            "first_name": "Christian",
+            "type": "private"
+        },
+        "date": 1734712978,
+        "text": "ciao"
+    }
+}

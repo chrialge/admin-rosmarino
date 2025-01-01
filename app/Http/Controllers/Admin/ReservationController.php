@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SendNotification;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReservationRequest;
+use Illuminate\Support\Facades\Validator;
+
 
 class ReservationController extends Controller
 {
@@ -15,7 +18,10 @@ class ReservationController extends Controller
     public function index()
     {
         $now = date('Y-m-d');
-        $reservations = Reservation::where('date', $now)->orderByDesc('id')->paginate(8);
+        $staticstart = date('Y-m-d', strtotime('last Monday'));
+        $staticfinish = date('Y-m-d', strtotime('next Sunday'));
+
+        $reservations = Reservation::whereBetween('date', [$staticstart, $staticfinish])->orderByDesc('id')->paginate(9);
         return view('admin.reservations.index', compact('reservations'));
     }
 
@@ -32,7 +38,43 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dirty_data = $request->all();
+
+
+
+
+
+        $validator = Validator::make($dirty_data, [
+            'customer_name' => 'required|string|max:100',
+            'customer_last_name' => 'required|string|max:100',
+            'customer_telephone' => 'required|numeric',
+            'customer_email' => 'required|email',
+            'date' => 'required',
+            'hour_reservation' => 'required',
+            'person' => 'required|numeric'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'response' => $validator->errors(),
+            ]);
+        }
+
+        $dirty_data['state'] = 'attesa';
+        $reservation = Reservation::create($dirty_data);
+
+
+
+
+        $sendNotfification = new SendNotification();
+        $sendNotfification->send($reservation->id);
+
+
+        return response()->json([
+            'success' => true,
+            'response' => "la tau prenotazione estata confermata",
+        ]);
     }
 
     /**

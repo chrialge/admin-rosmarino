@@ -8,17 +8,17 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Customer;
 use Illuminate\Mail\Mailables\Address;
 
-class SendClientEmail extends Mailable
+
+class NotificationReservation extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public Customer $customer, public string $object, protected  $message)
+    public function __construct(public string $email, public string $name, public string $message)
     {
         //
     }
@@ -31,9 +31,10 @@ class SendClientEmail extends Mailable
         return new Envelope(
             from: new Address('noreply@demomailtrap.com', 'Ristorante Rosmarino'),
             replyTo: [
-                new Address($this->customer->email, $this->customer->name . " " . $this->customer->last_name)
+                new Address($this->email, $this->name)
             ],
-            subject: $this->object,
+
+            subject: 'Notifica di Prenotazione',
         );
     }
 
