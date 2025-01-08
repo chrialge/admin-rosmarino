@@ -1,12 +1,36 @@
 <div>
 
-    <form>
-        <input type="text" value="Lunedi" style="display: none">
-        <button type="submit" class="btn_chunky">
-            Lunedi
-        </button>
-    </form>
+
+
+
     <div class="container_table_reservation">
+
+        <h2>Prenotazioni {{ $count }}</h2>
+        {{ $this->day }}
+
+        <div class="d-flex pb-3 gap-2 align-items-center">
+
+
+
+
+
+
+            <div class="mb-3">
+
+                <select class="form-select form-select-lg" name="day" id="day" wire:model.live="day">
+                    <option value="">tutta la settimana</option>
+                    @foreach ($array as $key => $day)
+                        <option value="{{ $day }}">{{ $days[$key] }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+
+
+
+
+        </div>
+
 
 
         <table class="table">
@@ -16,15 +40,15 @@
                         <span>Nome</span>
                         <span class="last_name_hidden"> e Cognome</span>
                     </th>
-                    <th scope="col" style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
+                    <th scope="col" style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);"
+                        class="last_name_hidden">
                         Pax
                     </th>
                     <th scope="col" style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
                         Ora
                     </th>
-                    <th scope="col" class="last_name_hidden"
-                        style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
-                        telefono
+                    <th scope="col" style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
+                        Data
                     </th>
                     <th style="color: hsl(228, 85%, 63%); background-color: hsla(228, 80%, 4%, 0.3);">
                         Azioni
@@ -40,12 +64,13 @@
                             {{ "$reservation->customer_name  " }}
                             <span class="last_name_hidden">{{ $reservation->customer_last_name }}</span>
                         </td>
-                        <td style="color: hsl(228, 8%, 56%);"> {{ "$reservation->person" }} </td>
+                        <td style="color: hsl(228, 8%, 56%);" class="last_name_hidden"> {{ "$reservation->person" }}
+                        </td>
                         <td style="color: hsl(228, 8%, 56%);">
                             {{ date_format(date_create($reservation->hour_reservation), 'h:i') }}
                         </td>
-                        <td style="color: hsl(228, 8%, 56%);" class="last_name_hidden">
-                            {{ "$reservation->customer_telephone" }} </td>
+                        <td style="color: hsl(228, 8%, 56%);">
+                            {{ date_format(date_create($reservation->date), 'd/m') }} </td>
 
                         <td>
 
@@ -195,7 +220,10 @@
             </tbody>
         </table>
 
-        @if ($reservations->count() >= 1)
+        @if (strlen($this->day)>= 1)
+            
+
+        @elseif ($reservations->count() >= 1)
             {{ $reservations->links('pagination::bootstrap-5') }}
         @endif
     </div>

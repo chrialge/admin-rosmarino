@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ReservationController;
@@ -25,3 +26,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('reservation', [ReservationController::class, 'store']);
 Route::get('confirm-reservation/{id}', [StateReservationController::class, 'confirm']);
 Route::get('reject-reservation/{id}', [StateReservationController::class, 'reject']);
+Route::post('customers', [CustomerController::class, 'store']);

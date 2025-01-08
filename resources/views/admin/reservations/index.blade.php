@@ -27,11 +27,7 @@
         </ul>
 
 
-        <h2>
-            Prenotazioni {{ $reservations->count() }}
-        </h2>
 
-        @include('partials.session')
 
 
         @livewire('Reservations')

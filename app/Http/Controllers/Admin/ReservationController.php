@@ -21,7 +21,7 @@ class ReservationController extends Controller
         $staticstart = date('Y-m-d', strtotime('last Monday'));
         $staticfinish = date('Y-m-d', strtotime('next Sunday'));
 
-        $reservations = Reservation::whereBetween('date', [$staticstart, $staticfinish])->orderByDesc('id')->paginate(9);
+        $reservations = Reservation::whereBetween('date', [$staticstart, $staticfinish])->count();
         return view('admin.reservations.index', compact('reservations'));
     }
 

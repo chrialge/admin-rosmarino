@@ -1,8 +1,10 @@
 @if ($paginator->hasPages())
+
     <nav class="d-flex justify-items-center justify-content-between mb-4">
         <div class="d-flex justify-content-between flex-fill d-sm-none align-items-center">
 
             <p style="font-weight: 600; color: hsl(228, 85%, 63%); margin: 0;">
+
                 {{ 'Pagina ' . $paginator->currentPage() }}
             </p>
 

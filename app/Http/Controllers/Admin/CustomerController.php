@@ -35,7 +35,22 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $val_data = $request->validated();
+
+        $val_data['slug'] = Str::slug($val_data['name']) . '-' . Str::slug($val_data['last_name']);
+        $count = Customer::where('slug', $val_data['slug'])->count();
+
+        if ($count > 0) {
+            $val_data['slug'] = $val_data['slug'] . '-' . $count;
+        }
+
+        Customer::create($val_data);
+
+
+        return response()->json([
+            'success' => true,
+            'result' => "E stato salvato correttamente",
+        ]);
     }
 
     /**

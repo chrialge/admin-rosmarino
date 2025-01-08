@@ -27,6 +27,8 @@
 
     @yield('script')
 
+    @livewireScripts
+
     <style>
         body {
             margin: 0;
