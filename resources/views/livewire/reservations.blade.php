@@ -213,16 +213,14 @@
 
                 @empty
                     <tr>
-                        <td colspan="3">Scusa non ci sono Allergie 😭😭</td>
+                        <td colspan="5">Scusa non ci sono Allergie 😭😭</td>
                     </tr>
                 @endforelse
 
             </tbody>
         </table>
 
-        @if (strlen($this->day)>= 1)
-            
-
+        @if (strlen($this->day) >= 1)
         @elseif ($reservations->count() >= 1)
             {{ $reservations->links('pagination::bootstrap-5') }}
         @endif

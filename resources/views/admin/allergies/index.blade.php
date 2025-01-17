@@ -45,7 +45,7 @@
                     @include('partials.validate') --}}
 
                     {{-- form per i campi per creare un nuovo viaggio --}}
-                    <form action="{{ route('admin.allergy.store') }}" method="post">
+                    <form action="{{ route('admin.allergy.store') }}" method="post" onsubmit="checkFormCreate($event)">
                         @csrf
                         @method('POST')
 
@@ -92,7 +92,7 @@
 
 
 
-                <div class="form_modify" id="form_modify_allergy" style="display: block">
+                <div class="form_modify" id="form_modify_allergy" style="display: none">
 
                     <h2>Modifica Allergia</h2>
 
@@ -100,7 +100,8 @@
                     @include('partials.validate') --}}
 
                     {{-- form per i campi per creare un nuovo viaggio --}}
-                    <form id="modify_update_form" action="{{ route('admin.allergy.update', 2) }}" method="post">
+                    <form id="modify_update_form" action="{{ route('admin.allergy.update', 2) }}" method="post"
+                        onsubmit="checkFromModify(event)">
                         @csrf
                         @method('PUT')
                         {{-- campo name di allergia --}}

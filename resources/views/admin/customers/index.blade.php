@@ -264,7 +264,7 @@
 
                                 <!-- Modal Body -->
                                 <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                <div class="modal fade" id="modalId-{{ $customer->id }}" tabindex="-1"
+                                <div class="modal fade modal_delete" id="modalId-{{ $customer->id }}" tabindex="-1"
                                     data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                     aria-labelledby="modalTitleId-{{ $customer->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"

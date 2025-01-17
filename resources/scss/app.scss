@@ -958,7 +958,9 @@
         margin: 30px 0 30px;
         color: var(--first-color);
     }
-    & > div > .container_table_reservation {
+
+    & > div > .container_table_reservation,
+    .container_table_reservation {
         & > .filters {
             & > .mb-3 {
                 & > .form-select {
@@ -999,7 +1001,8 @@
                         }
                     }
 
-                    & > .modal_show {
+                    & > .modal_show,
+                    .modal_delete {
                         & > .modal-dialog {
                             .modal-content {
                                 .modal-header {
@@ -1051,6 +1054,10 @@
             }
         }
     }
+}
+
+.container_table_reservation > .table > tbody {
+    background-color: var(--body-color) !important;
 }
 
 @media screen and (max-width: 1150px) {

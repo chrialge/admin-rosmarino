@@ -65,7 +65,8 @@
 
         <div class="container_form_create_plate">
 
-            <form action="{{ route('admin.dishes.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.dishes.store') }}" method="post" enctype="multipart/form-data"
+                onsubmit="check_form(event)">
                 @csrf
 
                 {{-- campo name di piatto --}}

@@ -7,24 +7,25 @@ import.meta.glob([
 
 
 
-
+// aspetto che si sia ricaricata tutta la pagina 
 window.addEventListener('load', function () {
 
+    // dopo 3 secondi viene mandato
     setTimeout(() => {
         const loading = document.getElementById('loading_app');
         loading.style.transition = 'transform 0.7s'
         loading.style.transform = 'translateX(500%)';
 
         const app = document.getElementById('app');
-        app.style.display = 'block'
-        app.style.transform = 'traslateY(100%)'
+        if (app) {
+            app.style.display = 'block';
+        }
 
 
+
+        // dopo 0.4 viene mandato
         setTimeout(() => {
             loading.style.display = 'none'
         }, 400)
     }, 3000)
-
-
-
 });
