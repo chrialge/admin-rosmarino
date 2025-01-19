@@ -2,10 +2,13 @@
 
 
 @section('script')
+    {{-- javascript della pagina --}}
     <script src="{{ asset('js/edit_dish_validation.js') }}"></script>
+
+    {{-- css della pagina --}}
     @vite(['resources/scss/edit.scss'])
 
-    <!-- Styles -->
+    <!-- Styles di multiselect -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
     <link rel="stylesheet"
@@ -14,7 +17,7 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
-    <!-- Scripts -->
+    <!-- Scripts  di multiselect-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
@@ -23,6 +26,7 @@
 
 @section('content')
     <div class="container-dish">
+
         {{-- percorso di file / breadcrumb --}}
         <ul class="d-flex gap-2 list-unstyled">
             <li>
@@ -36,7 +40,7 @@
                 </span>
             </li>
             <li>
-                <a href="{{ route('admin.allergy.index') }}" style="font-weight: 600; color: hsl(228, 8%, 56%);">
+                <a href="{{ route('admin.dishes.index') }}" style="font-weight: 600; color: hsl(228, 8%, 56%);">
                     Menu
                 </a>
             </li>
@@ -52,22 +56,25 @@
             </li>
         </ul>
 
+        {{-- header page --}}
         <div class="header_page_edit g-1">
             <h2>
                 Modifica di: {{ $dish->name }}
             </h2>
 
+            {{-- bottone che cliccando porta alla pagina precednte --}}
             <a href="{{ route('admin.dishes.index') }}" class="btn btn_return">
                 <span>Indietro</span>
                 <i class="ri-arrow-left-circle-line"></i>
             </a>
         </div>
 
-
-
+        {{-- container del form --}}
         <div class="container_form_edit_plate">
 
-            <form action="{{ route('admin.dishes.update', $dish) }}" method="post" enctype="multipart/form-data">
+            {{-- form di modifica del piatto --}}
+            <form action="{{ route('admin.dishes.update', $dish) }}" method="post" enctype="multipart/form-data"
+                onsubmit="check_validation(event)">
                 @csrf
                 @method('PUT')
 
@@ -78,6 +85,7 @@
                         class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                         aria-describedby="nameHelper" value="{{ old('name', $dish->name) }}" placeholder="" required />
                     <label for="name" class="form-label">Name *</label>
+
                     {{-- span di errore lato front --}}
                     <span id="name_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                         Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
@@ -94,7 +102,7 @@
 
                 </div>
 
-                {{-- campo name di prezzo --}}
+                {{-- campo prezzo del piatto --}}
                 <div class="mb-3 form-floating">
 
                     <input type="number" min="0.01" max="9999.99" step="0.01" onkeyup="hide_error_price()"
@@ -102,6 +110,7 @@
                         id="price" aria-describedby="priceHelper" value="{{ old('price', $dish->price) }}"
                         placeholder="" required />
                     <label for="price" class="form-label">Prezzo * </label>
+
                     {{-- span di errore lato front --}}
                     <span id="price_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                         Il prezzo massimo di 9999.99 e minimo 0.01
@@ -125,7 +134,7 @@
                     </div>
                 </div>
 
-                {{-- campo name di typology --}}
+                {{-- campo tipologia del piatto --}}
                 <div class="mb-3 form-floating">
 
                     <select class="form-select @error('typology') is-invalid @enderror" onblur="check_typology()"
@@ -144,7 +153,7 @@
                             Bevande</option>
                     </select>
                     <span id="typology_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
-                        Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
+                        Devi almeno sceglierne uno.
                     </span>
 
                     {{-- errore lato back --}}
@@ -166,15 +175,12 @@
                     <select class="form-select" name="allergies[]" id="multiple-select-field"
                         data-placeholder="Choose anything" multiple>
                         @foreach ($allergies as $allergy)
-                            <option value="{{ $allergy->id }}">{{ $allergy->name }}</option>
+                            <option value="{{ $allergy->id }}"
+                                {{ in_array($allergy->id, old('allergies', $array)) ? 'selected' : '' }}>
+                                {{ $allergy->name }}</option>
                         @endforeach
 
                     </select>
-                    <span id="name_error_modify" class="text-danger" role="alert"
-                        style="display: none; font-weight: 600;">
-                        Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
-                    </span>
-
 
                     <small id="typologyHelper" class="">
                         Inserisci le allergie
@@ -182,24 +188,23 @@
 
                 </div>
 
+                {{-- descrizione del piatto --}}
                 <div class="mb-3 form-floating">
                     <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                         style="height: 100px">{{ old('description', $dish->description) }}</textarea>
                     <label for="floatingTextarea2">Descrizione</label>
                 </div>
 
-                <button class="btn btn_edit" type="submit" id="btn_edit_plate" onsubmit="check_validation(event);">
+                {{-- bottone di conferma --}}
+                <button class="btn btn_edit" type="submit" id="btn_edit_plate">
                     <span>Modifica Piatto</span>
                     <i class="ri-bowl-fill"></i>
                 </button>
-                <button class="btn btn_edit" type="submit" id="btn_loading" style="display: none">
+
+                {{-- bottone di loading --}}
+                <button class="btn btn_edit" id="btn_loading" style="display: none" disabled>
                     <span>Attendi...</span>
-
                 </button>
-
-
-
-
             </form>
         </div>
     </div>

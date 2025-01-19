@@ -30,22 +30,26 @@
             </li>
         </ul>
 
-
+        {{-- messaggi di session --}}
         @include('partials.session')
 
+        {{-- il corpo della pagina --}}
         <div class="container_table_allergy">
 
+            {{-- contenitore di creazione e modifica dell'allergia --}}
             <div class="create_allergies">
 
-
+                {{-- contenotore di creazione all'allergia --}}
                 <div class="form_create" id="form_create_allergy">
+
+                    {{-- titolo contenitore --}}
                     <h2>Creazione Allergia</h2>
 
-                    {{-- parziale per la lista di errori lato back
-                    @include('partials.validate') --}}
+                    {{-- parziale per la lista di errori lato back --}}
+                    @include('partials.validate')
 
-                    {{-- form per i campi per creare un nuovo viaggio --}}
-                    <form action="{{ route('admin.allergy.store') }}" method="post" onsubmit="checkFormCreate($event)">
+                    {{-- form per i campi per creare un nuova allergia --}}
+                    <form action="{{ route('admin.allergy.store') }}" method="post" onsubmit="checkFormCreate(event)">
                         @csrf
                         @method('POST')
 
@@ -56,6 +60,7 @@
                                 class="form-control @error('name') is-invalid @enderror" name="name" id="name"
                                 aria-describedby="nameHelper" value="{{ old('name') }}" placeholder="" required />
                             <label for="name" class="form-label">Name *</label>
+
                             {{-- span di errore lato front --}}
                             <span id="name_error" class="text-danger" role="alert"
                                 style="display: none; font-weight: 600;">
@@ -70,11 +75,10 @@
                             <small id="nameHelper" class="">
                                 Inserisci il nome della allergia
                             </small>
-
                         </div>
 
 
-
+                        {{-- contenitore dei bottoni --}}
                         <div class="container_button d-flex  pt-2">
                             {{-- bottone di creazione --}}
                             <button id="allergy_btn" class="btn">
@@ -91,13 +95,14 @@
                 </div>
 
 
-
+                {{-- form di modifica dell'allergia --}}
                 <div class="form_modify" id="form_modify_allergy" style="display: none">
 
+                    {{-- titolo contenitore --}}
                     <h2>Modifica Allergia</h2>
 
-                    {{-- parziale per la lista di errori lato back
-                    @include('partials.validate') --}}
+                    {{-- parziale per la lista di errori lato back --}}
+                    @include('partials.validate')
 
                     {{-- form per i campi per creare un nuovo viaggio --}}
                     <form id="modify_update_form" action="{{ route('admin.allergy.update', 2) }}" method="post"
@@ -114,7 +119,7 @@
                             {{-- span di errore lato front --}}
                             <span id="name_error_modify" class="text-danger" role="alert"
                                 style="display: none; font-weight: 600;">
-                                Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
+                                Il nome deve essere almeno di 3 caratteri , massimo 50 caratteri e non contenere numeri.
                             </span>
 
                             {{-- errore lato back --}}
@@ -129,7 +134,7 @@
                         </div>
 
 
-
+                        {{-- contenitore bottoni --}}
                         <div class="container_button d-flex  pt-2">
                             {{-- bottone di creazione --}}
                             <button id="allergy_btn_modify" class="btn">
@@ -140,18 +145,18 @@
                                 <span>Attendi ...</span>
                             </button>
                         </div>
-
-
                     </form>
-
                 </div>
-
             </div>
 
 
 
             <div>
+
+                {{-- tabella con i record di allergia --}}
                 <table class="table">
+
+                    {{-- header di tabella --}}
                     <thead>
                         <tr>
                             <th scope="col"
@@ -167,9 +172,11 @@
                             </th>
                         </tr>
                     </thead>
+
+                    {{-- body di tabella --}}
                     <tbody>
 
-
+                        {{-- cicclo per tutte le allergie --}}
                         @forelse ($allergies as $allergy)
                             <tr>
                                 <td scope="row" style="color: hsl(228, 85%, 63%);">
@@ -177,17 +184,19 @@
                                 <td style="color: hsl(228, 8%, 56%);"> {{ $allergy->name }} </td>
                                 <td>
 
+                                    {{-- bottone di cancellazione dell'allergia  --}}
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                         data-bs-target="#modalId-{{ $allergy->id }}">
                                         <i class="ri-delete-bin-2-fill"></i>
-
                                     </button>
 
+                                    {{-- bottone di modifica dell'allergia --}}
                                     <a href="#" class="btn btn_modify"
                                         onclick="showModify('{{ $allergy->name }}', {{ $loop->index }}, {{ $allergy->id }} )">
                                         <i class="ri-edit-2-fill"></i>
                                     </a>
 
+                                    {{-- bottone di creazione dell'allergia --}}
                                     <a href="#" class="btn btn_create_action"
                                         onclick="showModify(false, {{ $loop->index }})">
                                         <i class="ri-add-large-fill"></i>
@@ -233,7 +242,7 @@
                                                         @csrf
                                                         @method('DELETE')
 
-                                                        {{-- se clicci cancella il viaggio --}}
+                                                        {{-- se clicci cancella l'allergia --}}
                                                         <button type="submit" class="btn btn_delete">
                                                             <i class="ri-eraser-fill"></i>
                                                             <span>
@@ -246,9 +255,6 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                 </td>
                             </tr>
 
@@ -261,6 +267,7 @@
                     </tbody>
                 </table>
 
+                {{-- pagination --}}
                 @if ($allergies->count() >= 1)
                     {{ $allergies->links('pagination::bootstrap-5') }}
                 @endif

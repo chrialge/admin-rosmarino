@@ -1,9 +1,10 @@
 @extends('layouts.admin')
 
 @section('script')
+    {{-- javascript for page --}}
     <script src="{{ asset('js/create_dish_validation.js') }}"></script>
 
-    <!-- Styles -->
+    <!-- Styles for multiselect -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
     <link rel="stylesheet"
@@ -12,7 +13,7 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
-    <!-- Scripts -->
+    <!-- Scripts for multiselect -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
@@ -21,6 +22,7 @@
 
 @section('content')
     <div class="container-dish">
+
         {{-- percorso di file / breadcrumb --}}
         <ul class="d-flex gap-2 list-unstyled">
             <li>
@@ -34,7 +36,7 @@
                 </span>
             </li>
             <li>
-                <a href="{{ route('admin.allergy.index') }}" style="font-weight: 600; color: hsl(228, 8%, 56%);">
+                <a href="{{ route('admin.dishes.index') }}" style="font-weight: 600; color: hsl(228, 8%, 56%);">
                     Menu
                 </a>
             </li>
@@ -50,11 +52,13 @@
             </li>
         </ul>
 
+        {{-- header page --}}
         <div class="header_page">
             <h2>
                 Crea un piatto
             </h2>
 
+            {{-- bottone che manda alla pagina precedente --}}
             <a href="{{ route('admin.dishes.index') }}" class="btn btn_create">
                 <span>Indietro</span>
                 <i class="ri-arrow-left-circle-line"></i>
@@ -62,9 +66,10 @@
         </div>
 
 
-
+        {{-- container del form --}}
         <div class="container_form_create_plate">
 
+            {{-- form di creazione del piatto --}}
             <form action="{{ route('admin.dishes.store') }}" method="post" enctype="multipart/form-data"
                 onsubmit="check_form(event)">
                 @csrf
@@ -92,7 +97,7 @@
 
                 </div>
 
-                {{-- campo name di prezzo --}}
+                {{-- campo prezzo del piatto --}}
                 <div class="mb-3 form-floating">
 
                     <input type="number" min="0.01" max="9999.99" step="0.01" onkeyup="hide_error_price()"
@@ -122,7 +127,7 @@
                     </div>
                 </div>
 
-                {{-- campo name di typology --}}
+                {{-- campo typologi del piatto --}}
                 <div class="mb-3 form-floating">
 
                     <select class="form-select @error('typology') is-invalid @enderror" onblur="check_typology()"
@@ -136,7 +141,7 @@
                         <option value="bevande" {{ old('typology') === 'bevande' ? 'selected' : '' }}>Bevande</option>
                     </select>
                     <span id="typology_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
-                        Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
+                        Devi selezionare almeno uno.
                     </span>
 
                     {{-- errore lato back --}}
@@ -154,7 +159,6 @@
 
                 {{-- campo delle allergie --}}
                 <div class="mb-3 form-floating">
-
                     <select class="form-select" name="allergies[]" id="multiple-select-field"
                         data-placeholder="Choose anything" multiple>
                         @foreach ($allergies as $allergy)
@@ -162,37 +166,29 @@
                         @endforeach
 
                     </select>
-                    <span id="name_error_modify" class="text-danger" role="alert"
-                        style="display: none; font-weight: 600;">
-                        Il nome deve essere almeno di 3 caratteri e massimo 50 caratteri
-                    </span>
-
 
                     <small id="typologyHelper" class="">
                         Inserisci le allergie
                     </small>
-
                 </div>
 
+                {{-- campo di descrizione del piatto --}}
                 <div class="mb-3 form-floating">
                     <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
                         style="height: 100px">{{ old('description') }}</textarea>
                     <label for="floatingTextarea2">Descrizione</label>
                 </div>
 
+                {{-- bottone di conferma --}}
                 <button class="btn btn_create" type="submit" id="btn_create_plate">
                     <span>Crea Piatto</span>
                     <i class="ri-bowl-fill"></i>
                 </button>
-                <button class="btn btn_create" type="submit" id="btn_loading" style="display: none">
+
+                {{-- bottone di loading --}}
+                <button class="btn btn_create" id="btn_loading" style="display: none" disabled>
                     <span>Attendi...</span>
-
                 </button>
-
-
-
-
-
             </form>
         </div>
     </div>

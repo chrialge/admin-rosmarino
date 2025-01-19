@@ -179,6 +179,7 @@ function hide_error_typology() {
 
 function check_form(e) {
 
+
     // salvo il bottone di conferma
     const btnCreate = document.getElementById('btn_create_plate')
     // salvo il bottone di loading

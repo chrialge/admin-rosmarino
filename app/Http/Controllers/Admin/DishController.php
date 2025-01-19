@@ -84,7 +84,13 @@ class DishController extends Controller
 
         $allergiesDish = $dish->allergies()->get()->toArray();
 
-        return view('admin.dishes.edit', compact('dish', 'allergies', 'allergiesDish'));
+        $array = [];
+
+        foreach ($allergiesDish as $allergy) {
+            array_push($array, $allergy['id']);
+        }
+
+        return view('admin.dishes.edit', compact('dish', 'allergies', 'array'));
     }
 
     /**

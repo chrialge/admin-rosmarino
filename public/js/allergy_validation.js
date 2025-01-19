@@ -158,37 +158,44 @@ function hide_name_error_modify() {
 
 
 
-
+/**
+ * funzione che controlla i campi del form rispettano certi critteri in caso non lo fa esse previene l'evento
+ * @param {Event} e evento dell'elemento
+ */
 function checkFormCreate(e) {
+
 
     //salvo il bottone di conferma e di loading per la creazione
     const btnEl = document.getElementById('allergy_btn');
     const btnLoading = document.getElementById('btn_loading');
 
-    // aggiungo un evento di ascolto al click
-    btnEl.addEventListener('click', (e) => {
+    // il bottone di conferma lo nascondiamo
+    btnEl.style.display = 'none';
+    // il bottone di loading lo mostriamo
+    btnLoading.style.display = 'block';
 
-        // il bottone di conferma lo nascondiamo
-        btnEl.style.display = 'none';
+    //se il valore e false di check_name
+    if (!check_name()) {
 
-        // il bottone di loading lo mostriamo
-        btnLoading.style.display = 'block';
+        // prevengo l'evento
+        e.preventDefault()
 
-        //se il valore e false di check_name
-        if (!check_name()) {
+        // bottone di conferma lo mostriamo
+        btnEl.style.display = 'block';
 
-            // prevengo l'evento
-            e.preventDefault()
+        // bottone di caricamento lo nascondiamo
+        btnLoading.style.display = 'none';
+    } else {
 
-            // bottone di conferma lo mostriamo
-            btnEl.style.display = 'block';
+    }
 
-            // bottone di caricamento lo nascondiamo
-            btnLoading.style.display = 'none';
-        }
-    })
 }
 
+
+/**
+ * funzione che controlla che i cambi del form rispettano certi criteri in caso non li rispetti prevengo l'evento stesso
+ * @param {Event} e l'evento del elemento
+ */
 function checkFromModify(e) {
 
     //salvo il bottone di conferma e di loading per la modifica

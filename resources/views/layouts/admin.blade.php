@@ -42,7 +42,7 @@
             right: 0;
             background: #000;
             width: 100%;
-            height: 100vh;
+            height: 200%;
             position: absolute;
             z-index: 9999;
         }

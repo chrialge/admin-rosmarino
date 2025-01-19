@@ -1,8 +1,8 @@
 localStorage.removeItem('id_typology_dish')
 
 /**
- * 
- * @param {*} id 
+ * funzione che mostra i piatti del genere scelto
+ * @param {Number} id l'id del tipo di piatto scelto
  */
 function showPlate(id) {
     console.log(id);
