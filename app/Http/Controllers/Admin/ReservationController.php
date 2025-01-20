@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\SendNotification;
+use App\Http\Requests\StoreReservationRequest;
 use App\Models\Reservation;
-use Illuminate\Http\Request;
 use App\Http\Requests\UpdateReservationRequest;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,12 +17,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        $now = date('Y-m-d');
-        $staticstart = date('Y-m-d', strtotime('last Monday'));
-        $staticfinish = date('Y-m-d', strtotime('next Sunday'));
-
-        $reservations = Reservation::whereBetween('date', [$staticstart, $staticfinish])->count();
-        return view('admin.reservations.index', compact('reservations'));
+        // Lo indirizzo alla pagina index della prenotazione
+        return view('admin.reservations.index');
     }
 
     /**
@@ -36,44 +32,27 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreReservationRequest $request)
     {
-        $dirty_data = $request->all();
+        //prendo tutti i dati validati
+        $dirty_data = $request->validated();
 
-
-
-
-
-        $validator = Validator::make($dirty_data, [
-            'customer_name' => 'required|string|max:100',
-            'customer_last_name' => 'required|string|max:100',
-            'customer_telephone' => 'required|numeric',
-            'customer_email' => 'required|email',
-            'date' => 'required',
-            'hour_reservation' => 'required',
-            'person' => 'required|numeric'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'response' => $validator->errors(),
-            ]);
-        }
-
+        // aggiungo lo stato di attessa
         $dirty_data['state'] = 'attesa';
+
+        // creo una nuova prenptaziome
         $reservation = Reservation::create($dirty_data);
 
-
-
-
+        // richiamo l'oggetto
         $sendNotfification = new SendNotification();
+
+        // mando la notifica passando l'id della prenotazione
         $sendNotfification->send($reservation->id);
 
-
+        // rispondo con un messaggio di successo
         return response()->json([
             'success' => true,
-            'response' => "la tau prenotazione estata confermata",
+            'response' => "La tua prenotazione e arrivata",
         ]);
     }
 
@@ -90,6 +69,7 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
+        // lo indirizzo alla apagina di modifica della prenotazione
         return view('admin.reservations.edit', compact('reservation'));
     }
 
@@ -98,12 +78,19 @@ class ReservationController extends Controller
      */
     public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
+        // prendo i dati validati
         $val_data = $request->validated();
 
+        // formato l'ora per essere accettato nel database
         $val_data['hour_reservation'] = date_format(date_create($val_data['time']), 'h:i:s');
+
+        // formato la data per essere accettata nel database
         $val_data['date'] = date_format(date_create($val_data['date']), 'Y-m-d');
+
+        // aggiorno la prenotazione con nuovi dati
         $reservation->update($val_data);
 
+        // lo rendirizzo alla pagina index delle prenotazione con um messaggio di session
         return to_route('admin.reservations.index')->with('message', "Hai modificato di: $reservation->customer_name $reservation->customer_last_name");
     }
 
@@ -112,10 +99,16 @@ class ReservationController extends Controller
      */
     public function destroy(Reservation $reservation)
     {
+        // salvo il cognome della prenotazione
         $last_name = $reservation->customer_last_name;
+
+        // salvo il name della prenotazione
         $name = $reservation->customer_name;
+
+        // cancello la prenotazione
         $reservation->delete();
 
+        // lo rendirizzo alla pagina index delle prenotazione con um messaggio di session
         return to_route('admin.reservations.index')->with('message', "Hai cancellato la prenotazione di $name $last_name");
     }
 }

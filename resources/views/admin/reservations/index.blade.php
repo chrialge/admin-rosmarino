@@ -7,6 +7,7 @@
 
 @section('content')
     <div class="container_reservation">
+
         {{-- percorso di file / breadcrumb --}}
         <ul class="d-flex gap-2 list-unstyled">
             <li>

@@ -6,7 +6,7 @@ let dateValue = document.getElementById('date')
 
 // uso la libreia flatpicker per input date
 let calendar = flatpickr("#date", {
-    dateFormat: "d/m/Y",
+    dateFormat: "Y-m-d",
     minDate: "today",
 
 })

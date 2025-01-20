@@ -877,12 +877,19 @@
 
     & > div > .container_table_reservation,
     .container_table_reservation {
+        & > h2 {
+            color: var(--first-color);
+        }
         & > .filters {
             & > .mb-3 {
                 & > .form-select {
                     background-color: var(--body-color);
                     color: var(--first-color);
                     border-color: var(--first-color);
+
+                    &:focus {
+                        box-shadow: hsla(228, 85%, 63%, 0.5);
+                    }
                 }
             }
         }

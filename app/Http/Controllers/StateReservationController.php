@@ -26,7 +26,7 @@ class StateReservationController extends Controller
             $newReservation['date'] = $reservation->date;
             $newReservation['hour_reservation'] = $reservation->hour_reservation;
             $newReservation['person'] = $reservation->person;
-            $newReservation['state'] = 'attesa';
+            $newReservation['state'] = 'conferma';
             // Reservation::where('id', $id)->update($reservation['attributes']);
             Reservation::where('id', $id)->update($newReservation);
 
@@ -73,7 +73,7 @@ class StateReservationController extends Controller
             $newReservation['date'] = $reservation->date;
             $newReservation['hour_reservation'] = $reservation->hour_reservation;
             $newReservation['person'] = $reservation->person;
-            $newReservation['state'] = 'attesa';
+            $newReservation['state'] = 'annulla';
             // Reservation::where('id', $id)->update($reservation['attributes']);
             Reservation::where('id', $id)->update($newReservation);
 

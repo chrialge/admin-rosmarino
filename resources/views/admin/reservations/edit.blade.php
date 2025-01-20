@@ -10,6 +10,7 @@
 
 @section('content')
     <div class="container-reservation">
+
         {{-- percorso di file / breadcrumb --}}
         <ul class="d-flex gap-2 list-unstyled">
             <li>
@@ -39,19 +40,27 @@
             </li>
         </ul>
 
+        {{-- header della pagina --}}
         <div class="header_page_edit g-1">
+
+            {{-- titolo --}}
             <h2>
                 Modifica di: {{ $reservation->customer_name }}
             </h2>
 
+            {{-- bottone che manda alla pagina precedente --}}
             <a href="{{ route('admin.reservations.index') }}" class="btn btn_return">
                 <span>Indietro</span>
                 <i class="ri-arrow-left-circle-line"></i>
             </a>
         </div>
 
-        <div class="container_form_modify">
-            <form action="{{ route('admin.reservations.update', $reservation) }}" method="post">
+        {{-- contenitore del form --}}
+        <div class="container_form_modify mb-3">
+
+            {{-- form --}}
+            <form action="{{ route('admin.reservations.update', $reservation) }}" method="post"
+                onsubmit="check_validation(event)">
                 @csrf
                 @method('PUT')
 
@@ -63,6 +72,7 @@
                         id="customer_name" aria-describedby="customerNameHelper"
                         value="{{ old('customer_name', $reservation->customer_name) }}" placeholder="" required />
                     <label for="customer_name" class="form-label">Nome *</label>
+
                     {{-- span di errore lato front --}}
                     <span id="name_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                         Il nome deve essere almeno di 3 caratteri e massimo 100 caratteri
@@ -87,6 +97,7 @@
                         id="customer_last_name" aria-describedby="customerLastNameHelper"
                         value="{{ old('customer_last_name', $reservation->customer_last_name) }}" placeholder="" required />
                     <label for="customer_last_name" class="form-label">Cognome *</label>
+
                     {{-- span di errore lato front --}}
                     <span id="last_name_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                         Il cognome deve essere almeno di 3 caratteri e massimo 100 caratteri
@@ -111,6 +122,7 @@
                         id="customer_email" aria-describedby="customerEmailHelper"
                         value="{{ old('customer_email', $reservation->customer_email) }}" placeholder="" required />
                     <label for="customer_email" class="form-label">Email *</label>
+
                     {{-- span di errore lato front --}}
                     <span id="email_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                         L'email deve essere corretta
@@ -127,14 +139,15 @@
 
                 </div>
 
+                {{-- campo telefono del prenotato --}}
                 <div class=" form-floating">
-
                     <input type="number" onkeyup="hide_telephone_error()" onblur="check_telephone()"
                         class="form-control @error('customer_telephone') is-invalid @enderror" name="customer_telephone"
                         id="customer_telephone" aria-describedby="customerTelephoneHelper"
                         value="{{ old('customer_telephone', $reservation->customer_telephone) }}" placeholder=""
                         required />
                     <label for="customer_telephone" class="form-label">Telefono *</label>
+
                     {{-- span di errore lato front --}}
                     <span id="telephone_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
                         Il numero di telefono e obbligatio
@@ -151,17 +164,19 @@
 
                 </div>
 
-
+                {{-- campo di numero di persone --}}
                 <div class=" form-floating">
 
-                    <input type="number" min="0" max="150" onkeypress="hide_person_error()"
+                    <input type="number" min="0" max="150" onkeyup="hide_person_error()"
                         onblur="check_person()" class="form-control @error('person') is-invalid @enderror" name="person"
                         id="person" aria-describedby="personHelper" value="{{ old('person', $reservation->person) }}"
-                        placeholder="" required />
+                        placeholder="" />
                     <label for="person" class="form-label">Persone *</label>
+
+
                     {{-- span di errore lato front --}}
                     <span id="person_error" class="text-danger" role="alert" style="display: none; font-weight: 600;">
-                        Il numero di persone e obbligatio
+                        Il numero di persone è obbligatorio
                     </span>
 
                     {{-- errore lato back --}}
@@ -175,6 +190,7 @@
 
                 </div>
 
+                {{-- input della data della prenotazione --}}
                 <div class=" form_data_time">
                     <input type="date" class="date" id="date" name="date"
                         value="{{ old('date', $reservation->date) }}">
@@ -184,6 +200,7 @@
                     </small>
                 </div>
 
+                {{-- input time della prenotazione --}}
                 <div class=" form_data_time">
                     <input type="time" name="time" id="time"
                         value="{{ old('time', $reservation->hour_reservation) }}">
@@ -192,29 +209,21 @@
                     </small>
                 </div>
 
+                {{-- contenitore dei bottoni --}}
                 <div class="container_btn">
-                    <button class="btn btn_edit" type="submit" id="btn_edit_reservation"
-                        onclick="check_validation(event);">
+
+                    {{-- bottone di conferma --}}
+                    <button class="btn btn_edit" type="submit" id="btn_edit_reservation">
                         <span>Modifica Prenotazione</span>
                         <i class="ri-calendar-check-fill"></i>
                     </button>
-                    <button class="btn btn_edit" type="submit" id="btn_loading" style="display: none">
-                        <span>Attendi...</span>
 
+                    {{-- bottone di loading --}}
+                    <button class="btn btn_edit" id="btn_loading" style="display: none" disabled>
+                        <span>Attendi...</span>
                     </button>
                 </div>
-
-
             </form>
-
-
-
-
-
-
         </div>
-
-
-
     </div>
 @endsection
