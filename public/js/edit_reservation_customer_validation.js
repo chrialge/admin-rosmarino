@@ -1,5 +1,5 @@
 /**
- * funzione che controlla l'input del nome della prenotazione
+ * funzione che controlla l'input del nome della prenotazione  e del cliente
  * @returns boolean
  */
 function check_name() {
@@ -29,7 +29,7 @@ function check_name() {
 }
 
 /**
- * funzione che controlla l'input del cognome della prenotazione
+ * funzione che controlla l'input del cognome della prenotazione e del cliente
  * @returns boolean
  */
 function check_last_name() {
@@ -59,7 +59,7 @@ function check_last_name() {
 }
 
 /**
- * funzione che controlla il valore dell'email della prenotazione
+ * funzione che controlla il valore dell'email della prenotazione e del cliente
  * @returns boolean
  */
 function check_email() {
@@ -89,7 +89,7 @@ function check_email() {
 }
 
 /**
- * funzione che controlla il numero di telefono della prenotazione
+ * funzione che controlla il numero di telefono della prenotazione e del cliente
  * @returns boolean
  */
 function check_telephone() {
@@ -119,21 +119,6 @@ function check_telephone() {
 
 }
 
-function check_telephone_customer() {
-    const input = document.getElementById('telephone');
-    const error = document.getElementById('telephone_error_error');
-    const regex = /[^+0-9]/;
-
-
-    if (input.value.match(regex) || input.value.length > 20) {
-        error.style.display = 'block';
-        input.style.borderColor = "red";
-        return true;
-    } else {
-        return false;
-    }
-
-}
 
 /**
  * funzione che controlla il numero di persone della prenotazione
@@ -165,6 +150,33 @@ function check_person() {
         return true;
     }
 
+}
+
+/**
+ * funzione che controlla la dat di nascita del cliente
+ * @returns boolean 
+ */
+function check_birty_day() {
+
+    // salvo il valore delll'input senza spazi all'inzio e alla fine
+    const valueInput = document.getElementById('date').value.trim();
+
+    // salvo lo span di errore
+    const error = document.getElementById('birty_day_error');
+
+    // se lunghezza del valore e diverso di 10
+    if (valueInput.length !== 10) {
+
+        // mostro lo span di errore
+        error.style.display = 'block'
+
+        // cambio il colore del bordo dell'input
+        document.getElementById('date').style.borderColor = "red"
+
+        return false;
+    } else {
+        return true;
+    }
 }
 
 /**
@@ -254,9 +266,7 @@ function hide_email_error() {
     if (valueInput.length > 3 && valueInput.length < 255) {
 
         // se il valore combacia con il pattern
-        if (valueInput.match(regex)) {
-
-        } else {
+        if (regex.test(valueInput) == true) {
 
             // nascondo il messaggio di errore
             error.style.display = 'none';
@@ -303,25 +313,7 @@ function hide_telephone_error() {
 }
 
 
-function hide_telephone_error_customer() {
 
-    const input = document.getElementById('customer_telephone');
-    const error = document.getElementById('telephone_error');
-    const regex = /[^+0-9]/;
-
-    if (input.value.length < 20) {
-
-        if (input.value.match(regex)) {
-
-        } else {
-            error.style.display = 'none';
-            input.style.borderColor = "";
-        }
-
-    }
-
-
-}
 
 /**
  * funzione che controlla se il valore ha detterminate carrateristiche e quindi nascondere i messaggi di
@@ -331,7 +323,6 @@ function hide_person_error() {
 
     // salvo il valore dell'input senza gli sapzi all'inizio e alla fine
     const valueInput = document.getElementById('person').value.trim();
-
 
     // salvo lo span di errore
     const error = document.getElementById('person_error');
@@ -357,42 +348,160 @@ function hide_person_error() {
     }
 }
 
-
+/**
+ * funzione che controlla il form di modifica della prenotazione
+ * @param {Event} e evento submit
+ */
 function check_validation(e) {
 
-
+    // salvo il bottone di conferma
     const btnCreate = document.getElementById('btn_edit_reservation');
+
+    // salvo il bottone di loading
     const btnLoading = document.getElementById('btn_loading')
+
+    // nascondo il bottone di conferma
     btnCreate.style.display = 'none';
+
+    // mostro il bottone di carcamento
     btnLoading.style.display = '';
 
     if (!check_name()) {
-        e.preventDefault()
-        btnCreate.style.display = '';
-        btnLoading.style.display = 'none';
 
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
+        btnLoading.style.display = 'none';
     }
 
     if (!check_last_name()) {
-        e.preventDefault()
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
         btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
         btnLoading.style.display = 'none';
     }
 
     if (!check_email()) {
-        e.preventDefault()
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
         btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
         btnLoading.style.display = 'none';
     }
     if (!check_telephone()) {
 
-        e.preventDefault()
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
         btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
         btnLoading.style.display = 'none';
     }
     if (!check_person()) {
 
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
         btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
         btnLoading.style.display = 'none';
     }
+}
+
+/**
+ * funzione che controlla il form di modifica del cliente
+ * @param {Event} e evento submit
+ */
+function check_validation_customer(e) {
+
+    // bottone di conferma
+    const btnCreate = document.getElementById('btn_edit_customer');
+
+    // bottone di loading
+    const btnLoading = document.getElementById('btn_loading');
+
+    // nascondo il bottone di conferma
+    btnCreate.style.display = 'none';
+
+    // mostro il bottone di carcamento
+    btnLoading.style.display = '';
+
+    if (!check_name()) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
+        btnLoading.style.display = 'none';
+    }
+
+    if (!check_last_name) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
+        btnLoading.style.display = 'none';
+    }
+
+    if (!check_email) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
+        btnLoading.style.display = 'none';
+    }
+
+    if (!check_telephone) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
+        btnLoading.style.display = 'none';
+    }
+
+    if (!check_birty_day) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnCreate.style.display = '';
+
+        // nascondo il bottone di loading
+        btnLoading.style.display = 'none';
+    }
+
 }

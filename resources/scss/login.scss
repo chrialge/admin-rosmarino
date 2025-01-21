@@ -78,7 +78,7 @@ body.dark-theme {
 
                 position: relative;
 
-                margin: 0 auto 30px;
+                margin: 0 auto 15px;
                 & > .login_icon:first-child {
                     color: var(--first-color);
                     position: absolute;
@@ -95,7 +95,7 @@ body.dark-theme {
                 }
 
                 & > input {
-                    padding: 10px 30px;
+                    padding: 10px 35px;
                     width: 100%;
                     border: 0;
                     outline: 0;

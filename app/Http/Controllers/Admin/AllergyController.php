@@ -16,9 +16,11 @@ class AllergyController extends Controller
      */
     public function index()
     {
+
+        // salvo le allergie
         $allergies = Allergy::orderByDesc('id')->paginate(7);
 
-
+        // renderizzo alla pagina di index di allergia passando le allergie
         return view('admin.allergies.index', compact('allergies'));
     }
 
@@ -35,14 +37,27 @@ class AllergyController extends Controller
      */
     public function store(AllergyStoreRequest $request)
     {
+
+        //prendo i dati validati
         $val_data = $request->validated();
+
+        // compongo lo slug
         $val_data['slug'] = Str::slug($val_data['name'], '-');
+
+        // conto il numero di allergie con lostesso slug
         $count = Allergy::where('slug', $val_data['slug'])->count();
-        if ($count > 0) {
+
+        // se il contatore e piu di 1
+        if ($count > 1) {
+
+            // cambio lo slug in modo che sia unico
             $val_data['slug'] = $val_data['slug'] . "-$count";
         }
+
+        // creao una nuova allergia
         $allergy = Allergy::create($val_data);
 
+        // renderizza alla pagina index dell'allergia con un messaggio di session
         return to_route('admin.allergy.index')->with('message', "Hai creato l'allergia: $allergy->name");
     }
 
@@ -67,23 +82,32 @@ class AllergyController extends Controller
      */
     public function update(AllergyUpdateRequest $request, string $id)
     {
-
-
+        // salvi dati validati
         $val_data = $request->validated();
 
+        // prendo l'allergia che voglio che viene modificata
         $allergy = Allergy::where('id', $id)->first();
 
+        // salvo il nome dell'allergia
         $name = $allergy->name;
 
+        // compongo lo slug
         $val_data['slug'] = Str::slug($val_data['name'], '-');
 
+        // conto il numero di allergie con lostesso slug
         $count = Allergy::where('slug', $val_data['slug'])->count();
-        if ($count > 0) {
+
+        // se il contatore e piu di 1
+        if ($count > 1) {
+
+            // cambio lo slug in modo che sia unico
             $val_data['slug'] = $val_data['slug'] . "-$count";
         }
 
+        // aggiorni l'allergia con val_data
         $allergy->update($val_data);
 
+        // renderizza alla pagina index dell'allergia con un messaggio di session
         return to_route('admin.allergy.index')->with('message', "Hai modifica l'allergia: $name  in $allergy->name");
     }
 
@@ -93,11 +117,13 @@ class AllergyController extends Controller
     public function destroy(Allergy $allergy)
     {
 
-        // dd($allergy);
+        // salvo il nome dell'allergia
         $name = $allergy->name;
+
+        // elimeno allergia
         $allergy->delete();
 
-
+        // renderizza alla pagina index dell'allergia con un messaggio di session
         return redirect()->back()->with('message', "Hai cancellato l'allergia: $name");
     }
 }

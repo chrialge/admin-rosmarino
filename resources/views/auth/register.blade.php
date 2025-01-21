@@ -14,11 +14,11 @@
 
 
 
-        <form id="register" class="login" method="POST" action="{{ route('register') }}">
+        <form id="register" class="login" method="POST" action="{{ route('register') }}" onsubmit="check_form(event)">
             @csrf
 
             <div class="login_field">
-                <i class="login_icon fas fa-user"></i>
+                <i id="name_icon" class="login_icon fas fa-user"></i>
                 <input type="name" onkeyup="hide_name_error()" onblur="check_name()"
                     class="login__input register_input @error('name') is-invalid @enderror" placeholder="Name"
                     id="name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -29,10 +29,11 @@
                     </span>
                 @enderror
 
-                <span class="error_name_js" style="display: none; width: 80%; color: red; font-size: 13px">
-                    Il nome deve essere almeno di 3 caratteri e non numeri
-                </span>
+
             </div>
+            <span class="error_name_js" style="display: none; color: red; font-size: 13px">
+                Il nome deve essere almeno di 3 caratteri e non numeri
+            </span>
 
             <div class="login_field">
                 <i class="login_icon fas fa-envelope"></i>
@@ -46,17 +47,19 @@
                     </span>
                 @enderror
 
-                <span class="error_email_js" style="display: none; width: 80%; color: red; font-size: 13px">
-                    L'email non e valida
-                </span>
+
             </div>
+            <span class="error_email_js" style="display: none; color: red; font-size: 13px">
+                L'email non e valida
+            </span>
 
             <div class="login_field">
                 <i class="login_icon fas fa-lock"></i>
                 <input type="password" class="login__input register_input @error('password') is-invalid @enderror"
                     placeholder="Password" id="password" name="password" required autocomplete="current-password"
                     value="{{ old('password') }}" onkeyup="hide_pw_error()" onblur="check_pw()">
-                <i class="fa-solid fa-eye register_pass login_icon showPassword"></i>
+                <i id="icon_pw" class="fa-solid fa-eye register_pass login_icon showPassword"
+                    onclick="showPassword('password', 'icon_pw')"></i>
 
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -66,17 +69,19 @@
             </div>
 
             <div class="login_field">
-                <i class="login_icon fas fa-lock"></i>
+                <i class="login_icon fas fa-lock pe-5"></i>
                 <input type="password" class="login__input register_input @error('password-confirm') is-invalid @enderror"
                     placeholder="Conferma Password" id="password-confirm" name="password_confirmation" required
                     autocomplete="new-password" value="{{ old('password-confirm') }}" onkeyup="hide_pw_error()"
                     onblur="check_pw()">
-                <i class="fa-solid fa-eye icon_pass login_icon showPassword"></i>
+                <i id="icon-pw-confirm" class="fa-solid fa-eye register_pass login_icon showPassword"
+                    onclick="showPassword('password-confirm', 'icon-pw-confirm')"></i>
 
-                <span class="error_pw_js" style="display: none; width: 80%; color: red; font-size: 13px">
-                    Le password non combacciono
-                </span>
+
             </div>
+            <span class="error_pw_js pb-3" style="display: none; color: red; font-size: 13px">
+                Le password non combacciono
+            </span>
 
 
 
@@ -101,6 +106,9 @@
                 <button id="register_input" class="btn login_submit" type="submit">
                     <span class="button__text">Registarti</span>
                     <i class="button__icon fas fa-chevron-right"></i>
+                </button>
+                <button id="loading_btn" class="btn login_submit" style="display: none" disabled>
+                    <span class="button__text">Attendi..</span>
                 </button>
             </div>
 

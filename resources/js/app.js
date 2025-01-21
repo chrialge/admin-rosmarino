@@ -27,5 +27,5 @@ window.addEventListener('load', function () {
         setTimeout(() => {
             loading.style.display = 'none'
         }, 400)
-    }, 3000)
+    }, 2000)
 });

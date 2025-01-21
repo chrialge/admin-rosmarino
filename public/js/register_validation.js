@@ -1,6 +1,6 @@
 function check_name() {
     const input = document.getElementById('name').value.trim();
-    const icon = document.querySelector(".login__icon");
+    const icon = document.getElementById("name_icon");
     const error_span = document.querySelector(".error_name_js")
     const regex = /[0-9]/g;
 
@@ -21,8 +21,9 @@ function check_email() {
     const input = document.getElementById('email').value.trim();
     const icon = document.querySelector(".fa-envelope");
     const error_span = document.querySelector(".error_email_js")
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (input.length < 3 || !input.includes('@') || input.length > 255) {
+    if (input.length < 3 || regex.test(input) == false || input.length > 255) {
         document.getElementById('email').style.borderColor = 'red';
         icon.style.color = "red";
         error_span.style.display = "block";
@@ -62,11 +63,11 @@ function check_pw() {
 function hide_name_error() {
 
     const input = document.getElementById('name').value.trim();
-    const icon = document.querySelector(".login__icon");
+    const icon = document.getElementById("name_icon");
     const error_span = document.querySelector(".error_name_js")
     const regex = /[0-9]/g;
 
-    if (input.length > 3 || !input.match(regex)) {
+    if (input.length > 3 && !input.match(regex) && input.length < 255) {
         document.getElementById('name').style.borderColor = '';
         icon.style.color = "";
         error_span.style.display = "none";
@@ -77,8 +78,9 @@ function hide_email_error() {
     const input = document.getElementById('email').value.trim();
     const icon = document.querySelector(".fa-envelope");
     const error_span = document.querySelector(".error_email_js")
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (input.length > 3 || input.includes('@') || input.length < 255) {
+    if (input.length > 3 && regex.test(input) && input.length < 255) {
         document.getElementById('email').style.borderColor = '';
         icon.style.color = "";
         error_span.style.display = "none";
@@ -102,6 +104,8 @@ function hide_pw_error() {
             const elementEye = iconsEye[index]
             const element = icons[index];
 
+
+
             elementEye.style.color = ""
             element.style.color = "";
         }
@@ -109,40 +113,86 @@ function hide_pw_error() {
 }
 
 
-setTimeout(() => {
-    document.getElementById('register_input').addEventListener('click', function (e) {
+/**
+ * funzione che mostra la password
+ * @param {String} input id dell'input 
+ * @param {String} icon id del contenotore dell'icona
+ */
+function showPassword(input, icon) {
 
-        if (!check_name) {
-            e.preventDefault();
-        }
-        if (!check_email) {
-            e.preventDefault();
-        }
-        if (!check_pw) {
-            e.preventDefault();
-        }
-    })
+    // input
+    const inputEl = document.getElementById(input);
 
-    const iconPw = document.querySelectorAll(".showPassword");
+    // icona
+    const iconEl = document.getElementById(icon);
 
-    for (let index = 0; index < iconPw.length; index++) {
-        const element = iconPw[index];
+    // se l'icona a come classe 'ri-eye-fill'
+    if (iconEl.classList[1] == "fa-eye") {
 
-        element.addEventListener('click', function (e) {
+        // cambio il tipo dell'input
+        inputEl.setAttribute('type', 'text')
 
-            if (e.target.classList[1] === "fa-eye") {
-                document.getElementById('password').setAttribute('type', 'text');
-                e.target.setAttribute('class', 'fa-solid fa-eye-slash register_pass login__icon showPassword');
+        // cambio la classe dell'icona
+        iconEl.classList = "fa-solid fa-eye-slash register_pass login_icon showPassword"
+    } else {
 
-            } else {
-                document.getElementById('password').setAttribute('type', 'password');
-                e.target.setAttribute('class', 'fa-solid fa-eye register_pass login__icon showPassword');
+        // cambio il tipo dell'input
+        inputEl.setAttribute('type', 'password')
 
+        // cambio la classe dell'icona
+        iconEl.classList = "fa-solid fa-eye register_pass login_icon showPassword"
+    }
+}
 
-            }
-        })
+function check_form(e) {
+
+    e.preventDefault();
+
+    // salvo il bottone di conferma
+    const btnConfirm = document.getElementById('register_input');
+
+    // salvo il bottone di loading
+    const btnLoading = document.getElementById('loading_btn');
+
+    // nascondo il bottone di conferma
+    btnConfirm.style.display = 'none';
+    btnLoading.style.display = '';
+
+    if (!check_name) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnConfirm.style.display = '';
+
+        // nasco il bottone di loading
+        btnLoading.style.display = "none";
     }
 
-}, 100);
+    if (!check_email) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnConfirm.style.display = '';
+
+        // nasco il bottone di loading
+        btnLoading.style.display = "none";
+    }
+
+    if (!check_pw) {
+
+        // prevengo l'evento
+        e.preventDefault();
+
+        // mostro il bottone di conferma
+        btnConfirm.style.display = '';
+
+        // nasco il bottone di loading
+        btnLoading.style.display = "none";
+    }
+}
 
 

@@ -1197,3 +1197,12 @@
         transform: translateX(-50%) translatey(0px);
     }
 }
+
+.posi-eye-pw {
+    position: absolute;
+    color: var(--first-color);
+    top: 23px;
+    right: 13px;
+    font-size: 20px;
+    cursor: pointer;
+}

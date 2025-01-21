@@ -1,31 +1,5 @@
 
-setTimeout(() => {
 
-    /**
-     * event che quando clicco sul icona a forma di occhio della campo password della pagina login mi fa vedere la password e per far ritornare come prima basta cliccare nuovamente
-    */
-
-    document.getElementById('showPassword').addEventListener('click', (e) => {
-        // se l'elemto ha come classe fa-eye
-        if (e.target.classList[1] === "fa-eye") {
-
-            // input cambia il type da password a text
-            document.getElementById('password').setAttribute('type', 'text');
-
-            // elemento cambia classe
-            e.target.setAttribute('class', 'fa-solid fa-eye-slash icon_pass login_icon showPassword');
-
-        } //altrimenti
-        else {
-
-            // inputcambia il type da text a password
-            document.getElementById('password').setAttribute('type', 'password');
-
-            // elemento cambia classe
-            e.target.setAttribute('class', 'fa-solid fa-eye icon_pass login_icon showPassword');
-        }
-    })
-}, 100)
 
 
 // variabile che prende il bottone

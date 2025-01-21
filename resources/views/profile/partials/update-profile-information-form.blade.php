@@ -68,34 +68,40 @@
 
             @if (session('status') === 'profile-updated')
                 <script>
-                    // console.log(document.getElementById('profile-status'))
-                    setTimeout(() => {
-                        const el = document.getElementById('profile-status')
+                    console.log('ciao')
 
+                    // aspetto che si sia ricaricata tutta la pagina 
+                    window.addEventListener('load', function() {
 
-                        let show = true;
-                        if (show) {
-                            setTimeout(() => {
-                                el.style.transform = " translatex(0%)"
-                            }, 200)
-                        }
                         setTimeout(() => {
-                            el.style.transform = " translatex(-100%)"
-                            show = false
-                        }, 2000)
-                    }, 100)
+                            const el = document.getElementById('profile-status')
+                            el.style.display = ""
+
+                            let show = true;
+                            if (show) {
+                                setTimeout(() => {
+                                    el.style.transform = " translatex(0%)"
+                                }, 200)
+                            }
+                            setTimeout(() => {
+                                el.style.transform = " translatex(-100%)"
+                                show = false
+                            }, 2400)
+                        }, 2300)
+                    });
+                    // console.log(document.getElementById('profile-status'))
                 </script>
-
-                <div class="overlay_success" id="profile-status">
-
-                    <div class="container_success">
-                        <img src="{{ asset('img/checked.png') }}" alt="">
-                        <p>
-                            I tuoi Dati sono stati aggiornati con successo.
-                        </p>
-                    </div>
-                </div>
             @endif
+            <div class="overlay_success" id="profile-status" style="display: none">
+
+                <div class="container_success">
+                    <img src="{{ asset('img/checked.png') }}" alt="">
+                    <p>
+                        I tuoi Dati sono stati aggiornati con successo.
+                    </p>
+                </div>
+            </div>
+
         </div>
 
 
