@@ -39,10 +39,7 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/customers', CustomerController::class);
         Route::resource('/reservations', ReservationController::class);
         Route::get('/send-email/{clients}', [SendEmailController::class, 'pageEmail'])->name('page-email');
-        // Route::get('/mail', function () {
-        //     return view('mail.mail-client-email');
-        // });
-        // Route::resource('/reservations', ReservationController::class);
+        Route::post('/new-email', [SendEmailController::class, 'sendEmail'])->name('send-email');
     });
 
 Route::middleware('auth')->group(function () {

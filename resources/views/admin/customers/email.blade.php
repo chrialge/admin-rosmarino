@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('script')
+    <script src="{{ asset('js/send_email.js') }}"></script>
+@endsection
+
 
 @section('content')
     <div class="container_customers">
@@ -48,13 +52,13 @@
             </a>
         </div>
 
-        <div class="container_form_sen_email">
+        <div class="container_form_send_email">
 
-            <form action="" method="post">
+            <form action="{{ route('admin.send-email') }}" method="post" onsubmit="check_form(event)">
                 @csrf
 
                 <div class="mb-3">
-                    <h4 class="pb-2"><b>Ai Clienti:</b></h4>
+                    <h4 class="pb-2 text-first"><b>Ai Clienti:</b></h4>
                     @foreach ($arrayClients as $key => $client)
                         @if ($key == count($arrayClients) - 1)
                             <span>{{ ucwords($client->name) . ' ' . ucwords($client->last_name) }} .</span>
@@ -64,20 +68,24 @@
                     @endforeach
                 </div>
 
+                <input type="text" value="{{ $clients }}" name="clients" id="clients" style="display: none">
+
 
 
                 <div class="mb-3">
                     <label for="object" class="form-label">
-                        <h4>
+                        <h4 class="text-first">
                             <b>Oggetto</b>
                         </h4>
                     </label>
-                    <input type="text" class="form-control" name="object" id="object" aria-describedby="helpId"
-                        placeholder=" newsletter" />
-                    <small id="helpId" class="form-text text-muted">Help text</small>
+                    <input type="text" class="form-control mb-2" name="object" id="object" aria-describedby="helpId"
+                        placeholder=" newsletter" onblur="check_object()" onkeyup="hide_error_object()" />
+                    <span id="error_object" class="text-danger" style="display: none">
+                        Inserisci l'oggetto della e-mail
+                    </span>
                 </div>
 
-                <h4>
+                <h4 class="text-first">
                     <b>
                         Email:
                     </b>
@@ -93,7 +101,8 @@
 
                     <div class="mb-3">
                         <label for="message" class="form-label"></label>
-                        <textarea class="form-control" name="message" id="message" rows="3" cols="100">
+                        <textarea class="form-control" name="message" id="message" rows="3" cols="100" onblur="check_message()"
+                            onkeyup="hide_error_message()">
                             
                         </textarea>
                     </div>
@@ -131,20 +140,25 @@
                             <span>Ci puoi trovare a:</span>
                             <span class="mb-4">Viale Trento Trieste 61, 47838 Riccione Italia</span>
                             <p>
-                                Hai cambiato idea? Tu puoi <a href="">discriverti </a>quando vuoi
+                                Se desideri non ricevere piu newsletter
+                                <a href="#">clicca qui </a>
                             </p>
                         </div>
                     </div>
 
-
                 </div>
 
-                <button class="btn" type="submit">
+                <span id="error_message" class="text-danger  mb-3" style="display: none">
+                    Inserisci il messaggio della email
+                </span>
+
+                <button id="btn_mail" class="btn_send btn" type="submit">
                     Invia Email
+                    <i class="ri-mail-send-fill"></i>
                 </button>
 
 
-                <button class="btn" style="display: none" disabled>
+                <button id="btn_loading" class="btn btn_send" style="display: none" disabled>
                     Attendi...
                 </button>
 

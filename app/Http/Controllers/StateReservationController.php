@@ -77,7 +77,7 @@ class StateReservationController extends Controller
             curl_close($curlEdit);
 
             // invio una mail
-            Mail::to($reservation->customer_email)->send(new NotificationReservation($reservation->customer_email, "$reservation->customer_name $reservation->customer_last_name", "Congratulazzioni la tua prenotazione e stata confermata"));
+            Mail::to($reservation->customer_email)->send(new NotificationReservation($reservation->customer_email, "$reservation->customer_name $reservation->customer_last_name", "Congratulazzioni la tua prenotazione e stata confermata", "Notifica di prenotazione"));
 
             // setto per il messaggio di notifica dell pagina di conferma della prenotazione
             $messageNotification = "Hai confermato la prenotazione di: $reservation->customer_name $reservation->customer_last_name alle ore $time il giorno $date per $reservation->person persone.";
@@ -152,7 +152,7 @@ class StateReservationController extends Controller
             curl_close($curlEdit);
 
             // invio della mail
-            Mail::to($reservation->customer_email)->send(new NotificationReservation($reservation->customer_email, "$reservation->customer_name $reservation->customer_last_name", "Mi dispiace la prenotazzione e stata annulata"));
+            Mail::to($reservation->customer_email)->send(new NotificationReservation($reservation->customer_email, "$reservation->customer_name $reservation->customer_last_name", "Mi dispiace la prenotazzione e stata annulata", "Notifica di prenotazione"));
 
             // setto per il messaggio di notifica dell pagina di annulamento della prenotazione
             $messageNotification = "Hai Annulato la prenotazione di: $reservation->customer_name $reservation->customer_last_name alle ore $time il giorno $date per $reservation->person persone.";

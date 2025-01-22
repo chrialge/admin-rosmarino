@@ -18,7 +18,7 @@ class NotificationReservation extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public string $email, public string $name, public string $message)
+    public function __construct(public string $email, public string $name, public string $message, public string $object)
     {
         //
     }
@@ -34,7 +34,7 @@ class NotificationReservation extends Mailable
                 new Address($this->email, $this->name)
             ],
 
-            subject: 'Notifica di Prenotazione',
+            subject: $this->object,
         );
     }
 
