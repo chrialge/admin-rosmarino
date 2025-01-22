@@ -1,3 +1,4 @@
+/*  variable css  */
 :root {
     --first-color: hsl(228, 85%, 63%);
     --title-color: hsl(228, 18%, 16%);
@@ -6,6 +7,7 @@
     --shadow-color: hsla(228, 80%, 4%, 0.1);
 }
 
+/* rule di body in dark theme*/
 body.dark-theme {
     --first-color: hsl(228, 70%, 63%);
     --title-color: hsl(228, 18%, 96%);
@@ -13,7 +15,9 @@ body.dark-theme {
     --body-color: hsl(228, 24%, 16%);
     --shadow-color: hsla(228, 80%, 4%, 0.3);
 }
+/* END rule di body in dark theme*/
 
+/* rule per le prenotazioni e clienti della pagina di modifica*/
 .container-reservation,
 .container-customers {
     padding-left: 1rem;
@@ -97,6 +101,7 @@ body.dark-theme {
     }
 }
 
+/* rule of flatpickr*/
 body > div.flatpickr-calendar.animate.arrowLeft.open {
     background-color: var(--body-color);
     outline: 0;
@@ -245,6 +250,8 @@ body
     > span.flatpickr-time-separator {
     color: hsl(39, 100%, 50%);
 }
+
+/* END rule of flatpickr*/
 
 @media screen and (max-width: 500px) {
     .container-reservation,

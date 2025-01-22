@@ -38,7 +38,7 @@ Route::middleware(['auth', 'verified'])
         Route::resource('/dishes', DishController::class);
         Route::resource('/customers', CustomerController::class);
         Route::resource('/reservations', ReservationController::class);
-        Route::post('/send-email', [SendEmailController::class, 'sendEmail'])->name('send-email');
+        Route::get('/send-email/{clients}', [SendEmailController::class, 'pageEmail'])->name('page-email');
         // Route::get('/mail', function () {
         //     return view('mail.mail-client-email');
         // });

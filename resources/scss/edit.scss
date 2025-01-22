@@ -1,3 +1,4 @@
+/*  variabile css */
 :root {
     --first-color: hsl(228, 85%, 63%);
     --title-color: hsl(228, 18%, 16%);
@@ -6,6 +7,7 @@
     --shadow-color: hsla(228, 80%, 4%, 0.1);
 }
 
+/* rule di body in dark theme*/
 body.dark-theme {
     --first-color: hsl(228, 70%, 63%);
     --title-color: hsl(228, 18%, 96%);
@@ -13,7 +15,9 @@ body.dark-theme {
     --body-color: hsl(228, 24%, 16%);
     --shadow-color: hsla(228, 80%, 4%, 0.3);
 }
+/* END rule di body in dark theme*/
 
+/* rule di piatti nella pagina di modifica*/
 .container-dish {
     & > .header_page_edit {
         display: flex;
@@ -114,6 +118,9 @@ body.dark-theme {
     }
 }
 
+/*End rule di piatti nella pagina di modifica*/
+
+/* rule per il multiselect*/
 #select2-multiple-select-field-results {
     border: 2px solid hsl(39, 100%, 50%);
     color: hsl(39, 100%, 50%);
@@ -268,3 +275,5 @@ body.dark-theme {
         background-color: transparent;
     }
 }
+
+/* END rule per il multiselect*/

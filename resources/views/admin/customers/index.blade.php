@@ -37,92 +37,14 @@
 
 
             {{-- bottone che fa combarire la modale per inviare una email --}}
-            <button id="send_email" type="button" class="btn_send_email btn" onclick="showCheckBox(event)"
-                data-bs-toggle="modal" data-bs-target="#modalId-send-email" style="display: none">
+            <a id="send_email" href="{{ route('admin.page-email', [1]) }}" class="btn_send_email btn"
+                onclick="showCheckBox(event)" style="display: none">
                 <span>
                     Invia email
                 </span>
                 <i class="ri-mail-send-fill"></i>
-            </button>
+            </a>
 
-            {{-- modale invio email --}}
-            <div class="modal fade" id="modalId-send-email" tabindex="-1" data-bs-backdrop="static"
-                data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId-send-email" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered " role="document">
-
-                    <div class="modal-content">
-
-                        {{-- header modale --}}
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modalTitleId-send-email">
-                                Email
-                            </h3>
-
-                            {{-- bottone di chiusura --}}
-                            <button type="button" class="" data-bs-dismiss="modal" aria-label="Close">
-                                <i class="ri-mail-close-fill"></i>
-                            </button>
-                        </div>
-
-                        {{-- body modale --}}
-                        <div class="modal-body">
-
-                            {{-- messaggi di errori lato back --}}
-                            @include('partials.validate')
-
-                            {{-- form --}}
-                            <form action="{{ route('admin.send-email') }}" method="post">
-                                @csrf
-
-
-                                <input type="text" id="clients" name="clients" class="d-none">
-
-                                {{-- campo Oggetto per l'invio email --}}
-                                <div class="mb-3 form-floating">
-                                    <input type="text" class="form-control @error('object') is-invalid @enderror"
-                                        name="object" id="object" aria-describedby="nameHelper"
-                                        value="{{ old('object') }}" placeholder="" required />
-                                    <label for="object" class="form-label">Oggetto *</label>
-                                    {{-- span di errore lato front --}}
-                                    <span id="name_error" class="text-danger" role="alert"
-                                        style="display: none; font-weight: 600;">
-                                        L'oggetto della email e obbligatoria
-                                    </span>
-
-                                    {{-- errore lato back --}}
-                                    @error('object')
-                                        <div id="name_error_back" class="text-danger">{{ $message }}</div>
-                                    @enderror
-
-                                    <small id="nameHelper" class="">
-                                        Inserisci l'oggetto delle email
-                                    </small>
-
-                                </div>
-
-                                {{-- campo il corpo dell'email  --}}
-                                <div class="mb-3 form-floating">
-                                    <textarea name="description" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                                        style="height: 100px">{{ old('description') }}</textarea>
-                                    <label for="floatingTextarea2">Messaggio *</label>
-                                </div>
-
-                                {{-- bottone di conferma --}}
-                                <button type="submit" class="btn_send_email" onclick="showLoading()"
-                                    id="btn_send_customer">
-                                    <span>Invia email</span>
-                                    <i class="ri-mail-send-fill"></i>
-                                </button>
-
-                                {{-- bottone di loading --}}
-                                <button id="btn_loading_customer" class="btn_send_email" style="display: none" disabled>
-                                    <span>Attendi...</span>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         {{-- messaggi di session --}}
@@ -172,8 +94,7 @@
                         <tr>
                             <td>
                                 <input class="form-check-input" name="email" type="checkbox" value="{{ $customer->id }}"
-                                    id="flexCheckDefault-{{ $customer->id }}"
-                                    onclick="showBtn({{ $customers->count() }})">
+                                    id="flexCheckDefault-{{ $customer->id }}" onclick="showBtn({{ $customers->count() }})">
                             </td>
                             <td style="color: hsl(228, 8%, 56%);">
                                 {{ "$customer->name  " }}
@@ -277,8 +198,7 @@
                                 <div class="modal fade modal_delete" id="modalId-{{ $customer->id }}" tabindex="-1"
                                     data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
                                     aria-labelledby="modalTitleId-{{ $customer->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered"
-                                        role="document">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
 
                                         <div class="modal-content">
 

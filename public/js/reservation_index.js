@@ -7,6 +7,7 @@ function closeSession() {
 
 
 function showCheckBox(e) {
+    e.preventDefault()
 
     const input = document.querySelectorAll('.form-check-input');
     const array = []
@@ -21,8 +22,10 @@ function showCheckBox(e) {
             }
         })
     }
-    const cc = document.getElementById('clients').value = array
-    console.log(array, cc)
+    const url = document.getElementById('send_email').getAttribute('href');
+    const newUrl = url.slice(0, -1) + array;
+    document.getElementById('send_email').setAttribute('href', newUrl);
+    console.log(url, array)
     if (array.length == 0) {
 
 

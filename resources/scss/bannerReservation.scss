@@ -1,9 +1,11 @@
+/* variable css*/
 :root {
     --text-color: hsl(228, 12%, 61%);
     --body-color: hsl(228, 24%, 16%);
     --shadow-color: hsla(228, 80%, 4%, 0.3);
 }
 
+/* rule for  page di conferma o rifiuto della prenotzaione*/
 body {
     display: flex;
     justify-content: center;
@@ -67,3 +69,4 @@ body {
         }
     }
 }
+/* END rule for  page di conferma o rifiuto della prenotzaione*/

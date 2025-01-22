@@ -17,24 +17,26 @@
                 <input type="email" class="login__input @error('email') is-invalid @enderror" placeholder="Email"
                     id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             </div>
+
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
+
             <div class="login_field">
                 <i class="login_icon fas fa-lock"></i>
                 <input type="password" class="login__input @error('password') is-invalid @enderror" placeholder="Password"
                     id="password" name="password" required autocomplete="current-password" value="{{ old('password') }}">
                 <i class="fa-solid fa-eye icon_pass login_icon" id="showPassword"></i>
-
-                @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             </div>
+
+            @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
 
 
 

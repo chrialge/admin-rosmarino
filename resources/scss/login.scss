@@ -1,3 +1,4 @@
+/* variable css*/
 :root {
     --header-height: 3.5rem;
 
@@ -25,6 +26,8 @@
     --z-tooltip: 10;
     --z-fixed: 100;
 }
+
+/* rule di body in dark theme*/
 body.dark-theme {
     --first-color: hsl(228, 70%, 63%);
     --title-color: hsl(228, 18%, 96%);
@@ -32,7 +35,9 @@ body.dark-theme {
     --body-color: hsl(228, 24%, 16%);
     --shadow-color: hsla(228, 80%, 4%, 0.3);
 }
+/* END rule di body in dark theme*/
 
+/* rule per il contenitore delle credenziali */
 #container_credential {
     background-color: var(--body-color);
     display: flex;
@@ -150,3 +155,4 @@ body.dark-theme {
         }
     }
 }
+/* END rule per il contenitore delle credenziali */
