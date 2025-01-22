@@ -21,8 +21,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('css/login.scss') }}">
+    @vite(['resources/js/app.js', 'resources/scss/login.scss'])
+
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
