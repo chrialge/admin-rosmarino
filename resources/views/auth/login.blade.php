@@ -1,8 +1,6 @@
 @extends('layouts.login')
 
-@section('script')
-    @vite(['resources/scss/login.scss'])
-@endsection
+
 
 @section('content')
     <div class="container_login pb-3">
