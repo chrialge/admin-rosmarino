@@ -1474,3 +1474,13 @@
     }
 }
 /* END rule per il contenitore delle credenziali */
+
+/* rule di body in dark theme*/
+body.dark-theme {
+    --first-color: hsl(228, 70%, 63%);
+    --title-color: hsl(228, 18%, 96%);
+    --text-color: hsl(228, 12%, 61%);
+    --body-color: hsl(228, 24%, 16%);
+    --shadow-color: hsla(228, 80%, 4%, 0.3);
+}
+/* END rule di body in dark theme*/
