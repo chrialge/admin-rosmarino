@@ -23,7 +23,9 @@
         rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js', 'resources/js/sidebar.js', 'resources/scss/siderbar.scss'])
+    @vite(['resources/js/app.js'])
+    @vite(['resources/js/sidebar.js'])
+    @vite(['resources/scss/siderbar.scss'])
 
     @yield('script')
 
