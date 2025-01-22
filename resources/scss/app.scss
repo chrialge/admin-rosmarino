@@ -1991,7 +1991,6 @@ body.dark-theme {
 
 /*End rule di piatti nella pagina di modifica*/
 
-
 /* rule per il multiselect*/
 #select2-multiple-select-field-results {
     border: 2px solid hsl(39, 100%, 50%);
@@ -2149,3 +2148,253 @@ body.dark-theme {
 }
 
 /* END rule per il multiselect*/
+
+/* rule per le prenotazioni e clienti della pagina di modifica*/
+.container-reservation,
+.container-customers {
+    padding-left: 1rem;
+    & > .header_page_edit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 25px 0px;
+        & > h2 {
+            color: hsl(39, 100%, 50%);
+        }
+
+        & > .btn_return {
+            background-color: hsl(39, 100%, 50%);
+            color: var(--body-color);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 0 0.6rem;
+            border-radius: 10px;
+
+            & > i {
+                font-size: 25px;
+            }
+
+            &:hover {
+                background-color: hsla(39, 100%, 50%, 0.5);
+            }
+        }
+    }
+    .container_form_modify {
+        & > form {
+            display: flex;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            column-gap: 15px;
+            & > .form-floating,
+            & > .form_data_time {
+                width: calc(50% - 10px);
+                & > input {
+                    border: 3px solid hsl(39, 100%, 50%);
+                    color: hsl(39, 100%, 50%);
+
+                    &:focus {
+                        box-shadow: 0 0 0 0.25rem hsla(39, 100%, 50%, 0.5);
+                    }
+                }
+
+                & > label {
+                    color: hsl(39, 100%, 50%);
+                }
+            }
+            & > .form_data_time {
+                & > input {
+                    width: 100%;
+                    padding: 1.3rem 0rem 0.5rem 1rem;
+                    border-radius: 5px;
+                    background-color: white;
+                    outline: 0;
+                }
+            }
+            & > .container_btn {
+                width: 100%;
+                & > .btn_edit {
+                    background-color: hsl(39, 100%, 50%);
+                    border-radius: 20px;
+                    display: flex;
+                    gap: 10px;
+                    color: var(--body-color);
+
+                    &:hover {
+                        background-color: hsla(39, 100%, 50%, 0.5);
+                    }
+
+                    &:active {
+                        box-shadow: 0 2px 24px hsla(39, 100%, 50%, 0.5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* rule of flatpickr*/
+body > div.flatpickr-calendar.animate.arrowLeft.open {
+    background-color: var(--body-color);
+    outline: 0;
+    box-shadow: 0 2px 24px var(--shadow-color);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-innerContainer
+    > div
+    > div.flatpickr-weekdays
+    > div
+    > span {
+    color: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-months
+    > div
+    > div
+    > select {
+    color: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-months
+    > div
+    > div
+    > div
+    > input {
+    color: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-innerContainer
+    > div
+    > div.flatpickr-days
+    > div
+    > span.flatpickr-day {
+    color: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-innerContainer
+    > div
+    > div.flatpickr-days
+    > div
+    > span.flatpickr-day.flatpickr-disabled {
+    color: var(--text-color);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-months
+    > span.flatpickr-next-month
+    > svg {
+    fill: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-months
+    > span.flatpickr-prev-month
+    > svg {
+    fill: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-months
+    > div
+    > div
+    > div
+    > span.arrowDown {
+    background-color: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.animate.arrowLeft.open
+    > div.flatpickr-months
+    > div
+    > div
+    > div
+    > span.arrowUp {
+    background-color: hsl(39, 100%, 50%);
+}
+
+body
+    > div.flatpickr-calendar.hasTime.noCalendar.animate.arrowTop.arrowLeft.open {
+    background-color: var(--body-color);
+    outline: 0;
+    box-shadow: 0 2px 24px var(--shadow-color);
+}
+
+body
+    > div.flatpickr-calendar.hasTime.noCalendar.animate.arrowTop.arrowLeft.open
+    > div
+    > div
+    > input {
+    color: hsl(39, 100%, 50%);
+
+    &:focus {
+        color: var(--body-color);
+        background-color: hsl(39, 100%, 50%);
+    }
+
+    &:active {
+        color: var(--body-color);
+        background-color: hsl(39, 100%, 50%);
+    }
+
+    &:hover {
+        color: var(--body-color);
+        background-color: hsl(39, 100%, 50%);
+    }
+}
+
+body
+    > div.flatpickr-calendar.hasTime.noCalendar.animate.arrowTop.arrowLeft.open
+    > div
+    > span.flatpickr-am-pm {
+    color: hsl(39, 100%, 50%);
+
+    &:focus {
+        color: var(--body-color);
+        background-color: hsl(39, 100%, 50%);
+    }
+    &:active {
+        color: var(--body-color);
+        background-color: hsl(39, 100%, 50%);
+    }
+
+    &:hover {
+        color: var(--body-color);
+        background-color: hsl(39, 100%, 50%);
+    }
+}
+
+body
+    > div.flatpickr-calendar.hasTime.noCalendar.animate.arrowTop.arrowLeft.open
+    > div
+    > span.flatpickr-time-separator {
+    color: hsl(39, 100%, 50%);
+}
+
+/* END rule of flatpickr*/
+
+@media screen and (max-width: 500px) {
+    .container-reservation,
+    .container-customers {
+        .container_form_modify {
+            & > form {
+                & > .form-floating,
+                & > .form_data_time {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

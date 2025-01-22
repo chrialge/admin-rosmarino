@@ -4,8 +4,6 @@
     <script src="{{ asset('js/edit_reservation_customer_validation.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    @vite(['resources/js/calendar.js'])
-    @vite(['resources/scss/edit-reservation.scss'])
 @endsection
 
 

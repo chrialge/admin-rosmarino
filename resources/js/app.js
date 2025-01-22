@@ -1,6 +1,8 @@
 import './bootstrap';
 import '~resources/scss/app.scss';
 import * as bootstrap from 'bootstrap';
+// importo flatpickr ('libreria per gli input di tipo time aand date')
+import flatpickr from "flatpickr";
 import.meta.glob([
     '../img/**'
 ])
@@ -29,3 +31,28 @@ window.addEventListener('load', function () {
         }, 400)
     }, 2000)
 });
+
+if (document.getElementById('date_customer')) {
+
+    let calendar = flatpickr("#date_customer", {
+        dateFormat: "Y-m-d",
+
+
+    })
+
+} else if (document.getElementById('date')) {
+    // uso la libreia flatpicker per input date
+    let calendar = flatpickr("#date", {
+        dateFormat: "Y-m-d",
+        minDate: "today",
+
+    })
+
+    // uso la libreia flatpicker per input time
+    let time = flatpickr("#time", {
+
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+    })
+}

@@ -239,7 +239,7 @@
 
                 @empty
                     <tr>
-                        <td colspan="5">Scusa non ci sono Allergie 😭😭</td>
+                        <td colspan="6">Scusa non ci sono Allergie 😭😭</td>
                     </tr>
                 @endforelse
 

@@ -4,8 +4,6 @@
     <script src="{{ asset('js/edit_reservation_customer_validation.js') }}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    @vite(['resources/js/calendar_customer.js'])
-    @vite(['resources/scss/edit-reservation.scss'])
 @endsection
 
 
@@ -163,7 +161,7 @@
 
                 {{-- campo di data di nascita --}}
                 <div class=" form_data_time">
-                    <input type="date" class="date" id="date" name="birth_day"
+                    <input type="date" class="date" id="date_customer" name="birth_day"
                         value="{{ old('date', $customer->birth_day) }}" onblur="check_birty_day()">
 
                     {{-- span di errore lato front --}}
@@ -202,7 +200,6 @@
 
 
         </div>
-
 
 
     </div>
