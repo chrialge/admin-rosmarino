@@ -22,7 +22,7 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
-    @vite(['resources/scss/login.scss'])
+    @yield('script')
 
 
 
