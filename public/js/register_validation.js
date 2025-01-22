@@ -146,7 +146,7 @@ function showPassword(input, icon) {
 
 function check_form(e) {
 
-    e.preventDefault();
+
 
     // salvo il bottone di conferma
     const btnConfirm = document.getElementById('register_input');
