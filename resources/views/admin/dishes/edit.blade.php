@@ -5,8 +5,7 @@
     {{-- javascript della pagina --}}
     <script src="{{ asset('js/edit_dish_validation.js') }}"></script>
 
-    {{-- css della pagina --}}
-    @vite(['resources/scss/edit.scss'])
+
 
     <!-- Styles di multiselect -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
