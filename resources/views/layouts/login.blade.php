@@ -21,7 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js', 'resources/js/showPassword.js'])
+    @vite(['resources/js/showPassword.js'])
+    @vite(['resources/js/app.js'])
+
 
 
 
