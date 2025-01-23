@@ -23,14 +23,16 @@
         rel="stylesheet">
 
     <!-- Usando Vite -->
-    @vite(['resources/js/app.js', 'resources/scss/bannerReservation.scss'])
+    @vite(['resources/js/app.js'])
+
+
 
 
 
 
 </head>
 
-<body>
+<body class="banner">
 
     <div class="container_confirm_reservation">
 

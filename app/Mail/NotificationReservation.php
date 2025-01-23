@@ -44,7 +44,7 @@ class NotificationReservation extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.send-client-email',
+            markdown: 'mail.order-shipped',
             with: ['contactMessage' => $this->message],
         );
     }
