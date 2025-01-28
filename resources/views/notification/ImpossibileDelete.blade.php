@@ -42,7 +42,9 @@
             Rifiuta prenotazione
         </h2>
         <p>
-            {{ $messageNotification }}
+            Salve Sig./Sig.ra , <br>
+            È impossibile cancellare lei dalla newsletter perchè e gia avvenuta la cancellazione, in caso le vengono
+            inviate lo stesso le email, chiamare direttamente il Ristoratore.
         </p>
     </div>
 

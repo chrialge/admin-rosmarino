@@ -22,12 +22,29 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Lilita+One&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 
+
+    <style>
+        .gang {
+            margin: auto;
+            width: 100px
+        }
+
+        .footer_bottom {
+            text-align: center;
+        }
+
+        .mb_3 {
+            margin-bottom: 30px;
+        }
+    </style>
+
 </head>
 
-<body style="background:gray; display: flex; align-items:center; justify-content: center; height: 100vh;">
+<body
+    style="background:#edf2f7; display: flex; align-items:center; justify-content: center; height: 100vh; color:black;">
 
     <div
-        style="background-color: white; width:95%; heigth: 100vh; margin:auto; border-radius:20px; padding:10px; box-shadow: 2px 2px 5px hsla(228, 80%, 4%, 0.3);">
+        style="background-color: white; width:95%; heigth: 100vh; margin:auto; border-radius:5px; padding:10px; box-shadow: 2px 2px 5px hsla(228, 80%, 4%, 0.3); max-width: 600px">
 
         <div style="margin-top: 20px: margin-bottom:40px;">
             <div class="logo_name">
@@ -39,7 +56,7 @@
         <!-- /.header_message -->
         <div class="body_message">
             <p style="text-align: center; margin-bottom: 30px;">
-                Salve le vorrei informare,
+                Salve le vorrei informare,<br>
                 @if ($contactMessage)
                     {{ $contactMessage }}
                 @else
@@ -62,24 +79,41 @@
             </span>
         </div>
         <!-- /.body_message -->
-        <div style="display: flex; align-items:center; justify-center: space-between; flex-wrap: wrap;">
+        <hr>
+        <div class="footer">
+            <div class="footer-top">
+                <span style="text-align: center; display:block; margin-bottom: 20px;">
+                    Segui i nostri social:
+                </span>
 
-            <div style="text-align:start;">
+                <div class="gang">
 
-                <span style="margin-bottom: 5px; display:block">Ristorante Rosmarino</span>
+                    <a href="#" style="text-decoration:none;">
+                        <img src="{{ $message->embed(public_path() . '/img/instangram.png') }}" alt=""
+                            style="width: 30px">
+                    </a>
 
-                <a href="#"style="margin-bottom: 5px">
-                    link
-                </a>
+                    <a href="#" style="text-decoration:none;">
+                        <img src="{{ $message->embed(public_path() . '/img/fork.png') }}" alt=""
+                            style="width: 30px">
+                    </a>
 
-                <span style="display: block; margin-bottom:5px">Viale Trento e Trieste, 61, 47838 Riccione</span>
+                    <a href="#" style="text-decoration:none;">
+                        <img src="{{ $message->embed(public_path() . '/img/facebook.png') }}" alt=""
+                            style="width: 30px">
+                    </a>
+                </div>
 
-
-                <span style="display:block; margin-bottom: 5px">376 154 5557</span>
 
             </div>
-            <div style="list-style: none; padding: 0;">
-                <img src="{{ asset('img/pasta.jpg') }}" alt="">
+            <hr style="width: 95%">
+            <div class="footer_bottom">
+                <span style="display: none;">Ci puoi trovare a:</span>
+                <span class="mb_3" style="display: none">Viale Trento Trieste 61, 47838 Riccione Italia</span>
+                <p>
+                    Se desideri non ricevere piu newsletter
+                    <a href="http://127.0.0.1:8000/api/delete-newsletter/4">clicca qui </a>
+                </p>
             </div>
         </div>
         <!-- /.footer_message -->

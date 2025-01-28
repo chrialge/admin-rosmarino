@@ -41,7 +41,7 @@
         </div>
 
         <h2>
-            Rifiuta prenotazione
+            Conferma prenotazione
         </h2>
         <p>
             {{ $messageNotification }}

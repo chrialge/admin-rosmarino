@@ -115,12 +115,12 @@
 
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="#" style="color: #be9639">
                                         <i class="ri-facebook-circle-fill"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="#" style="color: #be9639">
                                         <i class="ri-instagram-fill"></i>
                                     </a>
                                 </li>
