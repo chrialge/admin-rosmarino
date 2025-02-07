@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -28,6 +28,7 @@
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 
+    <script src="{{ asset('js/change_color.js') }}"></script>
 
     <style>
         body {
@@ -74,6 +75,8 @@
             align-items: center;
             flex-wrap: wrap;
         }
+
+
 
         @media screen and (min-width: 600px) {
             .col {
@@ -137,7 +140,7 @@
     <div id="app">
 
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm navbar_welcome">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
@@ -163,6 +166,13 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+
+                        <div id="theme_switcher">
+                            <i id="icon_sun" class="ri-sun-fill"></i>
+                            <i id="icon_moon" class="ri-moon-clear-fill"></i>
+                        </div>
+
+
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Accedi') }}</a>
@@ -196,7 +206,7 @@
             </div>
         </nav>
 
-        <main class="">
+        <main class="main_welcome">
             @yield('content')
         </main>
     </div>
