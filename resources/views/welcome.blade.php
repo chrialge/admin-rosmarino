@@ -9,7 +9,7 @@
         </span>
 
         <div class="container_info mb-5">
-            <div class="left col">
+            <div class="left col_info">
                 <p>
                     Puoi creare, Modificare ed eventualmente cancellare i piatti che ti hanno stufato!!
                 </p>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="container_info reserve mb-5">
-            <div class="left col">
+            <div class="left col_info">
                 <p>
                     Puoi visionare le prenotazioni effetuate dal tuo sito, e controllare lo stato. Quando prenotera dal tuo
                     sito grazie a telegram bot ti arrivera un messaggio.
@@ -35,8 +35,8 @@
 
         </div>
 
-        <div class="container_info ">
-            <div class="left col">
+        <div class="container_info mb-5">
+            <div class="left col_info">
                 <p>
                     Puoi visionare i clienti che si sono iscritti alla newsletter del tuo sito e in caso inviare email
                     mirate o massive ad essi.
@@ -53,7 +53,7 @@
 
     </div>
 
-    <footer>
+    <footer id="site_footer">
         <div class="top_footer">
             <h6>
                 Contatti
@@ -72,7 +72,7 @@
                 <li>
                     <a href="mailto:chrialge99@gmail.com" target="_top">
                         <i class="ri-mail-fill"></i>
-                        <span>send email</span>
+
                     </a>
                 </li>
             </ul>

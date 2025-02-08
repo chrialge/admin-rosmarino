@@ -76,14 +76,64 @@
             flex-wrap: wrap;
         }
 
+        .col_info {
+            width: 100%
+        }
 
+        .left {
+            text-align: center;
+        }
+
+        #site_footer {
+            background-color: hsla(228, 70%, 6%, 1)
+        }
+
+        .top_footer {
+            padding: 20px 0 30px;
+            margin: auto;
+            width: 95%;
+            max-width: 400px;
+
+        }
+
+        .top_footer>h6 {
+            text-align: center;
+            color: hsl(228, 70%, 63%);
+        }
+
+        .top_footer>ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 0;
+        }
+
+        .top_footer>ul>li>a {
+            cursor: pointer;
+            padding: 3px 5px;
+            color: white;
+            transition: all 0.3s ease-in-out;
+            font-size: 20px;
+            border-radius: 5px;
+
+
+        }
+
+        .bottom_footer {
+            text-align: center;
+            color: hsl(228, 70%, 63%);
+        }
+
+        .top_footer>ul>li>a:hover {
+            background-color: hsl(228, 70%, 63%);
+        }
 
         @media screen and (min-width: 600px) {
-            .col {
-                width: calc((100% / 12) * 6 - 10px)
-            }
 
-            .col {
+
+            .col_info {
                 width: calc((100% / 12) * 6 - 10px)
             }
 
@@ -142,6 +192,12 @@
 
         <nav class="navbar navbar-expand-md shadow-sm navbar_welcome">
             <div class="container">
+
+                <div id="theme_switcher">
+                    <i id="icon_sun" class="ri-sun-fill"></i>
+                    <i id="icon_moon" class="ri-moon-clear-fill"></i>
+                </div>
+
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
                     <div class="logo_laravel">
                         LOgo
@@ -149,10 +205,12 @@
                     {{-- config('app.name', 'Laravel') --}}
                 </a>
 
+
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="ri-menu-line"></i>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -166,11 +224,6 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-
-                        <div id="theme_switcher">
-                            <i id="icon_sun" class="ri-sun-fill"></i>
-                            <i id="icon_moon" class="ri-moon-clear-fill"></i>
-                        </div>
 
 
                         @guest

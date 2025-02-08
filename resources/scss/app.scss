@@ -2474,8 +2474,9 @@ $default-transition: color 3s ease-in-out, background-color 0.3s ease-in-out,
     --switch-circle-bg: hsl(228, 70%, 63%);
     --switch-sun: #b1b0b5;
     --switch-moon: #fff;
-    --switch-pos: 4rem;
+    --switch-pos: 3.3rem;
     --color-text: var(--switch-circle-bg);
+    --switch-border-color: #f5f5f6;
 }
 
 :root[data-theme="light"] {
@@ -2483,27 +2484,29 @@ $default-transition: color 3s ease-in-out, background-color 0.3s ease-in-out,
     --switch-circle-bg: #ffd371;
     --switch-sun: #997f44;
     --switch-moon: #b1b0b5;
-    --switch-pos: 0.28rem;
+    --switch-pos: 0.15rem;
     --color-text: hsl(228, 80%, 63%);
+    --switch-border-color: hsl(228, 24%, 16%);
 }
 #theme_switcher {
+    margin-right: 10px;
     transition: all 0.5;
-    border: 2px solid white;
+    border: 2px solid var(--switch-border-color);
     background-color: var(--switch-bg);
     border-radius: 50px;
     display: flex;
     align-items: center;
     gap: 2.3rem;
     cursor: pointer;
-    padding: 0.2rem 0.66rem;
+    padding: 0.17rem 0.5rem;
     position: relative;
     transform: $default-border-radius;
 
     &::before {
         content: "";
         position: absolute;
-        width: 2.22rem;
-        height: 2.22rem;
+        width: 1.6rem;
+        height: 1.6rem;
         background-color: var(--switch-circle-bg);
         border-radius: 50%;
         z-index: 0;
@@ -2515,21 +2518,77 @@ $default-transition: color 3s ease-in-out, background-color 0.3s ease-in-out,
 
 #icon_sun {
     z-index: 1;
-    font-size: 24px;
+    font-size: 15px;
     color: var(--switch-sun);
 }
 
 #icon_moon {
     z-index: 1;
-    font-size: 24px;
+    font-size: 15px;
     color: var(--switch-moon);
 }
 
 .navbar_welcome {
     color: var(--color-text);
     background-color: var(--switch-bg);
+
+    & > .container {
+        & > .navbar-toggler {
+            border: 0;
+            color: var(--color-text);
+            outline: 0;
+            transition: color 0.2s ease-in-out, transform 0.3s linear;
+
+            &:hover {
+                color: #997f44;
+                transform: rotateY(180deg);
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        & > .collapse {
+            padding-top: 10px;
+            & > ul > li > a {
+                color: var(--color-text);
+                display: inline-block;
+                border-bottom: 3px solid transparent;
+                padding: 4px 8px;
+                transition: 0.3s ease-in-out;
+                &:hover {
+                    color: #997f44;
+                    border-color: #997f44;
+                }
+            }
+        }
+
+        // .nav-link {
+        //     display: inline-block;
+        //     border-bottom: 3px solid white;
+        //     padding: 3px 8px;
+        //     &:hover {
+        //         color: #997f44;
+        //     }
+        // }
+    }
 }
 
 .main_welcome {
     background-color: var(--switch-bg);
+
+    & > .container {
+        & > h2 {
+            color: var(--color-text);
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .container_info {
+        & > .col {
+            width: 100%;
+        }
+    }
 }
