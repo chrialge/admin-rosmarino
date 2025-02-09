@@ -14,7 +14,7 @@ class StoreReservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
 
@@ -31,8 +31,8 @@ class StoreReservationRequest extends FormRequest
             'customer_email' => 'required|email',
             'customer_telephone' => 'required|numeric',
             'person' => 'required|numeric',
-            'date' => 'required|date',
-            'time' => 'required'
+            'date' => 'required',
+            'hour_reservation' => 'required'
         ];
     }
 
@@ -45,20 +45,7 @@ class StoreReservationRequest extends FormRequest
             'customer_telephone.required' => "Il numero di telefono e obbligatorio",
             'person.required' => 'Il numero di persone e obbligatorio',
             'date.required' => 'La data e obbligatoria',
-            'time.required' => "l'ora e obbligatorio",
+            'hour_reservation.required' => "l'ora e obbligatorio",
         ];
-    }
-
-    protected function failedValidation(Validator $validator)
-    {
-
-        if ($this->ajax()) {
-
-            throw new HttpResponseException(response()->json($validator->errors(), 419));
-        } else {
-            throw (new ValidationException($validator))
-                ->errorBag($this->errorBag)
-                ->redirectTo($this->getRedirectUrl());
-        }
     }
 }

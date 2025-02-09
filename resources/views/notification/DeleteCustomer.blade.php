@@ -28,23 +28,28 @@
 
 
 
+
+
 </head>
 
 <body class="banner">
 
-    <div class="container_reject_reservation">
+    <div class="container_confirm_reservation">
 
         <div class="top_image">
-            <img src="{{ asset('img/cross-image.png') }}" alt="">
+            <img src="{{ asset('img/check-image.png') }}" alt="">
         </div>
 
         <h2>
-            Rifiuta prenotazione
+            Cancellazione newsletter
         </h2>
         <p>
-            {{ $messageNotification }}
+            Salve Sig./Sig.ra {{ ucwords($deleteCustomer->name) . ' ' . ucwords($deleteCustomer->last_name) }}, <br>
+            È avvenuto con successo la cancellazione dalla newsletter e delle possibili email con scontistiche.
         </p>
     </div>
+
+
 
 </body>
 

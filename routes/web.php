@@ -7,13 +7,10 @@ use App\Http\Controllers\Admin\DishController;
 use App\Http\Controllers\Admin\SendEmailController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SendNotification;
-use App\Notifications\TelegramNotification;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NotificationReservation;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Mailer\Messenger\SendEmailMessage;
-use NotificationChannels\Telegram\TelegramUpdates;
-use App\Notifications\InvoicePaid;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +23,7 @@ use App\Notifications\InvoicePaid;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('welcome');
 });
 
 Route::middleware(['auth', 'verified'])
@@ -48,5 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/new-password', [NewPasswordController::class, 'store']);
 });
+
+
+route::get('/send', function () {
+
+    Mail::to("chrialge99@gmail.com")->send(new NotificationReservation("chrialge99@gmail.com", "Christian Algieri", "Mi dispiace la prenotazzione e stata annulata", "Notifica di prenotazione"));
+});
+
 
 require __DIR__ . '/auth.php';
