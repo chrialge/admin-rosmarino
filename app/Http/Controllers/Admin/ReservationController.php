@@ -34,6 +34,11 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
+        return response()->json([
+            'success' => true,
+            'response' => dd($request->all()),
+        ]);
+
         //prendo tutti i dati validati
         $dirty_data = $request->validated();
 
