@@ -41,12 +41,13 @@ class ReservationController extends Controller
 
         $val_data['state'] = 'attesa';
 
-        $date = date_create($val_data['date']);
+        $val_data['date'] = date_format(date_create($val_data['date']), 'Y-m-d');
 
+        $val_data['hour_reservation'] = date_create($val_data['hour_reservation']);
 
         return response()->json([
             'success' => true,
-            'response' => $date,
+            'response' => $val_data,
         ]);
 
         // //prendo tutti i dati validati
