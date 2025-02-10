@@ -110,7 +110,8 @@ class ReservationController extends Controller
         // esaguo la chiamta
         $result = curl_exec($ch);
 
-
+        // // prendo i risultati 
+        // $result = json_decode($result)->result;
 
         // chiudo la chiamat
         curl_close($ch);
