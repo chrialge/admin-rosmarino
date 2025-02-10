@@ -110,15 +110,17 @@ class ReservationController extends Controller
         // esaguo la chiamta
         $result = curl_exec($ch);
 
+        // prendo i risultati 
+        $result = json_decode($result)->result;
+
         // chiudo la chiamat
         curl_close($ch);
 
 
-        // prendo i risultati 
-        $result = json_decode($result)->result;
 
-        // salvo l'id del messaggio
-        $message_id = $result->message_id;
+
+        // // salvo l'id del messaggio
+        // $message_id = $result->message_id;
 
         // // setto per tutti campi della prenotazione
         // $newReservation['customer_name'] = $reservation->customer_name;
