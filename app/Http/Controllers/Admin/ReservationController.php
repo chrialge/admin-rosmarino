@@ -34,11 +34,11 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreReservationRequest $request)
     {
         return response()->json([
             'success' => true,
-            'response' => $request->all(),
+            'response' => $request->validated(),
         ]);
 
         // //prendo tutti i dati validati
