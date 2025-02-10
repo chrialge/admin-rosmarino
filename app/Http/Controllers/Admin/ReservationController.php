@@ -43,7 +43,10 @@ class ReservationController extends Controller
 
         $val_data['date'] = date_format(date_create($val_data['date']), 'Y-m-d');
 
-        $val_data['hour_reservation'] = date_create($val_data['hour_reservation']);
+        $val_data['hour_reservation'] = date_format(date_create($val_data['hour_reservation']), 'H:i');
+
+        $reservation = Reservation::create($val_data);
+
 
         return response()->json([
             'success' => true,
