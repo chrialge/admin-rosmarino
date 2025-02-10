@@ -8,6 +8,8 @@ use App\Http\Requests\StoreReservationRequest;
 use App\Models\Reservation;
 use App\Http\Requests\UpdateReservationRequest;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+
 
 
 class ReservationController extends Controller
@@ -32,28 +34,33 @@ class ReservationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReservationRequest $request)
+    public function store(Request $request)
     {
-        //prendo tutti i dati validati
-        $dirty_data = $request->validated();
-
-        // aggiungo lo stato di attessa
-        $dirty_data['state'] = 'attesa';
-
-        // creo una nuova prenptaziome
-        $reservation = Reservation::create($dirty_data);
-
-        // richiamo l'oggetto
-        $sendNotfification = new SendNotification();
-
-        // mando la notifica passando l'id della prenotazione
-        $sendNotfification->send($reservation->id);
-
-        // rispondo con un messaggio di successo
         return response()->json([
             'success' => true,
-            'response' => "La tua prenotazione e arrivata",
+            'response' => $request->all(),
         ]);
+
+        // //prendo tutti i dati validati
+        // $dirty_data = $request->validated();
+
+        // // aggiungo lo stato di attessa
+        // $dirty_data['state'] = 'attesa';
+
+        // // creo una nuova prenptaziome
+        // $reservation = Reservation::create($dirty_data);
+
+        // // richiamo l'oggetto
+        // $sendNotfification = new SendNotification();
+
+        // // mando la notifica passando l'id della prenotazione
+        // $sendNotfification->send($reservation->id);
+
+        // // rispondo con un messaggio di successo
+        // return response()->json([
+        //     'success' => true,
+        //     'response' => "La tua prenotazione e arrivata",
+        // ]);
     }
 
     /**
