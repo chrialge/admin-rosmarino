@@ -50,47 +50,47 @@ class ReservationController extends Controller
         // creo una nuova prenotaziome
         $reservation = Reservation::create($val_data);
 
-        // // formato la data della prenotazione
-        // $date = date_format(date_create($reservation->date), "d/m/Y");
+        // formato la data della prenotazione
+        $date = date_format(date_create($reservation->date), "d/m/Y");
 
-        // // formato l'ora della prenotazione
-        // $time = date_format(date_create($reservation->hour_reservation), "H:i");
+        // formato l'ora della prenotazione
+        $time = date_format(date_create($reservation->hour_reservation), "H:i");
 
-        // // prendo il il token di telegram
-        // $token = env("TELEGRAM_BOT_TOKEN");
+        // prendo il il token di telegram
+        $token = env("TELEGRAM_BOT_TOKEN");
 
-        // // url per mandare il messaggio su telegram
-        // $apiUrl = "https://api.telegram.org/bot{$token}/sendMessage";
+        // url per mandare il messaggio su telegram
+        $apiUrl = "https://api.telegram.org/bot{$token}/sendMessage";
 
-        // // prendo l'id del contatto
-        // $chatId = env("TELEGRAM_CHAT_ID");
+        // prendo l'id del contatto
+        $chatId = env("TELEGRAM_CHAT_ID");
 
-        // // salvo il messaggio 
-        // $botMessage = "Prenotazione di: $reservation->customer_name $reservation->customer_last_name alle ore $time il giorno $date per $reservation->person persone. Il suo contatto: $reservation->customer_telephone";
+        // salvo il messaggio 
+        $botMessage = "Prenotazione di: $reservation->customer_name $reservation->customer_last_name alle ore $time il giorno $date per $reservation->person persone. Il suo contatto: $reservation->customer_telephone";
 
-        // // salvo i due bottoni che voglio nel messagio
-        // $keyboard = json_encode([
-        //     "inline_keyboard" => [
-        //         [
-        //             [
-        //                 "text" => "conferma",
-        //                 "url" => "http://127.0.0.1:8000/api/confirm-reservation/{$reservation->id}"
-        //             ],
-        //             [
-        //                 "text" => "rifiuta",
-        //                 "url" => "http://127.0.0.1:8000/api/reject-reservation/{$reservation->id}"
-        //             ],
-        //         ]
-        //     ]
-        // ]);
+        // salvo i due bottoni che voglio nel messagio
+        $keyboard = json_encode([
+            "inline_keyboard" => [
+                [
+                    [
+                        "text" => "conferma",
+                        "url" => "http://127.0.0.1:8000/api/confirm-reservation/{$reservation->id}"
+                    ],
+                    [
+                        "text" => "rifiuta",
+                        "url" => "http://127.0.0.1:8000/api/reject-reservation/{$reservation->id}"
+                    ],
+                ]
+            ]
+        ]);
 
-        // // setto i parametri per la richiesta API
-        // $parameters = array(
-        //     "chat_id" => $chatId,
-        //     "text" => $botMessage,
-        //     "parse_mode" => 'Markdown',
-        //     'reply_markup' => $keyboard
-        // );
+        // setto i parametri per la richiesta API
+        $parameters = array(
+            "chat_id" => $chatId,
+            "text" => $botMessage,
+            "parse_mode" => 'Markdown',
+            'reply_markup' => $keyboard
+        );
 
         // // inizializo una chiamata
         // $ch = curl_init();
