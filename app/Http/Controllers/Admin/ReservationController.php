@@ -92,26 +92,26 @@ class ReservationController extends Controller
             'reply_markup' => $keyboard
         );
 
-        // // inizializo una chiamata
-        // $ch = curl_init();
+        // inizializo una chiamata
+        $ch = curl_init();
 
-        // // setto l'url
-        // curl_setopt($ch, CURLOPT_URL, $apiUrl);
+        // setto l'url
+        curl_setopt($ch, CURLOPT_URL, $apiUrl);
 
-        // // setto con il numero di parametri
-        // curl_setopt($ch, CURLOPT_POST, count($parameters));
+        // setto con il numero di parametri
+        curl_setopt($ch, CURLOPT_POST, count($parameters));
 
-        // // setto con i dati
-        // curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+        // setto con i dati
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
 
-        // // setto che voglio ricevere in cambio
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // setto che voglio ricevere in cambio
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        // // esaguo la chiamta
-        // $result = curl_exec($ch);
+        // esaguo la chiamta
+        $result = curl_exec($ch);
 
-        // // chiudo la chiamat
-        // curl_close($ch);
+        // chiudo la chiamat
+        curl_close($ch);
 
 
         // // prendo i risultati 
