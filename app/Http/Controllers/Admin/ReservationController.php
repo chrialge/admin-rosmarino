@@ -36,39 +36,32 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
-
+        //prendo tutti i dati validati
         $val_data = $request->validated();
 
+        // aggiungo lo stato di attessa
         $val_data['state'] = 'attesa';
 
+        // 
         $val_data['date'] = date_format(date_create($val_data['date']), 'Y-m-d');
 
         $val_data['hour_reservation'] = date_format(date_create($val_data['hour_reservation']), 'H:i');
 
+        // creo una nuova prenotaziome
         $reservation = Reservation::create($val_data);
 
+        // richiamo l'oggetto
+        $sendNotfification = new SendNotification();
 
+        // mando la notifica passando l'id della prenotazione
+        $sendNotfification->send($reservation->id);
+
+        // rispondo con un messaggio di successo
         return response()->json([
             'success' => true,
             'response' => $val_data,
         ]);
 
-        // //prendo tutti i dati validati
-        // $dirty_data = $request->validated();
-
-        // // aggiungo lo stato di attessa
-        // $dirty_data['state'] = 'attesa';
-
-        // // creo una nuova prenptaziome
-        // $reservation = Reservation::create($dirty_data);
-
-        // // richiamo l'oggetto
-        // $sendNotfification = new SendNotification();
-
-        // // mando la notifica passando l'id della prenotazione
-        // $sendNotfification->send($reservation->id);
-
-        // // rispondo con un messaggio di successo
         // return response()->json([
         //     'success' => true,
         //     'response' => "La tua prenotazione e arrivata",
