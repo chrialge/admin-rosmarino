@@ -85,7 +85,11 @@
         }
 
         #site_footer {
-            background-color: hsla(228, 70%, 6%, 1)
+            background-color: hsla(228, 70%, 6%, 1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
         }
 
         .top_footer {

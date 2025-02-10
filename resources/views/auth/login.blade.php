@@ -55,9 +55,9 @@
 
             <div class="social-login">
 
-                <a href="{{ route('register') }}">
+                {{-- <a href="{{ route('register') }}">
                     Registrati
-                </a>
+                </a> --}}
 
                 @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}">

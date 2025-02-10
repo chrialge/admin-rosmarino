@@ -2577,6 +2577,7 @@ $default-transition: color 3s ease-in-out, background-color 0.3s ease-in-out,
 
 .main_welcome {
     background-color: var(--switch-bg);
+    height: calc(100vh - 140px);
 
     & > .container {
         & > h2 {
