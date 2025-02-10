@@ -117,22 +117,22 @@ class ReservationController extends Controller
         // prendo i risultati 
         $result = json_decode($result)->result;
 
-        // salvo l'id del messaggio
-        $message_id = $result->message_id;
+        // // salvo l'id del messaggio
+        // $message_id = $result->message_id;
 
-        // setto per tutti campi della prenotazione
-        $newReservation['customer_name'] = $reservation->customer_name;
-        $newReservation['customer_last_name'] = $reservation->customer_last_name;
-        $newReservation['customer_telephone'] = $reservation->customer_telephone;
-        $newReservation['customer_email'] = $reservation->customer_email;
-        $newReservation['date'] = $reservation->date;
-        $newReservation['hour_reservation'] = $reservation->hour_reservation;
-        $newReservation['person'] = $reservation->person;
-        $newReservation['message_id'] = $message_id;
-        $newReservation['state'] = 'attesa';
+        // // setto per tutti campi della prenotazione
+        // $newReservation['customer_name'] = $reservation->customer_name;
+        // $newReservation['customer_last_name'] = $reservation->customer_last_name;
+        // $newReservation['customer_telephone'] = $reservation->customer_telephone;
+        // $newReservation['customer_email'] = $reservation->customer_email;
+        // $newReservation['date'] = $reservation->date;
+        // $newReservation['hour_reservation'] = $reservation->hour_reservation;
+        // $newReservation['person'] = $reservation->person;
+        // $newReservation['message_id'] = $message_id;
+        // $newReservation['state'] = 'attesa';
 
-        // aggiorni i dati per la prenotazione
-        Reservation::where('id', $reservation['id'])->update($newReservation);
+        // // aggiorni i dati per la prenotazione
+        // Reservation::where('id', $reservation['id'])->update($newReservation);
 
         // rispondo con un messaggio di successo
         return response()->json([
