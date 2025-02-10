@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('customer_email');
             $table->date('date');
             $table->time('hour_reservation');
-            $table->tinyInteger('person');
+            $table->integer('person');
             $table->string('state', '10');
             $table->bigInteger('message_id')->nullable();
             $table->timestamps();

@@ -36,9 +36,15 @@ class ReservationController extends Controller
      */
     public function store(StoreReservationRequest $request)
     {
+
+        $val_data = $request->validated;
+
+        $val_data['state'] = 'attesa';
+
+
         return response()->json([
             'success' => true,
-            'response' => $request->validated(),
+            'response' => $val_data,
         ]);
 
         // //prendo tutti i dati validati
