@@ -74,11 +74,11 @@ class ReservationController extends Controller
                 [
                     [
                         "text" => "conferma",
-                        "url" => "http://127.0.0.1:8000/api/confirm-reservation/{$reservation->id}"
+                        "url" => "https://backrosmarino.org/api/confirm-reservation/{$reservation->id}"
                     ],
                     [
                         "text" => "rifiuta",
-                        "url" => "http://127.0.0.1:8000/api/reject-reservation/{$reservation->id}"
+                        "url" => "https://backrosmarino.org/api/reject-reservation/{$reservation->id}"
                     ],
                 ]
             ]
