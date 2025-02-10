@@ -37,9 +37,11 @@ class ReservationController extends Controller
     public function store(StoreReservationRequest $request)
     {
 
-        $val_data = $request->validated;
+        $val_data = $request->validated();
 
         $val_data['state'] = 'attesa';
+
+        $date = date_create($val_data['date']);
 
 
         return response()->json([
