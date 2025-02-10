@@ -2602,7 +2602,9 @@ $default-transition: color 3s ease-in-out, background-color 0.3s ease-in-out,
         border-bottom: 3px solid transparent;
         transition: 0.3s ease-in-out;
         padding: 0 5px;
+        background-color: var(--switch-bg);
         &:hover {
+            background-color: var(--switch-bg);
             color: #997f44;
             border-color: #997f44;
         }
