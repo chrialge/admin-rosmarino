@@ -86,7 +86,7 @@
 
         #site_footer {
             background-color: hsla(228, 70%, 6%, 1);
-            position: fixed;
+            position: relative;
             bottom: 0;
             left: 0;
             width: 100%;
@@ -132,6 +132,14 @@
 
         .top_footer>ul>li>a:hover {
             background-color: hsl(228, 70%, 63%);
+        }
+
+        .dropdown-menu[data-bs-popper] {
+            right: 100px;
+        }
+
+        .dropdown {
+            margin-right: 70px
         }
 
         @media screen and (min-width: 600px) {
