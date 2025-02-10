@@ -46,7 +46,7 @@ class ReservationController extends Controller
 
         return response()->json([
             'success' => true,
-            'response' => $val_data,
+            'response' => $date,
         ]);
 
         // //prendo tutti i dati validati
