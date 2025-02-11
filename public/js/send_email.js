@@ -80,3 +80,16 @@ function hide_error_message() {
         error.style.display = 'none';
     }
 }
+
+function message_line(e) {
+    const lines = document.querySelector('#lines');
+    e.target.style.height = "0px";
+    e.target.style.height = (e.target.scrollHeight) + "px";
+    lines.style.marginTop = (-e.target.scrollHeight - 7) + "px";
+    let str = '';
+    e.target.value.split('\n').forEach(() => {
+        str += '<div class="line"></div>';
+    })
+
+    lines.innerHTML = str;
+}

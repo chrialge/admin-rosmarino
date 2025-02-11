@@ -73,7 +73,7 @@
 
 
                 <div class="mb-3">
-                    <label for="object" class="form-label">
+                    <label for="object m-0" class="form-label">
                         <h4 class="text-first">
                             <b>Oggetto</b>
                         </h4>
@@ -85,7 +85,7 @@
                     </span>
                 </div>
 
-                <h4 class="text-first">
+                <h4 class="text-first-email">
                     <b>
                         Email:
                     </b>
@@ -99,12 +99,10 @@
                         </h3>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="message" class="form-label"></label>
-                        <textarea class="form-control" name="message" id="message" rows="3" cols="100" onblur="check_message()"
-                            onkeyup="hide_error_message()">
-                            
-                        </textarea>
+                    <div id="container_message" class="mb-3">
+
+                        <textarea id="message" name="message" rows="4" cols="50" oninput="message_line(event)"></textarea>
+                        <div id="lines"></div>
                     </div>
 
                     <div class="footer_email">
@@ -151,18 +149,18 @@
                 <span id="error_message" class="text-danger  mb-3" style="display: none">
                     Inserisci il messaggio della email
                 </span>
+                <div class="d-flex justify-content-center">
 
-                <button id="btn_mail" class="btn_send btn" type="submit">
-                    Invia Email
-                    <i class="ri-mail-send-fill"></i>
-                </button>
-
-
-                <button id="btn_loading" class="btn btn_send" style="display: none" disabled>
-                    Attendi...
-                </button>
+                    <button id="btn_mail" class="btn_send btn" type="submit">
+                        Invia Email
+                        <i class="ri-mail-send-fill"></i>
+                    </button>
 
 
+                    <button id="btn_loading" class="btn btn_send" style="display: none" disabled>
+                        Attendi...
+                    </button>
+                </div>
             </form>
         </div>
     </div>
