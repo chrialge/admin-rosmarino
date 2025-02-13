@@ -1,5 +1,8 @@
 @extends('layouts.login')
 
+@section('script')
+    {!! RecaptchaV3::initJs() !!}
+@endsection
 
 
 @section('content')
@@ -40,6 +43,8 @@
                 </span>
             @enderror
 
+            {!! RecaptchaV3::field('register') !!}
+
 
 
             <div class="form_check mb-4">
@@ -68,8 +73,7 @@
             </div>
 
             <div class="d-flex justify-content-center mb-5">
-                <button class="btn login_submit g-recaptcha" type="submit"
-                    data-sitekey="{{ config('services.recaptcha.site_key') }}" data-callback='onSubmit' data-action='login'>
+                <button class="btn login_submit" type="submit">
                     <span class="button__text">Accedi</span>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
@@ -83,10 +87,6 @@
 
                 localStorage.removeItem('route-page');
 
-            }
-
-            function onSubmit(token) {
-                document.getElementById("login_form").submit();
             }
         </script>
 

@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
     {
 
         $request->validate([
-            'g-recaptcha-response' => ['required', new Recaptcha]
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
         ]);
         $request->authenticate();
 
