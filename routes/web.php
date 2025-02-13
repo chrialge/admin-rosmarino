@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NotificationReservation;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SendNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,11 @@ Route::middleware('auth')->group(function () {
 
 route::get('/send', function () {
 
-    Mail::to("chrialge99@gmail.com")->send(new NotificationReservation("chrialge99@gmail.com", "Christian Algieri", "Mi dispiace la prenotazzione e stata annulata", "Notifica di prenotazione"));
+    // richiamo l'oggetto
+    $sendNotfification = new SendNotification();
+
+    // mando la notifica passando l'id della prenotazione
+    $sendNotfification->send(1);
 });
 
 

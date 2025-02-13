@@ -30,7 +30,7 @@ class StoreCustomerRequest extends FormRequest
             'last_name' => 'required|min: 3| max: 100',
             'birth_day' => 'required|date',
             'email' => 'required|email',
-            'telephone' => 'required|numeric',
+            'telephone' => 'required|string',
         ];
     }
 

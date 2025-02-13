@@ -47,17 +47,19 @@ class ReservationController extends Controller
 
         $reservation = Reservation::create($val_data);
 
+
         // richiamo l'oggetto
         $sendNotfification = new SendNotification();
 
         // mando la notifica passando l'id della prenotazione
         $sendNotfification->send($reservation->id);
 
-
         return response()->json([
             'success' => true,
             'response' => $val_data,
         ]);
+
+
 
         // //prendo tutti i dati validati
         // $dirty_data = $request->validated();
@@ -70,11 +72,11 @@ class ReservationController extends Controller
 
 
 
-        // // rispondo con un messaggio di successo
-        // return response()->json([
-        //     'success' => true,
-        //     'response' => "La tua prenotazione e arrivata",
-        // ]);
+        // rispondo con un messaggio di successo
+        return response()->json([
+            'success' => true,
+            'response' => "La tua prenotazione e arrivata",
+        ]);
     }
 
     /**

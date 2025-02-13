@@ -77,6 +77,7 @@ class StateReservationController extends Controller
             // chiudo la chiamata
             curl_close($curlEdit);
 
+
             // invio una mail
             Mail::to($reservation->customer_email)->send(new NotificationReservation($reservation->customer_email, "$reservation->customer_name $reservation->customer_last_name", "Congratulazzioni la tua prenotazione e stata confermata", "Notifica di prenotazione"));
 

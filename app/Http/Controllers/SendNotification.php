@@ -44,7 +44,7 @@ class SendNotification extends Controller
                 [
                     [
                         "text" => "conferma",
-                        "url" => "https://backrosmarino.org/api/confirm-reservation/{$id}"
+                        "url" => "http://127.0.0.1:8000/api/confirm-reservation/{$id}"
                     ],
                     [
                         "text" => "rifiuta",
@@ -79,6 +79,7 @@ class SendNotification extends Controller
 
         // esaguo la chiamta
         $result = curl_exec($ch);
+
 
         // chiudo la chiamat
         curl_close($ch);
