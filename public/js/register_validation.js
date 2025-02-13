@@ -196,17 +196,4 @@ function check_form(e) {
 }
 
 
-function onClick(e) {
-    e.preventDefault();
-    const site_key = document.getElementById('g-recaptcha-response').dataset.site
-    console.log(document.getElementById('register_form'))
-    grecaptcha.ready(function () {
-        grecaptcha.execute(site_key, {
-            action: 'register'
-        }).then(function (token) {
-            document.getElementById('g-recaptcha-response').value = token;
-            document.getElementById('register_form').submit();
-        });
-    });
-}
 
