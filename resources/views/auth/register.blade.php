@@ -90,11 +90,7 @@
                 Le password non combacciono
             </span>
 
-            <div>
-                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response"
-                    data-site="{{ config('services.recaptcha.site_key') }}">
 
-            </div>
             @if ($errors->any())
                 @foreach ($errors->all() as $index => $error)
                     @if (str_contains($error, 'g-recaptcha-response'))
@@ -126,7 +122,9 @@
             <div class="d-flex justify-content-center mb-5">
 
 
-                <button id="register_input" class="btn login_submit" type="button" onclick="onClick(event)">
+                <button id="register_input" class="btn login_submit g-recaptcha" type="button" onclick="onClick(event)"
+                    data-sitekey="{{ config('services.recaptcha.site_key') }}" data-callback='onSubmit'
+                    data-action='register'>
                     <span class="button__text">Registarti</span>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
@@ -137,6 +135,12 @@
 
 
         </form>
+
+        <script>
+            function onSubmit(token) {
+                document.getElementById("register_form").submit();
+            }
+        </script>
 
 
 
