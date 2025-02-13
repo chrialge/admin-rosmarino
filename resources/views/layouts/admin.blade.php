@@ -27,6 +27,7 @@
 
 
 
+
     @yield('script')
 
     @livewireScripts

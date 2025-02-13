@@ -11,7 +11,7 @@
             <i id="theme-button" class="ri-sun-fill"></i>
         </div>
 
-        <form class="login" method="POST" action="{{ route('login') }}">
+        <form class="login" method="POST" action="{{ route('login') }}" id="login_form">
             @csrf
 
             <div class="login_field">
@@ -53,11 +53,12 @@
 
 
 
+
             <div class="social-login">
 
-                {{-- <a href="{{ route('register') }}">
+                <a href="{{ route('register') }}">
                     Registrati
-                </a> --}}
+                </a>
 
                 @if (Route::has('password.request'))
                     <a href="{{ route('password.request') }}">
@@ -67,7 +68,8 @@
             </div>
 
             <div class="d-flex justify-content-center mb-5">
-                <button class="btn login_submit" type="submit">
+                <button class="btn login_submit g-recaptcha" type="submit"
+                    data-sitekey="{{ config('services.recaptcha.site_key') }}" data-callback='onSubmit' data-action='login'>
                     <span class="button__text">Accedi</span>
                     <i class="button__icon fas fa-chevron-right"></i>
                 </button>
@@ -81,6 +83,10 @@
 
                 localStorage.removeItem('route-page');
 
+            }
+
+            function onSubmit(token) {
+                document.getElementById("login_form").submit();
             }
         </script>
 

@@ -22,7 +22,7 @@
 
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
-
+    <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
 
 
 
