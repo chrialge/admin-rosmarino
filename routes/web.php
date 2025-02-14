@@ -48,10 +48,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
-route::get('/send', function () {
+// route::get('/send', function () {
 
-    Mail::to("chrialge.dev@gmail.com")->send(new NotificationReservation("chrialge.dev@gmail.com", "christian algieri", "Congratulazzioni la tua prenotazione e stata confermata", "Notifica di prenotazione"));
-});
+//     Mail::to("chrialge.dev@gmail.com")->send(new NotificationReservation("chrialge.dev@gmail.com", "christian algieri", "Congratulazzioni la tua prenotazione e stata confermata", "Notifica di prenotazione"));
+// });
 
 
 require __DIR__ . '/auth.php';
