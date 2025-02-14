@@ -66,6 +66,16 @@
         #app {
             display: none
         }
+
+        .logo_container {
+            max-width: 400px;
+            margin: auto;
+            padding: 60px;
+
+            &>img {
+                width: 100%;
+            }
+        }
     </style>
 
 
@@ -116,6 +126,9 @@
 
     <div id="app">
 
+        <div class="logo_container">
+            <img src="{{ asset('img/logo_chrialge_blu.png') }}" alt="">
+        </div>
 
 
         <main id="container_credential">

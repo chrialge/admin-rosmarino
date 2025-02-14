@@ -211,8 +211,8 @@
                 </div>
 
                 <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-                    <div class="logo_laravel">
-                        LOgo
+                    <div class="logo_laravel" style="max-width: 80px">
+                        <img src="{{ asset('img/logo_chrialge_blu.png') }}" alt="" width="100">
                     </div>
                     {{-- config('app.name', 'Laravel') --}}
                 </a>

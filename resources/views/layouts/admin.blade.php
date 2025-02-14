@@ -115,7 +115,7 @@
     <header class="header" id="header">
         <div class="header__container">
             <a href="#" class="header__logo">
-                <i class="ri-database-2-fill"></i>
+                <img src="{{ asset('img/logo_chrialge_blu.png') }}" alt="" img="100">
             </a>
 
             <button class="header__toggle" id="header-toggle">
