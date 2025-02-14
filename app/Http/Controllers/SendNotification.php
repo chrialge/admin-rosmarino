@@ -44,7 +44,7 @@ class SendNotification extends Controller
                 [
                     [
                         "text" => "conferma",
-                        "url" => "https://backrosmarino.org/api/reject-reservation/{$id}"
+                        "url" => "https://backrosmarino.org/api/confirm-reservation/{$id}"
                     ],
                     [
                         "text" => "rifiuta",
