@@ -50,11 +50,7 @@ Route::middleware('auth')->group(function () {
 
 route::get('/send', function () {
 
-    // richiamo l'oggetto
-    $sendNotfification = new SendNotification();
-
-    // mando la notifica passando l'id della prenotazione
-    $sendNotfification->send(1);
+    Mail::to("chrialge99@gmail.com")->send(new NotificationReservation("chrialge99@gmail.com", "christian algieri", "Congratulazzioni la tua prenotazione e stata confermata", "Notifica di prenotazione"));
 });
 
 

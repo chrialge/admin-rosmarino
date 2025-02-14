@@ -29,7 +29,7 @@ class NotificationReservation extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('noreply@demomailtrap.com', 'Ristorante Rosmarino'),
+            from: new Address(env('MAIL_FROM_ADDRESS'), 'Ristorante Rosmarino'),
             replyTo: [
                 new Address($this->email, $this->name)
             ],
